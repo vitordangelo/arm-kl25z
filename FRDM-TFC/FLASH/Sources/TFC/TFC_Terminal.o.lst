@@ -155,59 +155,54 @@
  112              		.file 1 "../Sources/TFC/TFC_Terminal.c"
    1:../Sources/TFC/TFC_Terminal.c **** #include "TFC\TFC.h"
    2:../Sources/TFC/TFC_Terminal.c **** 
-   3:../Sources/TFC/TFC_Terminal.c **** 
-   4:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
-   5:../Sources/TFC/TFC_Terminal.c **** //Terminal Configuration
-   6:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
-   7:../Sources/TFC/TFC_Terminal.c **** 
-   8:../Sources/TFC/TFC_Terminal.c **** #define MAX_TERMINAL_LINE_CHARS 64
-   9:../Sources/TFC/TFC_Terminal.c **** #define MAX_TERMINAL_CMD_CHARS  32
-  10:../Sources/TFC/TFC_Terminal.c **** 
+   3:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
+   4:../Sources/TFC/TFC_Terminal.c **** //Terminal Configuration
+   5:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
+   6:../Sources/TFC/TFC_Terminal.c **** 
+   7:../Sources/TFC/TFC_Terminal.c **** #define MAX_TERMINAL_LINE_CHARS 64
+   8:../Sources/TFC/TFC_Terminal.c **** #define MAX_TERMINAL_CMD_CHARS  32
+   9:../Sources/TFC/TFC_Terminal.c **** 
+  10:../Sources/TFC/TFC_Terminal.c **** typedef void (*TerminalCallback)(char *);
   11:../Sources/TFC/TFC_Terminal.c **** 
-  12:../Sources/TFC/TFC_Terminal.c **** typedef void (*TerminalCallback)(char *);
-  13:../Sources/TFC/TFC_Terminal.c **** 
-  14:../Sources/TFC/TFC_Terminal.c **** 
-  15:../Sources/TFC/TFC_Terminal.c **** typedef struct 
-  16:../Sources/TFC/TFC_Terminal.c **** {
-  17:../Sources/TFC/TFC_Terminal.c **** 	const char *CommandString;
-  18:../Sources/TFC/TFC_Terminal.c **** 	TerminalCallback Callback;
-  19:../Sources/TFC/TFC_Terminal.c **** 	const char *HelpString;
-  20:../Sources/TFC/TFC_Terminal.c **** 		
-  21:../Sources/TFC/TFC_Terminal.c **** } TerminalCallbackRecord;
-  22:../Sources/TFC/TFC_Terminal.c **** 
-  23:../Sources/TFC/TFC_Terminal.c **** //Callback function prototypes
-  24:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Help(char *arg);
-  25:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Reboot(char *arg);
-  26:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_GetLineScan(char *arg);
-  27:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_S(char *arg);
-  28:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_H(char *arg);
-  29:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_E(char *arg);
-  30:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_D(char *arg);
-  31:../Sources/TFC/TFC_Terminal.c **** //Populate this array with the callback functions and their terminal command string
-  32:../Sources/TFC/TFC_Terminal.c **** TerminalCallbackRecord MyTerminalCallbackRecords[] ={	{"help",TerminalCmd_Help,"Lists available com
-  33:../Sources/TFC/TFC_Terminal.c ****                                                         {"L",TerminalCmd_GetLineScan,"Displays line
-  34:../Sources/TFC/TFC_Terminal.c ****                                                         {"S",TerminalCmd_S,"Commands the servos to 
-  35:../Sources/TFC/TFC_Terminal.c ****                                                         {"H", TerminalCmd_H,"Commands the H-Bridges
-  36:../Sources/TFC/TFC_Terminal.c **** 														{"E",TerminalCmd_E, "Enables the H-Bridges"},
-  37:../Sources/TFC/TFC_Terminal.c **** 														{"D",TerminalCmd_D, "Disables the H-Bridges"},
-  38:../Sources/TFC/TFC_Terminal.c ****                                                         };
+  12:../Sources/TFC/TFC_Terminal.c **** typedef struct {
+  13:../Sources/TFC/TFC_Terminal.c **** 	const char *CommandString;
+  14:../Sources/TFC/TFC_Terminal.c **** 	TerminalCallback Callback;
+  15:../Sources/TFC/TFC_Terminal.c **** 	const char *HelpString;
+  16:../Sources/TFC/TFC_Terminal.c **** 
+  17:../Sources/TFC/TFC_Terminal.c **** } TerminalCallbackRecord;
+  18:../Sources/TFC/TFC_Terminal.c **** 
+  19:../Sources/TFC/TFC_Terminal.c **** //Callback function prototypes
+  20:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Help(char *arg);
+  21:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Reboot(char *arg);
+  22:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_GetLineScan(char *arg);
+  23:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_S(char *arg);
+  24:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_H(char *arg);
+  25:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_E(char *arg);
+  26:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_D(char *arg);
+  27:../Sources/TFC/TFC_Terminal.c **** //Populate this array with the callback functions and their terminal command string
+  28:../Sources/TFC/TFC_Terminal.c **** TerminalCallbackRecord MyTerminalCallbackRecords[] = { { "help",
+  29:../Sources/TFC/TFC_Terminal.c **** 		TerminalCmd_Help, "Lists available commands" }, { "L",
+  30:../Sources/TFC/TFC_Terminal.c **** 		TerminalCmd_GetLineScan, "Displays linescan camera data" }, { "S",
+  31:../Sources/TFC/TFC_Terminal.c **** 		TerminalCmd_S, "Commands the servos to a position" }, { "H",
+  32:../Sources/TFC/TFC_Terminal.c **** 		TerminalCmd_H, "Commands the H-Bridges" }, { "E", TerminalCmd_E,
+  33:../Sources/TFC/TFC_Terminal.c **** 		"Enables the H-Bridges" }, { "D", TerminalCmd_D,
+  34:../Sources/TFC/TFC_Terminal.c **** 		"Disables the H-Bridges" }, };
+  35:../Sources/TFC/TFC_Terminal.c **** 
+  36:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
+  37:../Sources/TFC/TFC_Terminal.c **** //Plumbing.....
+  38:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
   39:../Sources/TFC/TFC_Terminal.c **** 
-  40:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
-  41:../Sources/TFC/TFC_Terminal.c **** //Plumbing.....
-  42:../Sources/TFC/TFC_Terminal.c **** //*****************************************************************
-  43:../Sources/TFC/TFC_Terminal.c **** 
-  44:../Sources/TFC/TFC_Terminal.c **** #define NUM_TERMINAL_COMMANDS  (sizeof(MyTerminalCallbackRecords)/sizeof(TerminalCallbackRecord))
-  45:../Sources/TFC/TFC_Terminal.c **** 
-  46:../Sources/TFC/TFC_Terminal.c **** char TerminalLineBuf[MAX_TERMINAL_LINE_CHARS];
-  47:../Sources/TFC/TFC_Terminal.c **** uint8_t TerminalPos;
-  48:../Sources/TFC/TFC_Terminal.c **** char TerminalCmdBuf[MAX_TERMINAL_CMD_CHARS+1];
-  49:../Sources/TFC/TFC_Terminal.c **** char TerminalArgs[MAX_TERMINAL_LINE_CHARS-MAX_TERMINAL_CMD_CHARS];
-  50:../Sources/TFC/TFC_Terminal.c **** uint8_t NextCharIn;
-  51:../Sources/TFC/TFC_Terminal.c **** uint8_t CmdFound;
-  52:../Sources/TFC/TFC_Terminal.c ****  
-  53:../Sources/TFC/TFC_Terminal.c **** void TerminalBootMsg()
-  54:../Sources/TFC/TFC_Terminal.c **** {
- 113              		.loc 1 54 0
+  40:../Sources/TFC/TFC_Terminal.c **** #define NUM_TERMINAL_COMMANDS  (sizeof(MyTerminalCallbackRecords)/sizeof(TerminalCallbackRecord))
+  41:../Sources/TFC/TFC_Terminal.c **** 
+  42:../Sources/TFC/TFC_Terminal.c **** char TerminalLineBuf[MAX_TERMINAL_LINE_CHARS];
+  43:../Sources/TFC/TFC_Terminal.c **** uint8_t TerminalPos;
+  44:../Sources/TFC/TFC_Terminal.c **** char TerminalCmdBuf[MAX_TERMINAL_CMD_CHARS + 1];
+  45:../Sources/TFC/TFC_Terminal.c **** char TerminalArgs[MAX_TERMINAL_LINE_CHARS - MAX_TERMINAL_CMD_CHARS];
+  46:../Sources/TFC/TFC_Terminal.c **** uint8_t NextCharIn;
+  47:../Sources/TFC/TFC_Terminal.c **** uint8_t CmdFound;
+  48:../Sources/TFC/TFC_Terminal.c **** 
+  49:../Sources/TFC/TFC_Terminal.c **** void TerminalBootMsg() {
+ 113              		.loc 1 49 0
  114              		.cfi_startproc
  115 0000 80B5     		push	{r7, lr}
  116              	.LCFI0:
@@ -217,52 +212,52 @@
  120 0002 00AF     		add	r7, sp, #0
  121              	.LCFI1:
  122              		.cfi_def_cfa_register 7
-  55:../Sources/TFC/TFC_Terminal.c **** 
-  56:../Sources/TFC/TFC_Terminal.c **** TERMINAL_PRINTF("\r\n\r\n"); 
- 123              		.loc 1 56 0
+  50:../Sources/TFC/TFC_Terminal.c **** 
+  51:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\n\r\n");
+ 123              		.loc 1 51 0
  124 0004 124A     		ldr	r2, .L2
  125 0006 134B     		ldr	r3, .L2+4
  126 0008 101C     		mov	r0, r2
  127 000a 191C     		mov	r1, r3
  128 000c FFF7FEFF 		bl	Qprintf
-  57:../Sources/TFC/TFC_Terminal.c **** TERMINAL_PRINTF("***********************************\r\n"); 
- 129              		.loc 1 57 0
+  52:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("***********************************\r\n");
+ 129              		.loc 1 52 0
  130 0010 0F4A     		ldr	r2, .L2
  131 0012 114B     		ldr	r3, .L2+8
  132 0014 101C     		mov	r0, r2
  133 0016 191C     		mov	r1, r3
  134 0018 FFF7FEFF 		bl	Qprintf
-  58:../Sources/TFC/TFC_Terminal.c **** TERMINAL_PRINTF("FRDM-TFC		           \r\n");
- 135              		.loc 1 58 0
+  53:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("FRDM-TFC		           \r\n");
+ 135              		.loc 1 53 0
  136 001c 0C4A     		ldr	r2, .L2
  137 001e 0F4B     		ldr	r3, .L2+12
  138 0020 101C     		mov	r0, r2
  139 0022 191C     		mov	r1, r3
  140 0024 FFF7FEFF 		bl	Qprintf
-  59:../Sources/TFC/TFC_Terminal.c **** TERMINAL_PRINTF("Copyright (C) <2013>  Eli Hughes\r\n");
- 141              		.loc 1 59 0
+  54:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("Copyright (C) <2013>  Eli Hughes\r\n");
+ 141              		.loc 1 54 0
  142 0028 094A     		ldr	r2, .L2
  143 002a 0D4B     		ldr	r3, .L2+16
  144 002c 101C     		mov	r0, r2
  145 002e 191C     		mov	r1, r3
  146 0030 FFF7FEFF 		bl	Qprintf
-  60:../Sources/TFC/TFC_Terminal.c **** TERMINAL_PRINTF("Wavenumber LLC\r\n"); 
- 147              		.loc 1 60 0
+  55:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("Wavenumber LLC\r\n");
+ 147              		.loc 1 55 0
  148 0034 064A     		ldr	r2, .L2
  149 0036 0B4B     		ldr	r3, .L2+20
  150 0038 101C     		mov	r0, r2
  151 003a 191C     		mov	r1, r3
  152 003c FFF7FEFF 		bl	Qprintf
-  61:../Sources/TFC/TFC_Terminal.c **** TERMINAL_PRINTF("***********************************\r\n\r\n>"); 
- 153              		.loc 1 61 0
+  56:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("***********************************\r\n\r\n>");
+ 153              		.loc 1 56 0
  154 0040 034A     		ldr	r2, .L2
  155 0042 094B     		ldr	r3, .L2+24
  156 0044 101C     		mov	r0, r2
  157 0046 191C     		mov	r1, r3
  158 0048 FFF7FEFF 		bl	Qprintf
-  62:../Sources/TFC/TFC_Terminal.c **** 
-  63:../Sources/TFC/TFC_Terminal.c **** }
- 159              		.loc 1 63 0
+  57:../Sources/TFC/TFC_Terminal.c **** 
+  58:../Sources/TFC/TFC_Terminal.c **** }
+ 159              		.loc 1 58 0
  160 004c BD46     		mov	sp, r7
  161              		@ sp needed for prologue
  162 004e 80BD     		pop	{r7, pc}
@@ -285,10 +280,9 @@
  180              		.thumb_func
  182              	TFC_InitTerminal:
  183              	.LFB1:
-  64:../Sources/TFC/TFC_Terminal.c **** 
-  65:../Sources/TFC/TFC_Terminal.c **** void TFC_InitTerminal()
-  66:../Sources/TFC/TFC_Terminal.c **** {
- 184              		.loc 1 66 0
+  59:../Sources/TFC/TFC_Terminal.c **** 
+  60:../Sources/TFC/TFC_Terminal.c **** void TFC_InitTerminal() {
+ 184              		.loc 1 60 0
  185              		.cfi_startproc
  186 0000 80B5     		push	{r7, lr}
  187              	.LCFI2:
@@ -298,21 +292,21 @@
  191 0002 00AF     		add	r7, sp, #0
  192              	.LCFI3:
  193              		.cfi_def_cfa_register 7
-  67:../Sources/TFC/TFC_Terminal.c **** 	TerminalPos = 0;
- 194              		.loc 1 67 0
+  61:../Sources/TFC/TFC_Terminal.c **** 	TerminalPos = 0;
+ 194              		.loc 1 61 0
  195 0004 044B     		ldr	r3, .L5
  196 0006 0022     		mov	r2, #0
  197 0008 1A70     		strb	r2, [r3]
-  68:../Sources/TFC/TFC_Terminal.c **** 	CmdFound = 0;
- 198              		.loc 1 68 0
+  62:../Sources/TFC/TFC_Terminal.c **** 	CmdFound = 0;
+ 198              		.loc 1 62 0
  199 000a 044B     		ldr	r3, .L5+4
  200 000c 0022     		mov	r2, #0
  201 000e 1A70     		strb	r2, [r3]
-  69:../Sources/TFC/TFC_Terminal.c ****     TerminalBootMsg();
- 202              		.loc 1 69 0
+  63:../Sources/TFC/TFC_Terminal.c **** 	TerminalBootMsg();
+ 202              		.loc 1 63 0
  203 0010 FFF7FEFF 		bl	TerminalBootMsg
-  70:../Sources/TFC/TFC_Terminal.c **** }
- 204              		.loc 1 70 0
+  64:../Sources/TFC/TFC_Terminal.c **** }
+ 204              		.loc 1 64 0
  205 0014 BD46     		mov	sp, r7
  206              		@ sp needed for prologue
  207 0016 80BD     		pop	{r7, pc}
@@ -351,10 +345,9 @@
  230              		.thumb_func
  232              	TerminalCmd_Help:
  233              	.LFB2:
-  71:../Sources/TFC/TFC_Terminal.c **** 
-  72:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Help(char *arg)
-  73:../Sources/TFC/TFC_Terminal.c **** {
- 234              		.loc 1 73 0
+  65:../Sources/TFC/TFC_Terminal.c **** 
+  66:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Help(char *arg) {
+ 234              		.loc 1 66 0
  235              		.cfi_startproc
  236 0000 90B5     		push	{r4, r7, lr}
  237              	.LCFI4:
@@ -369,34 +362,33 @@
  246              	.LCFI6:
  247              		.cfi_def_cfa_register 7
  248 0006 7860     		str	r0, [r7, #4]
-  74:../Sources/TFC/TFC_Terminal.c ****     uint8_t i;
-  75:../Sources/TFC/TFC_Terminal.c **** 
-  76:../Sources/TFC/TFC_Terminal.c ****     TERMINAL_PRINTF("\r\n\r\nCommand List:\r\n");
- 249              		.loc 1 76 0
+  67:../Sources/TFC/TFC_Terminal.c **** 	uint8_t i;
+  68:../Sources/TFC/TFC_Terminal.c **** 
+  69:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\n\r\nCommand List:\r\n");
+ 249              		.loc 1 69 0
  250 0008 204A     		ldr	r2, .L10
  251 000a 214B     		ldr	r3, .L10+4
  252 000c 101C     		mov	r0, r2
  253 000e 191C     		mov	r1, r3
  254 0010 FFF7FEFF 		bl	Qprintf
-  77:../Sources/TFC/TFC_Terminal.c ****     TERMINAL_PRINTF("----------------------\r\n");
- 255              		.loc 1 77 0
+  70:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("----------------------\r\n");
+ 255              		.loc 1 70 0
  256 0014 1D4A     		ldr	r2, .L10
  257 0016 1F4B     		ldr	r3, .L10+8
  258 0018 101C     		mov	r0, r2
  259 001a 191C     		mov	r1, r3
  260 001c FFF7FEFF 		bl	Qprintf
-  78:../Sources/TFC/TFC_Terminal.c **** 
-  79:../Sources/TFC/TFC_Terminal.c ****     for(i=0;i<NUM_TERMINAL_COMMANDS;i++)
- 261              		.loc 1 79 0
+  71:../Sources/TFC/TFC_Terminal.c **** 
+  72:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < NUM_TERMINAL_COMMANDS; i++) {
+ 261              		.loc 1 72 0
  262 0020 3B1C     		mov	r3, r7
  263 0022 0F33     		add	r3, r3, #15
  264 0024 0022     		mov	r2, #0
  265 0026 1A70     		strb	r2, [r3]
  266 0028 21E0     		b	.L8
  267              	.L9:
-  80:../Sources/TFC/TFC_Terminal.c ****     {
-  81:../Sources/TFC/TFC_Terminal.c ****          TERMINAL_PRINTF("%s  ---->  %s\r\n",MyTerminalCallbackRecords[i].CommandString,MyTerminalC
- 268              		.loc 1 81 0
+  73:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF(
+ 268              		.loc 1 73 0
  269 002a 3B1C     		mov	r3, r7
  270 002c 0F33     		add	r3, r3, #15
  271 002e 1A78     		ldrb	r2, [r3]
@@ -423,8 +415,8 @@
  292 0058 111C     		mov	r1, r2
  293 005a 221C     		mov	r2, r4
  294 005c FFF7FEFF 		bl	Qprintf
-  79:../Sources/TFC/TFC_Terminal.c ****     for(i=0;i<NUM_TERMINAL_COMMANDS;i++)
- 295              		.loc 1 79 0
+  72:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < NUM_TERMINAL_COMMANDS; i++) {
+ 295              		.loc 1 72 0
  296 0060 3B1C     		mov	r3, r7
  297 0062 0F33     		add	r3, r3, #15
  298 0064 3A1C     		mov	r2, r7
@@ -433,24 +425,25 @@
  301 006a 0132     		add	r2, r2, #1
  302 006c 1A70     		strb	r2, [r3]
  303              	.L8:
-  79:../Sources/TFC/TFC_Terminal.c ****     for(i=0;i<NUM_TERMINAL_COMMANDS;i++)
- 304              		.loc 1 79 0 is_stmt 0
+  72:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < NUM_TERMINAL_COMMANDS; i++) {
+ 304              		.loc 1 72 0 is_stmt 0
  305 006e 3B1C     		mov	r3, r7
  306 0070 0F33     		add	r3, r3, #15
  307 0072 1B78     		ldrb	r3, [r3]
  308 0074 052B     		cmp	r3, #5
  309 0076 D8D9     		bls	.L9
-  82:../Sources/TFC/TFC_Terminal.c ****     }
-  83:../Sources/TFC/TFC_Terminal.c **** 
-  84:../Sources/TFC/TFC_Terminal.c ****     TERMINAL_PRINTF("\r\n\r\n");
- 310              		.loc 1 84 0 is_stmt 1
+  74:../Sources/TFC/TFC_Terminal.c **** 				"%s  ---->  %s\r\n", MyTerminalCallbackRecords[i].CommandString, MyTerminalCallbackRecords[i].H
+  75:../Sources/TFC/TFC_Terminal.c **** 	}
+  76:../Sources/TFC/TFC_Terminal.c **** 
+  77:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\n\r\n");
+ 310              		.loc 1 77 0 is_stmt 1
  311 0078 044A     		ldr	r2, .L10
  312 007a 094B     		ldr	r3, .L10+20
  313 007c 101C     		mov	r0, r2
  314 007e 191C     		mov	r1, r3
  315 0080 FFF7FEFF 		bl	Qprintf
-  85:../Sources/TFC/TFC_Terminal.c **** }
- 316              		.loc 1 85 0
+  78:../Sources/TFC/TFC_Terminal.c **** }
+ 316              		.loc 1 78 0
  317 0084 BD46     		mov	sp, r7
  318 0086 05B0     		add	sp, sp, #20
  319              		@ sp needed for prologue
@@ -473,10 +466,9 @@
  337              		.thumb_func
  339              	TerminalCmd_Reboot:
  340              	.LFB3:
-  86:../Sources/TFC/TFC_Terminal.c **** 
-  87:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Reboot(char *arg)
-  88:../Sources/TFC/TFC_Terminal.c **** {
- 341              		.loc 1 88 0
+  79:../Sources/TFC/TFC_Terminal.c **** 
+  80:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_Reboot(char *arg) {
+ 341              		.loc 1 80 0
  342              		.cfi_startproc
  343 0000 80B5     		push	{r7, lr}
  344              	.LCFI7:
@@ -490,11 +482,11 @@
  352              	.LCFI9:
  353              		.cfi_def_cfa_register 7
  354 0006 7860     		str	r0, [r7, #4]
-  89:../Sources/TFC/TFC_Terminal.c ****       TerminalBootMsg();
- 355              		.loc 1 89 0
+  81:../Sources/TFC/TFC_Terminal.c **** 	TerminalBootMsg();
+ 355              		.loc 1 81 0
  356 0008 FFF7FEFF 		bl	TerminalBootMsg
-  90:../Sources/TFC/TFC_Terminal.c **** }
- 357              		.loc 1 90 0
+  82:../Sources/TFC/TFC_Terminal.c **** }
+ 357              		.loc 1 82 0
  358 000c BD46     		mov	sp, r7
  359 000e 02B0     		add	sp, sp, #8
  360              		@ sp needed for prologue
@@ -516,12 +508,9 @@
  373              		.thumb_func
  375              	TerminalCmd_E:
  376              	.LFB4:
-  91:../Sources/TFC/TFC_Terminal.c **** 
-  92:../Sources/TFC/TFC_Terminal.c **** 
-  93:../Sources/TFC/TFC_Terminal.c **** 
-  94:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_E(char *arg)
-  95:../Sources/TFC/TFC_Terminal.c **** {
- 377              		.loc 1 95 0
+  83:../Sources/TFC/TFC_Terminal.c **** 
+  84:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_E(char *arg) {
+ 377              		.loc 1 84 0
  378              		.cfi_startproc
  379 0000 80B5     		push	{r7, lr}
  380              	.LCFI10:
@@ -535,21 +524,21 @@
  388              	.LCFI12:
  389              		.cfi_def_cfa_register 7
  390 0006 7860     		str	r0, [r7, #4]
-  96:../Sources/TFC/TFC_Terminal.c **** 	 TERMINAL_PRINTF("\t\r\nEnabling H-Bridges\r\n");
- 391              		.loc 1 96 0
+  85:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\t\r\nEnabling H-Bridges\r\n");
+ 391              		.loc 1 85 0
  392 0008 064A     		ldr	r2, .L14
  393 000a 074B     		ldr	r3, .L14+4
  394 000c 101C     		mov	r0, r2
  395 000e 191C     		mov	r1, r3
  396 0010 FFF7FEFF 		bl	Qprintf
-  97:../Sources/TFC/TFC_Terminal.c **** 	 TFC_HBRIDGE_ENABLE;
- 397              		.loc 1 97 0
+  86:../Sources/TFC/TFC_Terminal.c **** 	TFC_HBRIDGE_ENABLE;
+ 397              		.loc 1 86 0
  398 0014 054B     		ldr	r3, .L14+8
  399 0016 8022     		mov	r2, #128
  400 0018 9203     		lsl	r2, r2, #14
  401 001a 5A60     		str	r2, [r3, #4]
-  98:../Sources/TFC/TFC_Terminal.c **** }
- 402              		.loc 1 98 0
+  87:../Sources/TFC/TFC_Terminal.c **** }
+ 402              		.loc 1 87 0
  403 001c BD46     		mov	sp, r7
  404 001e 02B0     		add	sp, sp, #8
  405              		@ sp needed for prologue
@@ -577,10 +566,9 @@
  424              		.thumb_func
  426              	TerminalCmd_D:
  427              	.LFB5:
-  99:../Sources/TFC/TFC_Terminal.c **** 
- 100:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_D(char *arg)
- 101:../Sources/TFC/TFC_Terminal.c **** {
- 428              		.loc 1 101 0
+  88:../Sources/TFC/TFC_Terminal.c **** 
+  89:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_D(char *arg) {
+ 428              		.loc 1 89 0
  429              		.cfi_startproc
  430 0000 80B5     		push	{r7, lr}
  431              	.LCFI13:
@@ -594,28 +582,28 @@
  439              	.LCFI15:
  440              		.cfi_def_cfa_register 7
  441 0006 7860     		str	r0, [r7, #4]
- 102:../Sources/TFC/TFC_Terminal.c **** 	 TERMINAL_PRINTF("\t\r\nDisabling H-Bridges\r\n");
- 442              		.loc 1 102 0
+  90:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\t\r\nDisabling H-Bridges\r\n");
+ 442              		.loc 1 90 0
  443 0008 094A     		ldr	r2, .L17
  444 000a 0A4B     		ldr	r3, .L17+4
  445 000c 101C     		mov	r0, r2
  446 000e 191C     		mov	r1, r3
  447 0010 FFF7FEFF 		bl	Qprintf
- 103:../Sources/TFC/TFC_Terminal.c **** 	 TFC_HBRIDGE_DISABLE;
- 448              		.loc 1 103 0
+  91:../Sources/TFC/TFC_Terminal.c **** 	TFC_HBRIDGE_DISABLE;
+ 448              		.loc 1 91 0
  449 0014 084B     		ldr	r3, .L17+8
  450 0016 8022     		mov	r2, #128
  451 0018 9203     		lsl	r2, r2, #14
  452 001a 9A60     		str	r2, [r3, #8]
- 104:../Sources/TFC/TFC_Terminal.c **** 	 TFC_SetMotorPWM(0,0);
- 453              		.loc 1 104 0
+  92:../Sources/TFC/TFC_Terminal.c **** 	TFC_SetMotorPWM(0, 0);
+ 453              		.loc 1 92 0
  454 001c 0022     		mov	r2, #0
  455 001e 0023     		mov	r3, #0
  456 0020 101C     		add	r0, r2, #0
  457 0022 191C     		add	r1, r3, #0
  458 0024 FFF7FEFF 		bl	TFC_SetMotorPWM
- 105:../Sources/TFC/TFC_Terminal.c **** }
- 459              		.loc 1 105 0
+  93:../Sources/TFC/TFC_Terminal.c **** }
+ 459              		.loc 1 93 0
  460 0028 BD46     		mov	sp, r7
  461 002a 02B0     		add	sp, sp, #8
  462              		@ sp needed for prologue
@@ -652,10 +640,9 @@
  490              		.thumb_func
  492              	TerminalCmd_GetLineScan:
  493              	.LFB6:
- 106:../Sources/TFC/TFC_Terminal.c **** 
- 107:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_GetLineScan(char *arg)
- 108:../Sources/TFC/TFC_Terminal.c **** {
- 494              		.loc 1 108 0
+  94:../Sources/TFC/TFC_Terminal.c **** 
+  95:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_GetLineScan(char *arg) {
+ 494              		.loc 1 95 0
  495              		.cfi_startproc
  496 0000 80B5     		push	{r7, lr}
  497              	.LCFI16:
@@ -669,28 +656,27 @@
  505              	.LCFI18:
  506              		.cfi_def_cfa_register 7
  507 0006 7860     		str	r0, [r7, #4]
- 109:../Sources/TFC/TFC_Terminal.c **** 	uint8_t i;
- 110:../Sources/TFC/TFC_Terminal.c **** 	
- 111:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\nLINE 0:");
- 508              		.loc 1 111 0
+  96:../Sources/TFC/TFC_Terminal.c **** 	uint8_t i;
+  97:../Sources/TFC/TFC_Terminal.c **** 
+  98:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\nLINE 0:");
+ 508              		.loc 1 98 0
  509 0008 3B4A     		ldr	r2, .L28
  510 000a 3C4B     		ldr	r3, .L28+4
  511 000c 101C     		mov	r0, r2
  512 000e 191C     		mov	r1, r3
  513 0010 FFF7FEFF 		bl	Qprintf
- 112:../Sources/TFC/TFC_Terminal.c **** 	
- 113:../Sources/TFC/TFC_Terminal.c **** 	for(i=0;i<128;i++)
- 514              		.loc 1 113 0
+  99:../Sources/TFC/TFC_Terminal.c **** 
+ 100:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < 128; i++) {
+ 514              		.loc 1 100 0
  515 0014 3B1C     		mov	r3, r7
  516 0016 0F33     		add	r3, r3, #15
  517 0018 0022     		mov	r2, #0
  518 001a 1A70     		strb	r2, [r3]
  519 001c 28E0     		b	.L20
  520              	.L23:
- 114:../Sources/TFC/TFC_Terminal.c **** 	{
- 115:../Sources/TFC/TFC_Terminal.c **** 		
- 116:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF("%2X",LineScanImage0[i]);
- 521              		.loc 1 116 0
+ 101:../Sources/TFC/TFC_Terminal.c **** 
+ 102:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF("%2X", LineScanImage0[i]);
+ 521              		.loc 1 102 0
  522 001e 384B     		ldr	r3, .L28+8
  523 0020 1A68     		ldr	r2, [r3]
  524 0022 3B1C     		mov	r3, r7
@@ -706,16 +692,16 @@
  534 0036 111C     		mov	r1, r2
  535 0038 1A1C     		mov	r2, r3
  536 003a FFF7FEFF 		bl	Qprintf
- 117:../Sources/TFC/TFC_Terminal.c **** 		
- 118:../Sources/TFC/TFC_Terminal.c **** 		if(i<127)
- 537              		.loc 1 118 0
+ 103:../Sources/TFC/TFC_Terminal.c **** 
+ 104:../Sources/TFC/TFC_Terminal.c **** 		if (i < 127)
+ 537              		.loc 1 104 0
  538 003e 3B1C     		mov	r3, r7
  539 0040 0F33     		add	r3, r3, #15
  540 0042 1B78     		ldrb	r3, [r3]
  541 0044 7E2B     		cmp	r3, #126
  542 0046 06D8     		bhi	.L21
- 119:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF(",");
- 543              		.loc 1 119 0
+ 105:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF(",");
+ 543              		.loc 1 105 0
  544 0048 2B4A     		ldr	r2, .L28
  545 004a 2F4B     		ldr	r3, .L28+16
  546 004c 101C     		mov	r0, r2
@@ -723,17 +709,17 @@
  548 0050 FFF7FEFF 		bl	Qprintf
  549 0054 05E0     		b	.L22
  550              	.L21:
- 120:../Sources/TFC/TFC_Terminal.c **** 		else
- 121:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF("\r\n\r\n");
- 551              		.loc 1 121 0
+ 106:../Sources/TFC/TFC_Terminal.c **** 		else
+ 107:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF("\r\n\r\n");
+ 551              		.loc 1 107 0
  552 0056 284A     		ldr	r2, .L28
  553 0058 2C4B     		ldr	r3, .L28+20
  554 005a 101C     		mov	r0, r2
  555 005c 191C     		mov	r1, r3
  556 005e FFF7FEFF 		bl	Qprintf
  557              	.L22:
- 113:../Sources/TFC/TFC_Terminal.c **** 	for(i=0;i<128;i++)
- 558              		.loc 1 113 0
+ 100:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < 128; i++) {
+ 558              		.loc 1 100 0
  559 0062 3B1C     		mov	r3, r7
  560 0064 0F33     		add	r3, r3, #15
  561 0066 3A1C     		mov	r2, r7
@@ -742,33 +728,32 @@
  564 006c 0132     		add	r2, r2, #1
  565 006e 1A70     		strb	r2, [r3]
  566              	.L20:
- 113:../Sources/TFC/TFC_Terminal.c **** 	for(i=0;i<128;i++)
- 567              		.loc 1 113 0 is_stmt 0
+ 100:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < 128; i++) {
+ 567              		.loc 1 100 0 is_stmt 0
  568 0070 3B1C     		mov	r3, r7
  569 0072 0F33     		add	r3, r3, #15
  570 0074 1B78     		ldrb	r3, [r3]
  571 0076 5BB2     		sxtb	r3, r3
  572 0078 002B     		cmp	r3, #0
  573 007a D0DA     		bge	.L23
- 122:../Sources/TFC/TFC_Terminal.c **** 	}
- 123:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\nLINE 1:");
- 574              		.loc 1 123 0 is_stmt 1
+ 108:../Sources/TFC/TFC_Terminal.c **** 	}
+ 109:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("\r\nLINE 1:");
+ 574              		.loc 1 109 0 is_stmt 1
  575 007c 1E4A     		ldr	r2, .L28
  576 007e 244B     		ldr	r3, .L28+24
  577 0080 101C     		mov	r0, r2
  578 0082 191C     		mov	r1, r3
  579 0084 FFF7FEFF 		bl	Qprintf
- 124:../Sources/TFC/TFC_Terminal.c **** 	for(i=0;i<128;i++)
- 580              		.loc 1 124 0
+ 110:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < 128; i++) {
+ 580              		.loc 1 110 0
  581 0088 3B1C     		mov	r3, r7
  582 008a 0F33     		add	r3, r3, #15
  583 008c 0022     		mov	r2, #0
  584 008e 1A70     		strb	r2, [r3]
  585 0090 28E0     		b	.L24
  586              	.L27:
- 125:../Sources/TFC/TFC_Terminal.c **** 	{
- 126:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF("%2X",LineScanImage1[i]);
- 587              		.loc 1 126 0
+ 111:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF("%2X", LineScanImage1[i]);
+ 587              		.loc 1 111 0
  588 0092 204B     		ldr	r3, .L28+28
  589 0094 1A68     		ldr	r2, [r3]
  590 0096 3B1C     		mov	r3, r7
@@ -784,15 +769,15 @@
  600 00aa 111C     		mov	r1, r2
  601 00ac 1A1C     		mov	r2, r3
  602 00ae FFF7FEFF 		bl	Qprintf
- 127:../Sources/TFC/TFC_Terminal.c **** 		if(i<127)
- 603              		.loc 1 127 0
+ 112:../Sources/TFC/TFC_Terminal.c **** 		if (i < 127)
+ 603              		.loc 1 112 0
  604 00b2 3B1C     		mov	r3, r7
  605 00b4 0F33     		add	r3, r3, #15
  606 00b6 1B78     		ldrb	r3, [r3]
  607 00b8 7E2B     		cmp	r3, #126
  608 00ba 06D8     		bhi	.L25
- 128:../Sources/TFC/TFC_Terminal.c **** 					TERMINAL_PRINTF(",");
- 609              		.loc 1 128 0
+ 113:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF(",");
+ 609              		.loc 1 113 0
  610 00bc 0E4A     		ldr	r2, .L28
  611 00be 124B     		ldr	r3, .L28+16
  612 00c0 101C     		mov	r0, r2
@@ -800,17 +785,17 @@
  614 00c4 FFF7FEFF 		bl	Qprintf
  615 00c8 05E0     		b	.L26
  616              	.L25:
- 129:../Sources/TFC/TFC_Terminal.c **** 				else
- 130:../Sources/TFC/TFC_Terminal.c **** 					TERMINAL_PRINTF("\r\n\r\n");
- 617              		.loc 1 130 0
+ 114:../Sources/TFC/TFC_Terminal.c **** 		else
+ 115:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF("\r\n\r\n");
+ 617              		.loc 1 115 0
  618 00ca 0B4A     		ldr	r2, .L28
  619 00cc 0F4B     		ldr	r3, .L28+20
  620 00ce 101C     		mov	r0, r2
  621 00d0 191C     		mov	r1, r3
  622 00d2 FFF7FEFF 		bl	Qprintf
  623              	.L26:
- 124:../Sources/TFC/TFC_Terminal.c **** 	for(i=0;i<128;i++)
- 624              		.loc 1 124 0
+ 110:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < 128; i++) {
+ 624              		.loc 1 110 0
  625 00d6 3B1C     		mov	r3, r7
  626 00d8 0F33     		add	r3, r3, #15
  627 00da 3A1C     		mov	r2, r7
@@ -819,18 +804,18 @@
  630 00e0 0132     		add	r2, r2, #1
  631 00e2 1A70     		strb	r2, [r3]
  632              	.L24:
- 124:../Sources/TFC/TFC_Terminal.c **** 	for(i=0;i<128;i++)
- 633              		.loc 1 124 0 is_stmt 0
+ 110:../Sources/TFC/TFC_Terminal.c **** 	for (i = 0; i < 128; i++) {
+ 633              		.loc 1 110 0 is_stmt 0
  634 00e4 3B1C     		mov	r3, r7
  635 00e6 0F33     		add	r3, r3, #15
  636 00e8 1B78     		ldrb	r3, [r3]
  637 00ea 5BB2     		sxtb	r3, r3
  638 00ec 002B     		cmp	r3, #0
  639 00ee D0DA     		bge	.L27
- 131:../Sources/TFC/TFC_Terminal.c **** 	}
- 132:../Sources/TFC/TFC_Terminal.c **** 
- 133:../Sources/TFC/TFC_Terminal.c **** }
- 640              		.loc 1 133 0 is_stmt 1
+ 116:../Sources/TFC/TFC_Terminal.c **** 	}
+ 117:../Sources/TFC/TFC_Terminal.c **** 
+ 118:../Sources/TFC/TFC_Terminal.c **** }
+ 640              		.loc 1 118 0 is_stmt 1
  641 00f0 BD46     		mov	sp, r7
  642 00f2 04B0     		add	sp, sp, #16
  643              		@ sp needed for prologue
@@ -883,11 +868,9 @@
  677              		.thumb_func
  679              	TerminalCmd_S:
  680              	.LFB7:
- 134:../Sources/TFC/TFC_Terminal.c **** 
- 135:../Sources/TFC/TFC_Terminal.c **** 
- 136:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_S(char *arg)
- 137:../Sources/TFC/TFC_Terminal.c **** {
- 681              		.loc 1 137 0
+ 119:../Sources/TFC/TFC_Terminal.c **** 
+ 120:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_S(char *arg) {
+ 681              		.loc 1 120 0
  682              		.cfi_startproc
  683 0000 80B5     		push	{r7, lr}
  684              	.LCFI19:
@@ -901,8 +884,8 @@
  692              	.LCFI21:
  693              		.cfi_def_cfa_register 7
  694 0006 7860     		str	r0, [r7, #4]
- 138:../Sources/TFC/TFC_Terminal.c **** 	int ServoSetting[2] = {0,0};
- 695              		.loc 1 138 0
+ 121:../Sources/TFC/TFC_Terminal.c **** 	int ServoSetting[2] = { 0, 0 };
+ 695              		.loc 1 121 0
  696 0008 3B1C     		mov	r3, r7
  697 000a 0833     		add	r3, r3, #8
  698 000c 0022     		mov	r2, #0
@@ -911,9 +894,9 @@
  701 0012 0833     		add	r3, r3, #8
  702 0014 0022     		mov	r2, #0
  703 0016 5A60     		str	r2, [r3, #4]
- 139:../Sources/TFC/TFC_Terminal.c **** 
- 140:../Sources/TFC/TFC_Terminal.c **** 	if(sscanf(arg,"%d,%d",&ServoSetting[0],&ServoSetting[1]) == 2)
- 704              		.loc 1 140 0
+ 122:../Sources/TFC/TFC_Terminal.c **** 
+ 123:../Sources/TFC/TFC_Terminal.c **** 	if (sscanf(arg, "%d,%d", &ServoSetting[0], &ServoSetting[1]) == 2) {
+ 704              		.loc 1 123 0
  705 0018 7868     		ldr	r0, [r7, #4]
  706 001a 1F49     		ldr	r1, .L33
  707 001c 3A1C     		mov	r2, r7
@@ -925,10 +908,9 @@
  713 002a 031C     		mov	r3, r0
  714 002c 022B     		cmp	r3, #2
  715 002e 2AD1     		bne	.L31
- 141:../Sources/TFC/TFC_Terminal.c **** 	{
- 142:../Sources/TFC/TFC_Terminal.c **** 	
- 143:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("Setting Servos to %d , %d\r\n",ServoSetting[0],ServoSetting[1]);
- 716              		.loc 1 143 0
+ 124:../Sources/TFC/TFC_Terminal.c **** 
+ 125:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF(
+ 716              		.loc 1 125 0
  717 0030 3B1C     		mov	r3, r7
  718 0032 0833     		add	r3, r3, #8
  719 0034 1A68     		ldr	r2, [r3]
@@ -938,9 +920,10 @@
  723 003c 1748     		ldr	r0, .L33+4
  724 003e 1849     		ldr	r1, .L33+8
  725 0040 FFF7FEFF 		bl	Qprintf
- 144:../Sources/TFC/TFC_Terminal.c **** 	
- 145:../Sources/TFC/TFC_Terminal.c **** 	TFC_SetServo(0,(float)ServoSetting[0]/100.0f); //Rescale to -1.0 to 1.0
- 726              		.loc 1 145 0
+ 126:../Sources/TFC/TFC_Terminal.c **** 				"Setting Servos to %d , %d\r\n", ServoSetting[0], ServoSetting[1]);
+ 127:../Sources/TFC/TFC_Terminal.c **** 
+ 128:../Sources/TFC/TFC_Terminal.c **** 		TFC_SetServo(0, (float) ServoSetting[0] / 100.0f); //Rescale to -1.0 to 1.0
+ 726              		.loc 1 128 0
  727 0044 3B1C     		mov	r3, r7
  728 0046 0833     		add	r3, r3, #8
  729 0048 1B68     		ldr	r3, [r3]
@@ -954,8 +937,8 @@
  737 005c 0020     		mov	r0, #0
  738 005e 191C     		add	r1, r3, #0
  739 0060 FFF7FEFF 		bl	TFC_SetServo
- 146:../Sources/TFC/TFC_Terminal.c **** 	TFC_SetServo(1,(float)ServoSetting[1]/100.0f);
- 740              		.loc 1 146 0
+ 129:../Sources/TFC/TFC_Terminal.c **** 		TFC_SetServo(1, (float) ServoSetting[1] / 100.0f);
+ 740              		.loc 1 129 0
  741 0064 3B1C     		mov	r3, r7
  742 0066 0833     		add	r3, r3, #8
  743 0068 5B68     		ldr	r3, [r3, #4]
@@ -971,21 +954,20 @@
  753 0080 FFF7FEFF 		bl	TFC_SetServo
  754 0084 05E0     		b	.L30
  755              	.L31:
- 147:../Sources/TFC/TFC_Terminal.c **** 	}
- 148:../Sources/TFC/TFC_Terminal.c **** 	else
- 149:../Sources/TFC/TFC_Terminal.c **** 	{
- 150:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF("Invalid servo control string. There must be 2 command separated arguments betwee
- 756              		.loc 1 150 0
+ 130:../Sources/TFC/TFC_Terminal.c **** 	} else {
+ 131:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF(
+ 756              		.loc 1 131 0
  757 0086 054A     		ldr	r2, .L33+4
  758 0088 074B     		ldr	r3, .L33+16
  759 008a 101C     		mov	r0, r2
  760 008c 191C     		mov	r1, r3
  761 008e FFF7FEFF 		bl	Qprintf
  762              	.L30:
- 151:../Sources/TFC/TFC_Terminal.c **** 	}
- 152:../Sources/TFC/TFC_Terminal.c **** 	
- 153:../Sources/TFC/TFC_Terminal.c **** }
- 763              		.loc 1 153 0
+ 132:../Sources/TFC/TFC_Terminal.c **** 				"Invalid servo control string. There must be 2 command separated arguments between -100 and 100
+ 133:../Sources/TFC/TFC_Terminal.c **** 	}
+ 134:../Sources/TFC/TFC_Terminal.c **** 
+ 135:../Sources/TFC/TFC_Terminal.c **** }
+ 763              		.loc 1 135 0
  764 0092 BD46     		mov	sp, r7
  765 0094 04B0     		add	sp, sp, #16
  766              		@ sp needed for prologue
@@ -1030,10 +1012,9 @@
  792              		.thumb_func
  794              	TerminalCmd_H:
  795              	.LFB8:
- 154:../Sources/TFC/TFC_Terminal.c **** 
- 155:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_H(char *arg)
- 156:../Sources/TFC/TFC_Terminal.c **** {
- 796              		.loc 1 156 0
+ 136:../Sources/TFC/TFC_Terminal.c **** 
+ 137:../Sources/TFC/TFC_Terminal.c **** void TerminalCmd_H(char *arg) {
+ 796              		.loc 1 137 0
  797              		.cfi_startproc
  798 0000 90B5     		push	{r4, r7, lr}
  799              	.LCFI22:
@@ -1048,9 +1029,9 @@
  808              	.LCFI24:
  809              		.cfi_def_cfa_register 7
  810 0006 7860     		str	r0, [r7, #4]
- 157:../Sources/TFC/TFC_Terminal.c **** 
- 158:../Sources/TFC/TFC_Terminal.c **** 	int MotorSetting[2] = {0,0};
- 811              		.loc 1 158 0
+ 138:../Sources/TFC/TFC_Terminal.c **** 
+ 139:../Sources/TFC/TFC_Terminal.c **** 	int MotorSetting[2] = { 0, 0 };
+ 811              		.loc 1 139 0
  812 0008 3B1C     		mov	r3, r7
  813 000a 0833     		add	r3, r3, #8
  814 000c 0022     		mov	r2, #0
@@ -1059,9 +1040,9 @@
  817 0012 0833     		add	r3, r3, #8
  818 0014 0022     		mov	r2, #0
  819 0016 5A60     		str	r2, [r3, #4]
- 159:../Sources/TFC/TFC_Terminal.c **** 
- 160:../Sources/TFC/TFC_Terminal.c **** 	if(sscanf(arg,"%d,%d",&MotorSetting[0],&MotorSetting[1]) == 2)
- 820              		.loc 1 160 0
+ 140:../Sources/TFC/TFC_Terminal.c **** 
+ 141:../Sources/TFC/TFC_Terminal.c **** 	if (sscanf(arg, "%d,%d", &MotorSetting[0], &MotorSetting[1]) == 2) {
+ 820              		.loc 1 141 0
  821 0018 7868     		ldr	r0, [r7, #4]
  822 001a 1E49     		ldr	r1, .L38
  823 001c 3A1C     		mov	r2, r7
@@ -1073,10 +1054,9 @@
  829 002a 031C     		mov	r3, r0
  830 002c 022B     		cmp	r3, #2
  831 002e 27D1     		bne	.L36
- 161:../Sources/TFC/TFC_Terminal.c **** 	{
- 162:../Sources/TFC/TFC_Terminal.c **** 	
- 163:../Sources/TFC/TFC_Terminal.c **** 	TERMINAL_PRINTF("Setting motor effort to to %d , %d\r\n",MotorSetting[0],MotorSetting[1]);
- 832              		.loc 1 163 0
+ 142:../Sources/TFC/TFC_Terminal.c **** 
+ 143:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF(
+ 832              		.loc 1 143 0
  833 0030 3B1C     		mov	r3, r7
  834 0032 0833     		add	r3, r3, #8
  835 0034 1A68     		ldr	r2, [r3]
@@ -1086,9 +1066,10 @@
  839 003c 1648     		ldr	r0, .L38+4
  840 003e 1749     		ldr	r1, .L38+8
  841 0040 FFF7FEFF 		bl	Qprintf
- 164:../Sources/TFC/TFC_Terminal.c **** 	
- 165:../Sources/TFC/TFC_Terminal.c **** 	TFC_SetMotorPWM((float)MotorSetting[0]/100.0f,(float)MotorSetting[1]/100.0f);
- 842              		.loc 1 165 0
+ 144:../Sources/TFC/TFC_Terminal.c **** 				"Setting motor effort to to %d , %d\r\n", MotorSetting[0], MotorSetting[1]);
+ 145:../Sources/TFC/TFC_Terminal.c **** 
+ 146:../Sources/TFC/TFC_Terminal.c **** 		TFC_SetMotorPWM((float) MotorSetting[0] / 100.0f,
+ 842              		.loc 1 146 0
  843 0044 3B1C     		mov	r3, r7
  844 0046 0833     		add	r3, r3, #8
  845 0048 1B68     		ldr	r3, [r3]
@@ -1100,689 +1081,674 @@
  851 0056 FFF7FEFF 		bl	__aeabi_fdiv
  852 005a 031C     		add	r3, r0, #0
  853 005c 1C1C     		add	r4, r3, #0
- 854 005e 3B1C     		mov	r3, r7
- 855 0060 0833     		add	r3, r3, #8
- 856 0062 5B68     		ldr	r3, [r3, #4]
- 857 0064 181C     		mov	r0, r3
- 858 0066 FFF7FEFF 		bl	__aeabi_i2f
- 859 006a 031C     		add	r3, r0, #0
- 860 006c 181C     		add	r0, r3, #0
- 861 006e 0C49     		ldr	r1, .L38+12
- 862 0070 FFF7FEFF 		bl	__aeabi_fdiv
- 863 0074 031C     		add	r3, r0, #0
- 864 0076 201C     		add	r0, r4, #0
- 865 0078 191C     		add	r1, r3, #0
- 866 007a FFF7FEFF 		bl	TFC_SetMotorPWM
- 867 007e 05E0     		b	.L35
- 868              	.L36:
- 166:../Sources/TFC/TFC_Terminal.c **** 
- 167:../Sources/TFC/TFC_Terminal.c **** 
- 168:../Sources/TFC/TFC_Terminal.c **** 	}
- 169:../Sources/TFC/TFC_Terminal.c **** 	else
- 170:../Sources/TFC/TFC_Terminal.c **** 	{
- 171:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF("Invalid motor control string. There must be 2 command separated arguments betwee
- 869              		.loc 1 171 0
- 870 0080 054A     		ldr	r2, .L38+4
- 871 0082 084B     		ldr	r3, .L38+16
- 872 0084 101C     		mov	r0, r2
- 873 0086 191C     		mov	r1, r3
- 874 0088 FFF7FEFF 		bl	Qprintf
- 875              	.L35:
- 172:../Sources/TFC/TFC_Terminal.c **** 	}
- 173:../Sources/TFC/TFC_Terminal.c **** 	
- 174:../Sources/TFC/TFC_Terminal.c **** }
- 876              		.loc 1 174 0
- 877 008c BD46     		mov	sp, r7
- 878 008e 05B0     		add	sp, sp, #20
- 879              		@ sp needed for prologue
- 880 0090 90BD     		pop	{r4, r7, pc}
- 881              	.L39:
- 882 0092 C046     		.align	2
- 883              	.L38:
- 884 0094 04020000 		.word	.LC54
- 885 0098 00000000 		.word	SDA_SERIAL_OUTGOING_QUEUE
- 886 009c 98020000 		.word	.LC63
- 887 00a0 0000C842 		.word	1120403456
- 888 00a4 C0020000 		.word	.LC65
- 889              		.cfi_endproc
- 890              	.LFE8:
- 892              		.section	.rodata
- 893 032f 00       		.align	2
- 894              	.LC76:
- 895 0330 0D0A00   		.ascii	"\015\012\000"
- 896 0333 00       		.align	2
- 897              	.LC78:
- 898 0334 0D0A2573 		.ascii	"\015\012%s command not recognized.\015\012\015\012\000"
- 898      20636F6D 
- 898      6D616E64 
- 898      206E6F74 
- 898      20726563 
- 899 0355 000000   		.align	2
- 900              	.LC80:
- 901 0358 6E6F2061 		.ascii	"no arg\000"
- 901      726700
- 902 035f 00       		.align	2
- 903              	.LC82:
- 904 0360 0D0A3E00 		.ascii	"\015\012>\000"
- 905              		.section	.text.TFC_ProcessTerminal,"ax",%progbits
- 906              		.align	2
- 907              		.global	TFC_ProcessTerminal
- 908              		.code	16
- 909              		.thumb_func
- 911              	TFC_ProcessTerminal:
- 912              	.LFB9:
+ 147:../Sources/TFC/TFC_Terminal.c **** 				(float) MotorSetting[1] / 100.0f);
+ 854              		.loc 1 147 0
+ 855 005e 3B1C     		mov	r3, r7
+ 856 0060 0833     		add	r3, r3, #8
+ 857 0062 5B68     		ldr	r3, [r3, #4]
+ 858 0064 181C     		mov	r0, r3
+ 859 0066 FFF7FEFF 		bl	__aeabi_i2f
+ 860 006a 031C     		add	r3, r0, #0
+ 146:../Sources/TFC/TFC_Terminal.c **** 		TFC_SetMotorPWM((float) MotorSetting[0] / 100.0f,
+ 861              		.loc 1 146 0
+ 862 006c 181C     		add	r0, r3, #0
+ 863 006e 0C49     		ldr	r1, .L38+12
+ 864 0070 FFF7FEFF 		bl	__aeabi_fdiv
+ 865 0074 031C     		add	r3, r0, #0
+ 866 0076 201C     		add	r0, r4, #0
+ 867 0078 191C     		add	r1, r3, #0
+ 868 007a FFF7FEFF 		bl	TFC_SetMotorPWM
+ 869 007e 05E0     		b	.L35
+ 870              	.L36:
+ 148:../Sources/TFC/TFC_Terminal.c **** 
+ 149:../Sources/TFC/TFC_Terminal.c **** 	} else {
+ 150:../Sources/TFC/TFC_Terminal.c **** 		TERMINAL_PRINTF(
+ 871              		.loc 1 150 0
+ 872 0080 054A     		ldr	r2, .L38+4
+ 873 0082 084B     		ldr	r3, .L38+16
+ 874 0084 101C     		mov	r0, r2
+ 875 0086 191C     		mov	r1, r3
+ 876 0088 FFF7FEFF 		bl	Qprintf
+ 877              	.L35:
+ 151:../Sources/TFC/TFC_Terminal.c **** 				"Invalid motor control string. There must be 2 command separated arguments between -100 and 100
+ 152:../Sources/TFC/TFC_Terminal.c **** 	}
+ 153:../Sources/TFC/TFC_Terminal.c **** 
+ 154:../Sources/TFC/TFC_Terminal.c **** }
+ 878              		.loc 1 154 0
+ 879 008c BD46     		mov	sp, r7
+ 880 008e 05B0     		add	sp, sp, #20
+ 881              		@ sp needed for prologue
+ 882 0090 90BD     		pop	{r4, r7, pc}
+ 883              	.L39:
+ 884 0092 C046     		.align	2
+ 885              	.L38:
+ 886 0094 04020000 		.word	.LC54
+ 887 0098 00000000 		.word	SDA_SERIAL_OUTGOING_QUEUE
+ 888 009c 98020000 		.word	.LC63
+ 889 00a0 0000C842 		.word	1120403456
+ 890 00a4 C0020000 		.word	.LC65
+ 891              		.cfi_endproc
+ 892              	.LFE8:
+ 894              		.section	.rodata
+ 895 032f 00       		.align	2
+ 896              	.LC76:
+ 897 0330 0D0A00   		.ascii	"\015\012\000"
+ 898 0333 00       		.align	2
+ 899              	.LC78:
+ 900 0334 0D0A2573 		.ascii	"\015\012%s command not recognized.\015\012\015\012\000"
+ 900      20636F6D 
+ 900      6D616E64 
+ 900      206E6F74 
+ 900      20726563 
+ 901 0355 000000   		.align	2
+ 902              	.LC80:
+ 903 0358 6E6F2061 		.ascii	"no arg\000"
+ 903      726700
+ 904 035f 00       		.align	2
+ 905              	.LC82:
+ 906 0360 0D0A3E00 		.ascii	"\015\012>\000"
+ 907              		.section	.text.TFC_ProcessTerminal,"ax",%progbits
+ 908              		.align	2
+ 909              		.global	TFC_ProcessTerminal
+ 910              		.code	16
+ 911              		.thumb_func
+ 913              	TFC_ProcessTerminal:
+ 914              	.LFB9:
+ 155:../Sources/TFC/TFC_Terminal.c **** 
+ 156:../Sources/TFC/TFC_Terminal.c **** void TFC_ProcessTerminal() {
+ 915              		.loc 1 156 0
+ 916              		.cfi_startproc
+ 917 0000 80B5     		push	{r7, lr}
+ 918              	.LCFI25:
+ 919              		.cfi_def_cfa_offset 8
+ 920              		.cfi_offset 7, -8
+ 921              		.cfi_offset 14, -4
+ 922 0002 82B0     		sub	sp, sp, #8
+ 923              	.LCFI26:
+ 924              		.cfi_def_cfa_offset 16
+ 925 0004 00AF     		add	r7, sp, #0
+ 926              	.LCFI27:
+ 927              		.cfi_def_cfa_register 7
+ 157:../Sources/TFC/TFC_Terminal.c **** 	uint8_t i, j;
+ 158:../Sources/TFC/TFC_Terminal.c **** 	uint8_t ArgsFound;
+ 159:../Sources/TFC/TFC_Terminal.c **** 
+ 160:../Sources/TFC/TFC_Terminal.c **** 	if (TERMINAL_READABLE) {
+ 928              		.loc 1 160 0
+ 929 0006 A14B     		ldr	r3, .L69
+ 930 0008 181C     		mov	r0, r3
+ 931 000a FFF7FEFF 		bl	BytesInQueue
+ 932 000e 031C     		mov	r3, r0
+ 933 0010 002B     		cmp	r3, #0
+ 934 0012 00D1     		bne	.LCB696
+ 935 0014 36E1     		b	.L40	@long jump
+ 936              	.LCB696:
+ 161:../Sources/TFC/TFC_Terminal.c **** 		NextCharIn = TERMINAL_GETC;
+ 937              		.loc 1 161 0
+ 938 0016 9D4B     		ldr	r3, .L69
+ 939 0018 181C     		mov	r0, r3
+ 940 001a FFF7FEFF 		bl	ForcedByteDequeue
+ 941 001e 031C     		mov	r3, r0
+ 942 0020 1A1C     		mov	r2, r3
+ 943 0022 9B4B     		ldr	r3, .L69+4
+ 944 0024 1A70     		strb	r2, [r3]
+ 162:../Sources/TFC/TFC_Terminal.c **** 
+ 163:../Sources/TFC/TFC_Terminal.c **** 		switch (NextCharIn) {
+ 945              		.loc 1 163 0
+ 946 0026 9A4B     		ldr	r3, .L69+4
+ 947 0028 1B78     		ldrb	r3, [r3]
+ 948 002a 082B     		cmp	r3, #8
+ 949 002c 00D1     		bne	.LCB707
+ 950 002e EBE0     		b	.L43	@long jump
+ 951              	.LCB707:
+ 952 0030 0D2B     		cmp	r3, #13
+ 953 0032 00D0     		beq	.LCB709
+ 954 0034 FAE0     		b	.L64	@long jump
+ 955              	.LCB709:
+ 956              	.L44:
+ 164:../Sources/TFC/TFC_Terminal.c **** 		case '\r':
+ 165:../Sources/TFC/TFC_Terminal.c **** 
+ 166:../Sources/TFC/TFC_Terminal.c **** 			TerminalLineBuf[TerminalPos++] = 0x0;
+ 957              		.loc 1 166 0
+ 958 0036 974B     		ldr	r3, .L69+8
+ 959 0038 1B78     		ldrb	r3, [r3]
+ 960 003a 1A1C     		mov	r2, r3
+ 961 003c 9649     		ldr	r1, .L69+12
+ 962 003e 0020     		mov	r0, #0
+ 963 0040 8854     		strb	r0, [r1, r2]
+ 964 0042 0133     		add	r3, r3, #1
+ 965 0044 DAB2     		uxtb	r2, r3
+ 966 0046 934B     		ldr	r3, .L69+8
+ 967 0048 1A70     		strb	r2, [r3]
+ 167:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PUTC(NextCharIn);
+ 968              		.loc 1 167 0
+ 969 004a 914B     		ldr	r3, .L69+4
+ 970 004c 1B78     		ldrb	r3, [r3]
+ 971 004e 934A     		ldr	r2, .L69+16
+ 972 0050 101C     		mov	r0, r2
+ 973 0052 191C     		mov	r1, r3
+ 974 0054 FFF7FEFF 		bl	ByteEnqueue
+ 168:../Sources/TFC/TFC_Terminal.c **** 
+ 169:../Sources/TFC/TFC_Terminal.c **** 			if (TerminalPos > 1) {
+ 975              		.loc 1 169 0
+ 976 0058 8E4B     		ldr	r3, .L69+8
+ 977 005a 1B78     		ldrb	r3, [r3]
+ 978 005c 012B     		cmp	r3, #1
+ 979 005e 00D8     		bhi	.LCB730
+ 980 0060 C8E0     		b	.L45	@long jump
+ 981              	.LCB730:
+ 170:../Sources/TFC/TFC_Terminal.c **** 				//find the command
+ 171:../Sources/TFC/TFC_Terminal.c **** 				i = 0;
+ 982              		.loc 1 171 0
+ 983 0062 FB1D     		add	r3, r7, #7
+ 984 0064 0022     		mov	r2, #0
+ 985 0066 1A70     		strb	r2, [r3]
+ 172:../Sources/TFC/TFC_Terminal.c **** 				while (TerminalLineBuf[i] > 0x20 && TerminalLineBuf[i] < 0x7f) {
+ 986              		.loc 1 172 0
+ 987 0068 10E0     		b	.L46
+ 988              	.L48:
+ 173:../Sources/TFC/TFC_Terminal.c **** 					TerminalCmdBuf[i] = TerminalLineBuf[i];
+ 989              		.loc 1 173 0
+ 990 006a FB1D     		add	r3, r7, #7
+ 991 006c 1B78     		ldrb	r3, [r3]
+ 992 006e FA1D     		add	r2, r7, #7
+ 993 0070 1278     		ldrb	r2, [r2]
+ 994 0072 8949     		ldr	r1, .L69+12
+ 995 0074 895C     		ldrb	r1, [r1, r2]
+ 996 0076 8A4A     		ldr	r2, .L69+20
+ 997 0078 D154     		strb	r1, [r2, r3]
+ 174:../Sources/TFC/TFC_Terminal.c **** 					i++;
+ 998              		.loc 1 174 0
+ 999 007a FB1D     		add	r3, r7, #7
+ 1000 007c FA1D     		add	r2, r7, #7
+ 1001 007e 1278     		ldrb	r2, [r2]
+ 1002 0080 0132     		add	r2, r2, #1
+ 1003 0082 1A70     		strb	r2, [r3]
  175:../Sources/TFC/TFC_Terminal.c **** 
- 176:../Sources/TFC/TFC_Terminal.c **** 
- 177:../Sources/TFC/TFC_Terminal.c **** void TFC_ProcessTerminal()
- 178:../Sources/TFC/TFC_Terminal.c **** {
- 913              		.loc 1 178 0
- 914              		.cfi_startproc
- 915 0000 80B5     		push	{r7, lr}
- 916              	.LCFI25:
- 917              		.cfi_def_cfa_offset 8
- 918              		.cfi_offset 7, -8
- 919              		.cfi_offset 14, -4
- 920 0002 82B0     		sub	sp, sp, #8
- 921              	.LCFI26:
- 922              		.cfi_def_cfa_offset 16
- 923 0004 00AF     		add	r7, sp, #0
- 924              	.LCFI27:
- 925              		.cfi_def_cfa_register 7
- 179:../Sources/TFC/TFC_Terminal.c ****      uint8_t i,j;
- 180:../Sources/TFC/TFC_Terminal.c ****      uint8_t ArgsFound;
- 181:../Sources/TFC/TFC_Terminal.c ****         
- 182:../Sources/TFC/TFC_Terminal.c ****     if(TERMINAL_READABLE)
- 926              		.loc 1 182 0
- 927 0006 A14B     		ldr	r3, .L69
- 928 0008 181C     		mov	r0, r3
- 929 000a FFF7FEFF 		bl	BytesInQueue
- 930 000e 031C     		mov	r3, r0
- 931 0010 002B     		cmp	r3, #0
- 932 0012 00D1     		bne	.LCB696
- 933 0014 36E1     		b	.L40	@long jump
- 934              	.LCB696:
- 183:../Sources/TFC/TFC_Terminal.c ****     {
- 184:../Sources/TFC/TFC_Terminal.c ****        NextCharIn = TERMINAL_GETC;
- 935              		.loc 1 184 0
- 936 0016 9D4B     		ldr	r3, .L69
- 937 0018 181C     		mov	r0, r3
- 938 001a FFF7FEFF 		bl	ForcedByteDequeue
- 939 001e 031C     		mov	r3, r0
- 940 0020 1A1C     		mov	r2, r3
- 941 0022 9B4B     		ldr	r3, .L69+4
- 942 0024 1A70     		strb	r2, [r3]
- 185:../Sources/TFC/TFC_Terminal.c ****        
- 186:../Sources/TFC/TFC_Terminal.c ****         switch(NextCharIn)
- 943              		.loc 1 186 0
- 944 0026 9A4B     		ldr	r3, .L69+4
- 945 0028 1B78     		ldrb	r3, [r3]
- 946 002a 082B     		cmp	r3, #8
- 947 002c 00D1     		bne	.LCB707
- 948 002e EBE0     		b	.L43	@long jump
- 949              	.LCB707:
- 950 0030 0D2B     		cmp	r3, #13
- 951 0032 00D0     		beq	.LCB709
- 952 0034 FAE0     		b	.L64	@long jump
- 953              	.LCB709:
- 954              	.L44:
- 187:../Sources/TFC/TFC_Terminal.c ****         {
- 188:../Sources/TFC/TFC_Terminal.c ****             case '\r':
- 189:../Sources/TFC/TFC_Terminal.c ****              
- 190:../Sources/TFC/TFC_Terminal.c ****              TerminalLineBuf[TerminalPos++] = 0x0;
- 955              		.loc 1 190 0
- 956 0036 974B     		ldr	r3, .L69+8
- 957 0038 1B78     		ldrb	r3, [r3]
- 958 003a 1A1C     		mov	r2, r3
- 959 003c 9649     		ldr	r1, .L69+12
- 960 003e 0020     		mov	r0, #0
- 961 0040 8854     		strb	r0, [r1, r2]
- 962 0042 0133     		add	r3, r3, #1
- 963 0044 DAB2     		uxtb	r2, r3
- 964 0046 934B     		ldr	r3, .L69+8
- 965 0048 1A70     		strb	r2, [r3]
- 191:../Sources/TFC/TFC_Terminal.c ****              TERMINAL_PUTC(NextCharIn);
- 966              		.loc 1 191 0
- 967 004a 914B     		ldr	r3, .L69+4
- 968 004c 1B78     		ldrb	r3, [r3]
- 969 004e 934A     		ldr	r2, .L69+16
- 970 0050 101C     		mov	r0, r2
- 971 0052 191C     		mov	r1, r3
- 972 0054 FFF7FEFF 		bl	ByteEnqueue
- 192:../Sources/TFC/TFC_Terminal.c ****            
- 193:../Sources/TFC/TFC_Terminal.c ****              if(TerminalPos > 1)
- 973              		.loc 1 193 0
- 974 0058 8E4B     		ldr	r3, .L69+8
- 975 005a 1B78     		ldrb	r3, [r3]
- 976 005c 012B     		cmp	r3, #1
- 977 005e 00D8     		bhi	.LCB730
- 978 0060 C8E0     		b	.L45	@long jump
- 979              	.LCB730:
- 194:../Sources/TFC/TFC_Terminal.c ****              {
- 195:../Sources/TFC/TFC_Terminal.c ****                  //find the command
- 196:../Sources/TFC/TFC_Terminal.c ****                  i=0;
- 980              		.loc 1 196 0
- 981 0062 FB1D     		add	r3, r7, #7
- 982 0064 0022     		mov	r2, #0
- 983 0066 1A70     		strb	r2, [r3]
- 197:../Sources/TFC/TFC_Terminal.c ****                  while(TerminalLineBuf[i]>0x20 &&  TerminalLineBuf[i]<0x7f)
- 984              		.loc 1 197 0
- 985 0068 10E0     		b	.L46
- 986              	.L48:
- 198:../Sources/TFC/TFC_Terminal.c ****                  {
- 199:../Sources/TFC/TFC_Terminal.c ****                       TerminalCmdBuf[i] = TerminalLineBuf[i];
- 987              		.loc 1 199 0
- 988 006a FB1D     		add	r3, r7, #7
- 989 006c 1B78     		ldrb	r3, [r3]
- 990 006e FA1D     		add	r2, r7, #7
- 991 0070 1278     		ldrb	r2, [r2]
- 992 0072 8949     		ldr	r1, .L69+12
- 993 0074 895C     		ldrb	r1, [r1, r2]
- 994 0076 8A4A     		ldr	r2, .L69+20
- 995 0078 D154     		strb	r1, [r2, r3]
- 200:../Sources/TFC/TFC_Terminal.c ****                       i++;
- 996              		.loc 1 200 0
- 997 007a FB1D     		add	r3, r7, #7
- 998 007c FA1D     		add	r2, r7, #7
- 999 007e 1278     		ldrb	r2, [r2]
- 1000 0080 0132     		add	r2, r2, #1
- 1001 0082 1A70     		strb	r2, [r3]
- 201:../Sources/TFC/TFC_Terminal.c ****     
- 202:../Sources/TFC/TFC_Terminal.c ****                     if(i==MAX_TERMINAL_CMD_CHARS)
- 1002              		.loc 1 202 0
- 1003 0084 FB1D     		add	r3, r7, #7
- 1004 0086 1B78     		ldrb	r3, [r3]
- 1005 0088 202B     		cmp	r3, #32
- 1006 008a 0CD0     		beq	.L66
- 1007              	.L46:
- 197:../Sources/TFC/TFC_Terminal.c ****                  while(TerminalLineBuf[i]>0x20 &&  TerminalLineBuf[i]<0x7f)
- 1008              		.loc 1 197 0
- 1009 008c FB1D     		add	r3, r7, #7
- 1010 008e 1B78     		ldrb	r3, [r3]
- 1011 0090 814A     		ldr	r2, .L69+12
- 1012 0092 D35C     		ldrb	r3, [r2, r3]
- 1013 0094 202B     		cmp	r3, #32
- 1014 0096 07D9     		bls	.L47
- 197:../Sources/TFC/TFC_Terminal.c ****                  while(TerminalLineBuf[i]>0x20 &&  TerminalLineBuf[i]<0x7f)
- 1015              		.loc 1 197 0 is_stmt 0
- 1016 0098 FB1D     		add	r3, r7, #7
- 1017 009a 1B78     		ldrb	r3, [r3]
- 1018 009c 7E4A     		ldr	r2, .L69+12
- 1019 009e D35C     		ldrb	r3, [r2, r3]
- 1020 00a0 7E2B     		cmp	r3, #126
- 1021 00a2 E2D9     		bls	.L48
- 1022 00a4 00E0     		b	.L47
- 1023              	.L66:
- 203:../Sources/TFC/TFC_Terminal.c ****                         {
- 204:../Sources/TFC/TFC_Terminal.c ****                          break;
- 1024              		.loc 1 204 0 is_stmt 1
- 1025 00a6 C046     		mov	r8, r8
- 1026              	.L47:
- 205:../Sources/TFC/TFC_Terminal.c ****                         }
- 206:../Sources/TFC/TFC_Terminal.c ****                  }
- 207:../Sources/TFC/TFC_Terminal.c ****                     
- 208:../Sources/TFC/TFC_Terminal.c ****                 TerminalCmdBuf[i] = 0;
- 1027              		.loc 1 208 0
- 1028 00a8 FB1D     		add	r3, r7, #7
- 1029 00aa 1B78     		ldrb	r3, [r3]
- 1030 00ac 7C4A     		ldr	r2, .L69+20
- 1031 00ae 0021     		mov	r1, #0
- 1032 00b0 D154     		strb	r1, [r2, r3]
- 209:../Sources/TFC/TFC_Terminal.c ****                 TerminalCmdBuf[i+1] = 0;
- 1033              		.loc 1 209 0
- 1034 00b2 FB1D     		add	r3, r7, #7
- 1035 00b4 1B78     		ldrb	r3, [r3]
- 1036 00b6 0133     		add	r3, r3, #1
- 1037 00b8 794A     		ldr	r2, .L69+20
- 1038 00ba 0021     		mov	r1, #0
- 1039 00bc D154     		strb	r1, [r2, r3]
- 210:../Sources/TFC/TFC_Terminal.c ****                 
- 211:../Sources/TFC/TFC_Terminal.c ****                 
- 212:../Sources/TFC/TFC_Terminal.c ****                 ArgsFound = TRUE;
- 1040              		.loc 1 212 0
- 1041 00be 7B1D     		add	r3, r7, #5
- 1042 00c0 0122     		mov	r2, #1
- 1043 00c2 1A70     		strb	r2, [r3]
- 213:../Sources/TFC/TFC_Terminal.c ****                 memset(TerminalArgs,0x00,sizeof(TerminalArgs));
- 1044              		.loc 1 213 0
- 1045 00c4 774B     		ldr	r3, .L69+24
- 1046 00c6 181C     		mov	r0, r3
- 1047 00c8 0021     		mov	r1, #0
- 1048 00ca 2022     		mov	r2, #32
- 1049 00cc FFF7FEFF 		bl	memset
- 214:../Sources/TFC/TFC_Terminal.c ****                 //scan for num terminator or next non whitespace
- 215:../Sources/TFC/TFC_Terminal.c ****                 while(TerminalLineBuf[i]<=0x20 && (i<MAX_TERMINAL_LINE_CHARS))
- 1050              		.loc 1 215 0
- 1051 00d0 0EE0     		b	.L49
- 1052              	.L52:
- 216:../Sources/TFC/TFC_Terminal.c ****                 {
- 217:../Sources/TFC/TFC_Terminal.c ****                     if(TerminalLineBuf[i] == 0x00)
- 1053              		.loc 1 217 0
- 1054 00d2 FB1D     		add	r3, r7, #7
- 1055 00d4 1B78     		ldrb	r3, [r3]
- 1056 00d6 704A     		ldr	r2, .L69+12
- 1057 00d8 D35C     		ldrb	r3, [r2, r3]
- 1058 00da 002B     		cmp	r3, #0
- 1059 00dc 03D1     		bne	.L50
- 218:../Sources/TFC/TFC_Terminal.c ****                     {
- 219:../Sources/TFC/TFC_Terminal.c ****                     
- 220:../Sources/TFC/TFC_Terminal.c ****                         //if we find a NULL terminator before a non whitespace character they flag 
- 221:../Sources/TFC/TFC_Terminal.c ****                         ArgsFound = FALSE;
- 1060              		.loc 1 221 0
- 1061 00de 7B1D     		add	r3, r7, #5
- 1062 00e0 0022     		mov	r2, #0
- 1063 00e2 1A70     		strb	r2, [r3]
- 222:../Sources/TFC/TFC_Terminal.c ****                         break;
- 1064              		.loc 1 222 0
- 1065 00e4 0EE0     		b	.L51
- 1066              	.L50:
- 223:../Sources/TFC/TFC_Terminal.c ****                     }   
- 224:../Sources/TFC/TFC_Terminal.c ****                     i++; 
- 1067              		.loc 1 224 0
- 1068 00e6 FB1D     		add	r3, r7, #7
- 1069 00e8 FA1D     		add	r2, r7, #7
- 1070 00ea 1278     		ldrb	r2, [r2]
- 1071 00ec 0132     		add	r2, r2, #1
- 1072 00ee 1A70     		strb	r2, [r3]
- 1073              	.L49:
- 215:../Sources/TFC/TFC_Terminal.c ****                 while(TerminalLineBuf[i]<=0x20 && (i<MAX_TERMINAL_LINE_CHARS))
- 1074              		.loc 1 215 0
- 1075 00f0 FB1D     		add	r3, r7, #7
- 1076 00f2 1B78     		ldrb	r3, [r3]
- 1077 00f4 684A     		ldr	r2, .L69+12
- 1078 00f6 D35C     		ldrb	r3, [r2, r3]
- 1079 00f8 202B     		cmp	r3, #32
- 1080 00fa 03D8     		bhi	.L51
- 215:../Sources/TFC/TFC_Terminal.c ****                 while(TerminalLineBuf[i]<=0x20 && (i<MAX_TERMINAL_LINE_CHARS))
- 1081              		.loc 1 215 0 is_stmt 0
- 1082 00fc FB1D     		add	r3, r7, #7
- 1083 00fe 1B78     		ldrb	r3, [r3]
- 1084 0100 3F2B     		cmp	r3, #63
- 1085 0102 E6D9     		bls	.L52
- 1086              	.L51:
- 225:../Sources/TFC/TFC_Terminal.c ****                 }
- 226:../Sources/TFC/TFC_Terminal.c ****                 
- 227:../Sources/TFC/TFC_Terminal.c ****                 if(ArgsFound == TRUE)
- 1087              		.loc 1 227 0 is_stmt 1
- 1088 0104 7B1D     		add	r3, r7, #5
- 1089 0106 1B78     		ldrb	r3, [r3]
- 1090 0108 012B     		cmp	r3, #1
- 1091 010a 20D1     		bne	.L53
- 228:../Sources/TFC/TFC_Terminal.c ****                 {
- 229:../Sources/TFC/TFC_Terminal.c ****                     strcpy(TerminalArgs,&TerminalLineBuf[i]);
- 1092              		.loc 1 229 0
- 1093 010c FB1D     		add	r3, r7, #7
- 1094 010e 1A78     		ldrb	r2, [r3]
- 1095 0110 614B     		ldr	r3, .L69+12
- 1096 0112 D318     		add	r3, r2, r3
- 1097 0114 634A     		ldr	r2, .L69+24
- 1098 0116 101C     		mov	r0, r2
- 1099 0118 191C     		mov	r1, r3
- 1100 011a FFF7FEFF 		bl	strcpy
- 230:../Sources/TFC/TFC_Terminal.c ****                     
- 231:../Sources/TFC/TFC_Terminal.c ****                     //trim trailing whitespace
- 232:../Sources/TFC/TFC_Terminal.c ****                     i = sizeof(TerminalArgs)-1;
- 1101              		.loc 1 232 0
- 1102 011e FB1D     		add	r3, r7, #7
- 1103 0120 1F22     		mov	r2, #31
- 1104 0122 1A70     		strb	r2, [r3]
- 233:../Sources/TFC/TFC_Terminal.c ****                     
- 234:../Sources/TFC/TFC_Terminal.c ****                     while((TerminalArgs[i]<0x21) && (i>0))
- 1105              		.loc 1 234 0
- 1106 0124 09E0     		b	.L54
- 1107              	.L55:
- 235:../Sources/TFC/TFC_Terminal.c ****                     {
- 236:../Sources/TFC/TFC_Terminal.c ****                         TerminalArgs[i]= 0x00;
- 1108              		.loc 1 236 0
- 1109 0126 FB1D     		add	r3, r7, #7
- 1110 0128 1B78     		ldrb	r3, [r3]
- 1111 012a 5E4A     		ldr	r2, .L69+24
- 1112 012c 0021     		mov	r1, #0
- 1113 012e D154     		strb	r1, [r2, r3]
- 237:../Sources/TFC/TFC_Terminal.c ****                         i--;
- 1114              		.loc 1 237 0
- 1115 0130 FB1D     		add	r3, r7, #7
- 1116 0132 FA1D     		add	r2, r7, #7
- 1117 0134 1278     		ldrb	r2, [r2]
- 1118 0136 013A     		sub	r2, r2, #1
- 1119 0138 1A70     		strb	r2, [r3]
- 1120              	.L54:
- 234:../Sources/TFC/TFC_Terminal.c ****                     while((TerminalArgs[i]<0x21) && (i>0))
- 1121              		.loc 1 234 0
- 1122 013a FB1D     		add	r3, r7, #7
- 1123 013c 1B78     		ldrb	r3, [r3]
- 1124 013e 594A     		ldr	r2, .L69+24
- 1125 0140 D35C     		ldrb	r3, [r2, r3]
- 1126 0142 202B     		cmp	r3, #32
- 1127 0144 03D8     		bhi	.L53
- 234:../Sources/TFC/TFC_Terminal.c ****                     while((TerminalArgs[i]<0x21) && (i>0))
- 1128              		.loc 1 234 0 is_stmt 0
- 1129 0146 FB1D     		add	r3, r7, #7
- 1130 0148 1B78     		ldrb	r3, [r3]
- 1131 014a 002B     		cmp	r3, #0
- 1132 014c EBD1     		bne	.L55
- 1133              	.L53:
- 238:../Sources/TFC/TFC_Terminal.c ****                     }       
- 239:../Sources/TFC/TFC_Terminal.c ****                 }
- 240:../Sources/TFC/TFC_Terminal.c ****                 
- 241:../Sources/TFC/TFC_Terminal.c ****                 CmdFound = FALSE;
- 1134              		.loc 1 241 0 is_stmt 1
- 1135 014e 564B     		ldr	r3, .L69+28
- 1136 0150 0022     		mov	r2, #0
- 1137 0152 1A70     		strb	r2, [r3]
- 242:../Sources/TFC/TFC_Terminal.c ****                 for(j=0;j<NUM_TERMINAL_COMMANDS;j++)
- 1138              		.loc 1 242 0
- 1139 0154 BB1D     		add	r3, r7, #6
- 1140 0156 0022     		mov	r2, #0
- 1141 0158 1A70     		strb	r2, [r3]
- 1142 015a 37E0     		b	.L56
- 1143              	.L60:
- 243:../Sources/TFC/TFC_Terminal.c ****                 {           
- 244:../Sources/TFC/TFC_Terminal.c ****                     if(strcmp(TerminalCmdBuf,MyTerminalCallbackRecords[j].CommandString) == 0)
- 1144              		.loc 1 244 0
- 1145 015c BB1D     		add	r3, r7, #6
- 1146 015e 1A78     		ldrb	r2, [r3]
- 1147 0160 5249     		ldr	r1, .L69+32
- 1148 0162 131C     		mov	r3, r2
- 1149 0164 5B00     		lsl	r3, r3, #1
- 1150 0166 9B18     		add	r3, r3, r2
- 1151 0168 9B00     		lsl	r3, r3, #2
- 1152 016a 5B58     		ldr	r3, [r3, r1]
- 1153 016c 4C4A     		ldr	r2, .L69+20
- 1154 016e 101C     		mov	r0, r2
- 1155 0170 191C     		mov	r1, r3
- 1156 0172 FFF7FEFF 		bl	strcmp
- 1157 0176 031C     		mov	r3, r0
- 1158 0178 002B     		cmp	r3, #0
- 1159 017a 22D1     		bne	.L57
- 245:../Sources/TFC/TFC_Terminal.c ****                     {
- 246:../Sources/TFC/TFC_Terminal.c ****                         TERMINAL_PRINTF("\r\n");
- 1160              		.loc 1 246 0
- 1161 017c 474A     		ldr	r2, .L69+16
- 1162 017e 4C4B     		ldr	r3, .L69+36
- 1163 0180 101C     		mov	r0, r2
- 1164 0182 191C     		mov	r1, r3
- 1165 0184 FFF7FEFF 		bl	Qprintf
- 247:../Sources/TFC/TFC_Terminal.c ****                         if(MyTerminalCallbackRecords[j].Callback != NULL)
- 1166              		.loc 1 247 0
- 1167 0188 BB1D     		add	r3, r7, #6
- 1168 018a 1A78     		ldrb	r2, [r3]
- 1169 018c 4749     		ldr	r1, .L69+32
- 1170 018e 131C     		mov	r3, r2
- 1171 0190 5B00     		lsl	r3, r3, #1
- 1172 0192 9B18     		add	r3, r3, r2
- 1173 0194 9B00     		lsl	r3, r3, #2
- 1174 0196 CB18     		add	r3, r1, r3
- 1175 0198 0433     		add	r3, r3, #4
- 1176 019a 1B68     		ldr	r3, [r3]
- 1177 019c 002B     		cmp	r3, #0
- 1178 019e 0CD0     		beq	.L58
- 248:../Sources/TFC/TFC_Terminal.c ****                             MyTerminalCallbackRecords[j].Callback(TerminalArgs);
- 1179              		.loc 1 248 0
- 1180 01a0 BB1D     		add	r3, r7, #6
- 1181 01a2 1A78     		ldrb	r2, [r3]
- 1182 01a4 4149     		ldr	r1, .L69+32
- 1183 01a6 131C     		mov	r3, r2
- 1184 01a8 5B00     		lsl	r3, r3, #1
- 1185 01aa 9B18     		add	r3, r3, r2
- 1186 01ac 9B00     		lsl	r3, r3, #2
- 1187 01ae CB18     		add	r3, r1, r3
- 1188 01b0 0433     		add	r3, r3, #4
- 1189 01b2 1B68     		ldr	r3, [r3]
- 1190 01b4 3B4A     		ldr	r2, .L69+24
- 1191 01b6 101C     		mov	r0, r2
- 1192 01b8 9847     		blx	r3
- 1193              	.L58:
- 249:../Sources/TFC/TFC_Terminal.c ****                     
- 250:../Sources/TFC/TFC_Terminal.c ****                         CmdFound = TRUE;
- 1194              		.loc 1 250 0
- 1195 01ba 3B4B     		ldr	r3, .L69+28
- 1196 01bc 0122     		mov	r2, #1
- 1197 01be 1A70     		strb	r2, [r3]
- 251:../Sources/TFC/TFC_Terminal.c ****                         break;
- 1198              		.loc 1 251 0
- 1199 01c0 08E0     		b	.L59
- 1200              	.L57:
- 242:../Sources/TFC/TFC_Terminal.c ****                 for(j=0;j<NUM_TERMINAL_COMMANDS;j++)
- 1201              		.loc 1 242 0
- 1202 01c2 BB1D     		add	r3, r7, #6
- 1203 01c4 BA1D     		add	r2, r7, #6
- 1204 01c6 1278     		ldrb	r2, [r2]
- 1205 01c8 0132     		add	r2, r2, #1
- 1206 01ca 1A70     		strb	r2, [r3]
- 1207              	.L56:
- 242:../Sources/TFC/TFC_Terminal.c ****                 for(j=0;j<NUM_TERMINAL_COMMANDS;j++)
- 1208              		.loc 1 242 0 is_stmt 0
- 1209 01cc BB1D     		add	r3, r7, #6
- 1210 01ce 1B78     		ldrb	r3, [r3]
- 1211 01d0 052B     		cmp	r3, #5
- 1212 01d2 C3D9     		bls	.L60
- 1213              	.L59:
- 252:../Sources/TFC/TFC_Terminal.c ****                     }             
- 253:../Sources/TFC/TFC_Terminal.c ****                 }        
- 254:../Sources/TFC/TFC_Terminal.c ****                 if(CmdFound == FALSE)
- 1214              		.loc 1 254 0 is_stmt 1
- 1215 01d4 344B     		ldr	r3, .L69+28
- 1216 01d6 1B78     		ldrb	r3, [r3]
- 1217 01d8 002B     		cmp	r3, #0
- 1218 01da 0BD1     		bne	.L45
- 255:../Sources/TFC/TFC_Terminal.c ****                 {
- 256:../Sources/TFC/TFC_Terminal.c ****                   TERMINAL_PRINTF("\r\n%s command not recognized.\r\n\r\n",TerminalCmdBuf);
- 1219              		.loc 1 256 0
- 1220 01dc 2F49     		ldr	r1, .L69+16
- 1221 01de 354A     		ldr	r2, .L69+40
- 1222 01e0 2F4B     		ldr	r3, .L69+20
- 1223 01e2 081C     		mov	r0, r1
- 1224 01e4 111C     		mov	r1, r2
- 1225 01e6 1A1C     		mov	r2, r3
- 1226 01e8 FFF7FEFF 		bl	Qprintf
- 257:../Sources/TFC/TFC_Terminal.c ****                   TerminalCmd_Help("no arg");
- 1227              		.loc 1 257 0
- 1228 01ec 324B     		ldr	r3, .L69+44
- 1229 01ee 181C     		mov	r0, r3
- 1230 01f0 FFF7FEFF 		bl	TerminalCmd_Help
- 1231              	.L45:
- 258:../Sources/TFC/TFC_Terminal.c ****                   
- 259:../Sources/TFC/TFC_Terminal.c ****                 }
- 260:../Sources/TFC/TFC_Terminal.c ****               }    
- 261:../Sources/TFC/TFC_Terminal.c ****              TERMINAL_PRINTF("\r\n>");
- 1232              		.loc 1 261 0
- 1233 01f4 294A     		ldr	r2, .L69+16
- 1234 01f6 314B     		ldr	r3, .L69+48
- 1235 01f8 101C     		mov	r0, r2
- 1236 01fa 191C     		mov	r1, r3
- 1237 01fc FFF7FEFF 		bl	Qprintf
- 262:../Sources/TFC/TFC_Terminal.c ****              TerminalPos = 0;
- 1238              		.loc 1 262 0
- 1239 0200 244B     		ldr	r3, .L69+8
- 1240 0202 0022     		mov	r2, #0
- 1241 0204 1A70     		strb	r2, [r3]
- 263:../Sources/TFC/TFC_Terminal.c ****             
- 264:../Sources/TFC/TFC_Terminal.c ****             break;
- 1242              		.loc 1 264 0
- 1243 0206 3DE0     		b	.L40
- 1244              	.L43:
- 265:../Sources/TFC/TFC_Terminal.c ****             
- 266:../Sources/TFC/TFC_Terminal.c ****             case '\b':
- 267:../Sources/TFC/TFC_Terminal.c ****                 if(TerminalPos > 0)
- 1245              		.loc 1 267 0
- 1246 0208 224B     		ldr	r3, .L69+8
- 1247 020a 1B78     		ldrb	r3, [r3]
- 1248 020c 002B     		cmp	r3, #0
- 1249 020e 36D0     		beq	.L67
- 268:../Sources/TFC/TFC_Terminal.c ****                 {
- 269:../Sources/TFC/TFC_Terminal.c ****                     TerminalPos--;    
- 1250              		.loc 1 269 0
- 1251 0210 204B     		ldr	r3, .L69+8
- 1252 0212 1B78     		ldrb	r3, [r3]
- 1253 0214 013B     		sub	r3, r3, #1
- 1254 0216 DAB2     		uxtb	r2, r3
- 1255 0218 1E4B     		ldr	r3, .L69+8
- 1256 021a 1A70     		strb	r2, [r3]
- 270:../Sources/TFC/TFC_Terminal.c ****                     TERMINAL_PUTC(NextCharIn);
- 1257              		.loc 1 270 0
- 1258 021c 1C4B     		ldr	r3, .L69+4
- 1259 021e 1B78     		ldrb	r3, [r3]
- 1260 0220 1E4A     		ldr	r2, .L69+16
- 1261 0222 101C     		mov	r0, r2
- 1262 0224 191C     		mov	r1, r3
- 1263 0226 FFF7FEFF 		bl	ByteEnqueue
- 271:../Sources/TFC/TFC_Terminal.c ****                 }
- 272:../Sources/TFC/TFC_Terminal.c ****             break;
- 1264              		.loc 1 272 0
- 1265 022a 28E0     		b	.L67
- 1266              	.L64:
- 273:../Sources/TFC/TFC_Terminal.c ****             
- 274:../Sources/TFC/TFC_Terminal.c ****             default:
- 275:../Sources/TFC/TFC_Terminal.c ****                 
- 276:../Sources/TFC/TFC_Terminal.c ****                 if(TerminalPos == 0 && NextCharIn == 0x020)
- 1267              		.loc 1 276 0
- 1268 022c 194B     		ldr	r3, .L69+8
- 1269 022e 1B78     		ldrb	r3, [r3]
- 1270 0230 002B     		cmp	r3, #0
- 1271 0232 03D1     		bne	.L62
- 1272              		.loc 1 276 0 is_stmt 0
- 1273 0234 164B     		ldr	r3, .L69+4
- 1274 0236 1B78     		ldrb	r3, [r3]
- 1275 0238 202B     		cmp	r3, #32
- 1276 023a 1ED0     		beq	.L65
- 1277              	.L62:
- 277:../Sources/TFC/TFC_Terminal.c ****                 {
- 278:../Sources/TFC/TFC_Terminal.c ****                      //Do nothing if space bar is pressed at beginning of line    
- 279:../Sources/TFC/TFC_Terminal.c ****                 }
- 280:../Sources/TFC/TFC_Terminal.c ****                    else if(NextCharIn >= 0x20 && NextCharIn<0x7F)
- 1278              		.loc 1 280 0 is_stmt 1
- 1279 023c 144B     		ldr	r3, .L69+4
- 1280 023e 1B78     		ldrb	r3, [r3]
- 1281 0240 1F2B     		cmp	r3, #31
- 1282 0242 1ED9     		bls	.L68
- 1283              		.loc 1 280 0 is_stmt 0
- 1284 0244 124B     		ldr	r3, .L69+4
- 1285 0246 1B78     		ldrb	r3, [r3]
- 1286 0248 7E2B     		cmp	r3, #126
- 1287 024a 1AD8     		bhi	.L68
- 281:../Sources/TFC/TFC_Terminal.c ****                 {
- 282:../Sources/TFC/TFC_Terminal.c ****                     
- 283:../Sources/TFC/TFC_Terminal.c ****                     if(TerminalPos < MAX_TERMINAL_LINE_CHARS-1)
- 1288              		.loc 1 283 0 is_stmt 1
- 1289 024c 114B     		ldr	r3, .L69+8
- 1290 024e 1B78     		ldrb	r3, [r3]
- 1291 0250 3E2B     		cmp	r3, #62
- 1292 0252 16D8     		bhi	.L68
- 284:../Sources/TFC/TFC_Terminal.c ****                     {
- 285:../Sources/TFC/TFC_Terminal.c ****                          TerminalLineBuf[TerminalPos++] = NextCharIn;
- 1293              		.loc 1 285 0
- 1294 0254 0F4B     		ldr	r3, .L69+8
- 1295 0256 1B78     		ldrb	r3, [r3]
- 1296 0258 1A1C     		mov	r2, r3
- 1297 025a 0D49     		ldr	r1, .L69+4
- 1298 025c 0878     		ldrb	r0, [r1]
- 1299 025e 0E49     		ldr	r1, .L69+12
- 1300 0260 8854     		strb	r0, [r1, r2]
- 1301 0262 0133     		add	r3, r3, #1
- 1302 0264 DAB2     		uxtb	r2, r3
- 1303 0266 0B4B     		ldr	r3, .L69+8
- 1304 0268 1A70     		strb	r2, [r3]
- 286:../Sources/TFC/TFC_Terminal.c ****                         TERMINAL_PUTC(NextCharIn);
- 1305              		.loc 1 286 0
- 1306 026a 094B     		ldr	r3, .L69+4
- 1307 026c 1B78     		ldrb	r3, [r3]
- 1308 026e 0B4A     		ldr	r2, .L69+16
- 1309 0270 101C     		mov	r0, r2
- 1310 0272 191C     		mov	r1, r3
- 1311 0274 FFF7FEFF 		bl	ByteEnqueue
- 287:../Sources/TFC/TFC_Terminal.c ****                     }
- 288:../Sources/TFC/TFC_Terminal.c ****                 }
- 289:../Sources/TFC/TFC_Terminal.c ****             
- 290:../Sources/TFC/TFC_Terminal.c ****             break;
- 1312              		.loc 1 290 0
- 1313 0278 03E0     		b	.L68
- 1314              	.L65:
- 1315 027a C046     		mov	r8, r8
- 1316 027c 01E0     		b	.L68
- 1317              	.L67:
- 272:../Sources/TFC/TFC_Terminal.c ****             break;
- 1318              		.loc 1 272 0
- 1319 027e C046     		mov	r8, r8
- 1320 0280 00E0     		b	.L40
- 1321              	.L68:
- 1322              		.loc 1 290 0
- 1323 0282 C046     		mov	r8, r8
- 1324              	.L40:
- 291:../Sources/TFC/TFC_Terminal.c ****         
- 292:../Sources/TFC/TFC_Terminal.c ****         }
- 293:../Sources/TFC/TFC_Terminal.c ****     }
- 294:../Sources/TFC/TFC_Terminal.c ****  
- 295:../Sources/TFC/TFC_Terminal.c **** }
- 1325              		.loc 1 295 0
- 1326 0284 BD46     		mov	sp, r7
- 1327 0286 02B0     		add	sp, sp, #8
- 1328              		@ sp needed for prologue
- 1329 0288 80BD     		pop	{r7, pc}
- 1330              	.L70:
- 1331 028a C046     		.align	2
- 1332              	.L69:
- 1333 028c 00000000 		.word	SDA_SERIAL_INCOMING_QUEUE
- 1334 0290 00000000 		.word	NextCharIn
- 1335 0294 00000000 		.word	TerminalPos
- 1336 0298 00000000 		.word	TerminalLineBuf
- 1337 029c 00000000 		.word	SDA_SERIAL_OUTGOING_QUEUE
- 1338 02a0 00000000 		.word	TerminalCmdBuf
- 1339 02a4 00000000 		.word	TerminalArgs
- 1340 02a8 00000000 		.word	CmdFound
- 1341 02ac 00000000 		.word	MyTerminalCallbackRecords
- 1342 02b0 30030000 		.word	.LC76
- 1343 02b4 34030000 		.word	.LC78
- 1344 02b8 58030000 		.word	.LC80
- 1345 02bc 60030000 		.word	.LC82
- 1346              		.cfi_endproc
- 1347              	.LFE9:
- 1349              		.text
- 1350              	.Letext0:
- 1351              		.file 2 "C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint"
- 1352              		.file 3 "C:/Documents and Settings/aluno/workspace/FRDM-TFC_R1.0/FRDM-TFC/Project_Headers/MKL25Z4.
- 1353              		.file 4 "C:/Documents and Settings/aluno/workspace/FRDM-TFC_R1.0/FRDM-TFC/Project_Headers/TFC\\TFC
- 1354              		.file 5 "C:/Documents and Settings/aluno/workspace/FRDM-TFC_R1.0/FRDM-TFC/Project_Headers/TFC\\TFC
- 1355              		.file 6 "C:/Documents and Settings/aluno/workspace/FRDM-TFC_R1.0/FRDM-TFC/Project_Headers/TFC\\TFC
+ 176:../Sources/TFC/TFC_Terminal.c **** 					if (i == MAX_TERMINAL_CMD_CHARS) {
+ 1004              		.loc 1 176 0
+ 1005 0084 FB1D     		add	r3, r7, #7
+ 1006 0086 1B78     		ldrb	r3, [r3]
+ 1007 0088 202B     		cmp	r3, #32
+ 1008 008a 0CD0     		beq	.L66
+ 1009              	.L46:
+ 172:../Sources/TFC/TFC_Terminal.c **** 				while (TerminalLineBuf[i] > 0x20 && TerminalLineBuf[i] < 0x7f) {
+ 1010              		.loc 1 172 0
+ 1011 008c FB1D     		add	r3, r7, #7
+ 1012 008e 1B78     		ldrb	r3, [r3]
+ 1013 0090 814A     		ldr	r2, .L69+12
+ 1014 0092 D35C     		ldrb	r3, [r2, r3]
+ 1015 0094 202B     		cmp	r3, #32
+ 1016 0096 07D9     		bls	.L47
+ 172:../Sources/TFC/TFC_Terminal.c **** 				while (TerminalLineBuf[i] > 0x20 && TerminalLineBuf[i] < 0x7f) {
+ 1017              		.loc 1 172 0 is_stmt 0
+ 1018 0098 FB1D     		add	r3, r7, #7
+ 1019 009a 1B78     		ldrb	r3, [r3]
+ 1020 009c 7E4A     		ldr	r2, .L69+12
+ 1021 009e D35C     		ldrb	r3, [r2, r3]
+ 1022 00a0 7E2B     		cmp	r3, #126
+ 1023 00a2 E2D9     		bls	.L48
+ 1024 00a4 00E0     		b	.L47
+ 1025              	.L66:
+ 177:../Sources/TFC/TFC_Terminal.c **** 						break;
+ 1026              		.loc 1 177 0 is_stmt 1
+ 1027 00a6 C046     		mov	r8, r8
+ 1028              	.L47:
+ 178:../Sources/TFC/TFC_Terminal.c **** 					}
+ 179:../Sources/TFC/TFC_Terminal.c **** 				}
+ 180:../Sources/TFC/TFC_Terminal.c **** 
+ 181:../Sources/TFC/TFC_Terminal.c **** 				TerminalCmdBuf[i] = 0;
+ 1029              		.loc 1 181 0
+ 1030 00a8 FB1D     		add	r3, r7, #7
+ 1031 00aa 1B78     		ldrb	r3, [r3]
+ 1032 00ac 7C4A     		ldr	r2, .L69+20
+ 1033 00ae 0021     		mov	r1, #0
+ 1034 00b0 D154     		strb	r1, [r2, r3]
+ 182:../Sources/TFC/TFC_Terminal.c **** 				TerminalCmdBuf[i + 1] = 0;
+ 1035              		.loc 1 182 0
+ 1036 00b2 FB1D     		add	r3, r7, #7
+ 1037 00b4 1B78     		ldrb	r3, [r3]
+ 1038 00b6 0133     		add	r3, r3, #1
+ 1039 00b8 794A     		ldr	r2, .L69+20
+ 1040 00ba 0021     		mov	r1, #0
+ 1041 00bc D154     		strb	r1, [r2, r3]
+ 183:../Sources/TFC/TFC_Terminal.c **** 
+ 184:../Sources/TFC/TFC_Terminal.c **** 				ArgsFound = TRUE;
+ 1042              		.loc 1 184 0
+ 1043 00be 7B1D     		add	r3, r7, #5
+ 1044 00c0 0122     		mov	r2, #1
+ 1045 00c2 1A70     		strb	r2, [r3]
+ 185:../Sources/TFC/TFC_Terminal.c **** 				memset(TerminalArgs, 0x00, sizeof(TerminalArgs));
+ 1046              		.loc 1 185 0
+ 1047 00c4 774B     		ldr	r3, .L69+24
+ 1048 00c6 181C     		mov	r0, r3
+ 1049 00c8 0021     		mov	r1, #0
+ 1050 00ca 2022     		mov	r2, #32
+ 1051 00cc FFF7FEFF 		bl	memset
+ 186:../Sources/TFC/TFC_Terminal.c **** 				//scan for num terminator or next non whitespace
+ 187:../Sources/TFC/TFC_Terminal.c **** 				while (TerminalLineBuf[i] <= 0x20
+ 1052              		.loc 1 187 0
+ 1053 00d0 0EE0     		b	.L49
+ 1054              	.L52:
+ 188:../Sources/TFC/TFC_Terminal.c **** 						&& (i < MAX_TERMINAL_LINE_CHARS)) {
+ 189:../Sources/TFC/TFC_Terminal.c **** 					if (TerminalLineBuf[i] == 0x00) {
+ 1055              		.loc 1 189 0
+ 1056 00d2 FB1D     		add	r3, r7, #7
+ 1057 00d4 1B78     		ldrb	r3, [r3]
+ 1058 00d6 704A     		ldr	r2, .L69+12
+ 1059 00d8 D35C     		ldrb	r3, [r2, r3]
+ 1060 00da 002B     		cmp	r3, #0
+ 1061 00dc 03D1     		bne	.L50
+ 190:../Sources/TFC/TFC_Terminal.c **** 
+ 191:../Sources/TFC/TFC_Terminal.c **** 						//if we find a NULL terminator before a non whitespace character they flag for no arguments
+ 192:../Sources/TFC/TFC_Terminal.c **** 						ArgsFound = FALSE;
+ 1062              		.loc 1 192 0
+ 1063 00de 7B1D     		add	r3, r7, #5
+ 1064 00e0 0022     		mov	r2, #0
+ 1065 00e2 1A70     		strb	r2, [r3]
+ 193:../Sources/TFC/TFC_Terminal.c **** 						break;
+ 1066              		.loc 1 193 0
+ 1067 00e4 0EE0     		b	.L51
+ 1068              	.L50:
+ 194:../Sources/TFC/TFC_Terminal.c **** 					}
+ 195:../Sources/TFC/TFC_Terminal.c **** 					i++;
+ 1069              		.loc 1 195 0
+ 1070 00e6 FB1D     		add	r3, r7, #7
+ 1071 00e8 FA1D     		add	r2, r7, #7
+ 1072 00ea 1278     		ldrb	r2, [r2]
+ 1073 00ec 0132     		add	r2, r2, #1
+ 1074 00ee 1A70     		strb	r2, [r3]
+ 1075              	.L49:
+ 187:../Sources/TFC/TFC_Terminal.c **** 				while (TerminalLineBuf[i] <= 0x20
+ 1076              		.loc 1 187 0
+ 1077 00f0 FB1D     		add	r3, r7, #7
+ 1078 00f2 1B78     		ldrb	r3, [r3]
+ 1079 00f4 684A     		ldr	r2, .L69+12
+ 1080 00f6 D35C     		ldrb	r3, [r2, r3]
+ 1081 00f8 202B     		cmp	r3, #32
+ 1082 00fa 03D8     		bhi	.L51
+ 188:../Sources/TFC/TFC_Terminal.c **** 						&& (i < MAX_TERMINAL_LINE_CHARS)) {
+ 1083              		.loc 1 188 0
+ 1084 00fc FB1D     		add	r3, r7, #7
+ 1085 00fe 1B78     		ldrb	r3, [r3]
+ 1086 0100 3F2B     		cmp	r3, #63
+ 1087 0102 E6D9     		bls	.L52
+ 1088              	.L51:
+ 196:../Sources/TFC/TFC_Terminal.c **** 				}
+ 197:../Sources/TFC/TFC_Terminal.c **** 
+ 198:../Sources/TFC/TFC_Terminal.c **** 				if (ArgsFound == TRUE) {
+ 1089              		.loc 1 198 0
+ 1090 0104 7B1D     		add	r3, r7, #5
+ 1091 0106 1B78     		ldrb	r3, [r3]
+ 1092 0108 012B     		cmp	r3, #1
+ 1093 010a 20D1     		bne	.L53
+ 199:../Sources/TFC/TFC_Terminal.c **** 					strcpy(TerminalArgs, &TerminalLineBuf[i]);
+ 1094              		.loc 1 199 0
+ 1095 010c FB1D     		add	r3, r7, #7
+ 1096 010e 1A78     		ldrb	r2, [r3]
+ 1097 0110 614B     		ldr	r3, .L69+12
+ 1098 0112 D318     		add	r3, r2, r3
+ 1099 0114 634A     		ldr	r2, .L69+24
+ 1100 0116 101C     		mov	r0, r2
+ 1101 0118 191C     		mov	r1, r3
+ 1102 011a FFF7FEFF 		bl	strcpy
+ 200:../Sources/TFC/TFC_Terminal.c **** 
+ 201:../Sources/TFC/TFC_Terminal.c **** 					//trim trailing whitespace
+ 202:../Sources/TFC/TFC_Terminal.c **** 					i = sizeof(TerminalArgs) - 1;
+ 1103              		.loc 1 202 0
+ 1104 011e FB1D     		add	r3, r7, #7
+ 1105 0120 1F22     		mov	r2, #31
+ 1106 0122 1A70     		strb	r2, [r3]
+ 203:../Sources/TFC/TFC_Terminal.c **** 
+ 204:../Sources/TFC/TFC_Terminal.c **** 					while ((TerminalArgs[i] < 0x21) && (i > 0)) {
+ 1107              		.loc 1 204 0
+ 1108 0124 09E0     		b	.L54
+ 1109              	.L55:
+ 205:../Sources/TFC/TFC_Terminal.c **** 						TerminalArgs[i] = 0x00;
+ 1110              		.loc 1 205 0
+ 1111 0126 FB1D     		add	r3, r7, #7
+ 1112 0128 1B78     		ldrb	r3, [r3]
+ 1113 012a 5E4A     		ldr	r2, .L69+24
+ 1114 012c 0021     		mov	r1, #0
+ 1115 012e D154     		strb	r1, [r2, r3]
+ 206:../Sources/TFC/TFC_Terminal.c **** 						i--;
+ 1116              		.loc 1 206 0
+ 1117 0130 FB1D     		add	r3, r7, #7
+ 1118 0132 FA1D     		add	r2, r7, #7
+ 1119 0134 1278     		ldrb	r2, [r2]
+ 1120 0136 013A     		sub	r2, r2, #1
+ 1121 0138 1A70     		strb	r2, [r3]
+ 1122              	.L54:
+ 204:../Sources/TFC/TFC_Terminal.c **** 					while ((TerminalArgs[i] < 0x21) && (i > 0)) {
+ 1123              		.loc 1 204 0
+ 1124 013a FB1D     		add	r3, r7, #7
+ 1125 013c 1B78     		ldrb	r3, [r3]
+ 1126 013e 594A     		ldr	r2, .L69+24
+ 1127 0140 D35C     		ldrb	r3, [r2, r3]
+ 1128 0142 202B     		cmp	r3, #32
+ 1129 0144 03D8     		bhi	.L53
+ 204:../Sources/TFC/TFC_Terminal.c **** 					while ((TerminalArgs[i] < 0x21) && (i > 0)) {
+ 1130              		.loc 1 204 0 is_stmt 0
+ 1131 0146 FB1D     		add	r3, r7, #7
+ 1132 0148 1B78     		ldrb	r3, [r3]
+ 1133 014a 002B     		cmp	r3, #0
+ 1134 014c EBD1     		bne	.L55
+ 1135              	.L53:
+ 207:../Sources/TFC/TFC_Terminal.c **** 					}
+ 208:../Sources/TFC/TFC_Terminal.c **** 				}
+ 209:../Sources/TFC/TFC_Terminal.c **** 
+ 210:../Sources/TFC/TFC_Terminal.c **** 				CmdFound = FALSE;
+ 1136              		.loc 1 210 0 is_stmt 1
+ 1137 014e 564B     		ldr	r3, .L69+28
+ 1138 0150 0022     		mov	r2, #0
+ 1139 0152 1A70     		strb	r2, [r3]
+ 211:../Sources/TFC/TFC_Terminal.c **** 				for (j = 0; j < NUM_TERMINAL_COMMANDS; j++) {
+ 1140              		.loc 1 211 0
+ 1141 0154 BB1D     		add	r3, r7, #6
+ 1142 0156 0022     		mov	r2, #0
+ 1143 0158 1A70     		strb	r2, [r3]
+ 1144 015a 37E0     		b	.L56
+ 1145              	.L60:
+ 212:../Sources/TFC/TFC_Terminal.c **** 					if (strcmp(TerminalCmdBuf,
+ 1146              		.loc 1 212 0
+ 1147 015c BB1D     		add	r3, r7, #6
+ 1148 015e 1A78     		ldrb	r2, [r3]
+ 1149 0160 5249     		ldr	r1, .L69+32
+ 1150 0162 131C     		mov	r3, r2
+ 1151 0164 5B00     		lsl	r3, r3, #1
+ 1152 0166 9B18     		add	r3, r3, r2
+ 1153 0168 9B00     		lsl	r3, r3, #2
+ 1154 016a 5B58     		ldr	r3, [r3, r1]
+ 1155 016c 4C4A     		ldr	r2, .L69+20
+ 1156 016e 101C     		mov	r0, r2
+ 1157 0170 191C     		mov	r1, r3
+ 1158 0172 FFF7FEFF 		bl	strcmp
+ 1159 0176 031C     		mov	r3, r0
+ 1160 0178 002B     		cmp	r3, #0
+ 1161 017a 22D1     		bne	.L57
+ 213:../Sources/TFC/TFC_Terminal.c **** 							MyTerminalCallbackRecords[j].CommandString) == 0) {
+ 214:../Sources/TFC/TFC_Terminal.c **** 						TERMINAL_PRINTF("\r\n");
+ 1162              		.loc 1 214 0
+ 1163 017c 474A     		ldr	r2, .L69+16
+ 1164 017e 4C4B     		ldr	r3, .L69+36
+ 1165 0180 101C     		mov	r0, r2
+ 1166 0182 191C     		mov	r1, r3
+ 1167 0184 FFF7FEFF 		bl	Qprintf
+ 215:../Sources/TFC/TFC_Terminal.c **** 						if (MyTerminalCallbackRecords[j].Callback != NULL)
+ 1168              		.loc 1 215 0
+ 1169 0188 BB1D     		add	r3, r7, #6
+ 1170 018a 1A78     		ldrb	r2, [r3]
+ 1171 018c 4749     		ldr	r1, .L69+32
+ 1172 018e 131C     		mov	r3, r2
+ 1173 0190 5B00     		lsl	r3, r3, #1
+ 1174 0192 9B18     		add	r3, r3, r2
+ 1175 0194 9B00     		lsl	r3, r3, #2
+ 1176 0196 CB18     		add	r3, r1, r3
+ 1177 0198 0433     		add	r3, r3, #4
+ 1178 019a 1B68     		ldr	r3, [r3]
+ 1179 019c 002B     		cmp	r3, #0
+ 1180 019e 0CD0     		beq	.L58
+ 216:../Sources/TFC/TFC_Terminal.c **** 							MyTerminalCallbackRecords[j].Callback(TerminalArgs);
+ 1181              		.loc 1 216 0
+ 1182 01a0 BB1D     		add	r3, r7, #6
+ 1183 01a2 1A78     		ldrb	r2, [r3]
+ 1184 01a4 4149     		ldr	r1, .L69+32
+ 1185 01a6 131C     		mov	r3, r2
+ 1186 01a8 5B00     		lsl	r3, r3, #1
+ 1187 01aa 9B18     		add	r3, r3, r2
+ 1188 01ac 9B00     		lsl	r3, r3, #2
+ 1189 01ae CB18     		add	r3, r1, r3
+ 1190 01b0 0433     		add	r3, r3, #4
+ 1191 01b2 1B68     		ldr	r3, [r3]
+ 1192 01b4 3B4A     		ldr	r2, .L69+24
+ 1193 01b6 101C     		mov	r0, r2
+ 1194 01b8 9847     		blx	r3
+ 1195              	.L58:
+ 217:../Sources/TFC/TFC_Terminal.c **** 
+ 218:../Sources/TFC/TFC_Terminal.c **** 						CmdFound = TRUE;
+ 1196              		.loc 1 218 0
+ 1197 01ba 3B4B     		ldr	r3, .L69+28
+ 1198 01bc 0122     		mov	r2, #1
+ 1199 01be 1A70     		strb	r2, [r3]
+ 219:../Sources/TFC/TFC_Terminal.c **** 						break;
+ 1200              		.loc 1 219 0
+ 1201 01c0 08E0     		b	.L59
+ 1202              	.L57:
+ 211:../Sources/TFC/TFC_Terminal.c **** 				for (j = 0; j < NUM_TERMINAL_COMMANDS; j++) {
+ 1203              		.loc 1 211 0
+ 1204 01c2 BB1D     		add	r3, r7, #6
+ 1205 01c4 BA1D     		add	r2, r7, #6
+ 1206 01c6 1278     		ldrb	r2, [r2]
+ 1207 01c8 0132     		add	r2, r2, #1
+ 1208 01ca 1A70     		strb	r2, [r3]
+ 1209              	.L56:
+ 211:../Sources/TFC/TFC_Terminal.c **** 				for (j = 0; j < NUM_TERMINAL_COMMANDS; j++) {
+ 1210              		.loc 1 211 0 is_stmt 0
+ 1211 01cc BB1D     		add	r3, r7, #6
+ 1212 01ce 1B78     		ldrb	r3, [r3]
+ 1213 01d0 052B     		cmp	r3, #5
+ 1214 01d2 C3D9     		bls	.L60
+ 1215              	.L59:
+ 220:../Sources/TFC/TFC_Terminal.c **** 					}
+ 221:../Sources/TFC/TFC_Terminal.c **** 				}
+ 222:../Sources/TFC/TFC_Terminal.c **** 				if (CmdFound == FALSE) {
+ 1216              		.loc 1 222 0 is_stmt 1
+ 1217 01d4 344B     		ldr	r3, .L69+28
+ 1218 01d6 1B78     		ldrb	r3, [r3]
+ 1219 01d8 002B     		cmp	r3, #0
+ 1220 01da 0BD1     		bne	.L45
+ 223:../Sources/TFC/TFC_Terminal.c **** 					TERMINAL_PRINTF(
+ 1221              		.loc 1 223 0
+ 1222 01dc 2F49     		ldr	r1, .L69+16
+ 1223 01de 354A     		ldr	r2, .L69+40
+ 1224 01e0 2F4B     		ldr	r3, .L69+20
+ 1225 01e2 081C     		mov	r0, r1
+ 1226 01e4 111C     		mov	r1, r2
+ 1227 01e6 1A1C     		mov	r2, r3
+ 1228 01e8 FFF7FEFF 		bl	Qprintf
+ 224:../Sources/TFC/TFC_Terminal.c **** 							"\r\n%s command not recognized.\r\n\r\n", TerminalCmdBuf);
+ 225:../Sources/TFC/TFC_Terminal.c **** 					TerminalCmd_Help("no arg");
+ 1229              		.loc 1 225 0
+ 1230 01ec 324B     		ldr	r3, .L69+44
+ 1231 01ee 181C     		mov	r0, r3
+ 1232 01f0 FFF7FEFF 		bl	TerminalCmd_Help
+ 1233              	.L45:
+ 226:../Sources/TFC/TFC_Terminal.c **** 
+ 227:../Sources/TFC/TFC_Terminal.c **** 				}
+ 228:../Sources/TFC/TFC_Terminal.c **** 			}
+ 229:../Sources/TFC/TFC_Terminal.c **** 			TERMINAL_PRINTF("\r\n>");
+ 1234              		.loc 1 229 0
+ 1235 01f4 294A     		ldr	r2, .L69+16
+ 1236 01f6 314B     		ldr	r3, .L69+48
+ 1237 01f8 101C     		mov	r0, r2
+ 1238 01fa 191C     		mov	r1, r3
+ 1239 01fc FFF7FEFF 		bl	Qprintf
+ 230:../Sources/TFC/TFC_Terminal.c **** 			TerminalPos = 0;
+ 1240              		.loc 1 230 0
+ 1241 0200 244B     		ldr	r3, .L69+8
+ 1242 0202 0022     		mov	r2, #0
+ 1243 0204 1A70     		strb	r2, [r3]
+ 231:../Sources/TFC/TFC_Terminal.c **** 
+ 232:../Sources/TFC/TFC_Terminal.c **** 			break;
+ 1244              		.loc 1 232 0
+ 1245 0206 3DE0     		b	.L40
+ 1246              	.L43:
+ 233:../Sources/TFC/TFC_Terminal.c **** 
+ 234:../Sources/TFC/TFC_Terminal.c **** 		case '\b':
+ 235:../Sources/TFC/TFC_Terminal.c **** 			if (TerminalPos > 0) {
+ 1247              		.loc 1 235 0
+ 1248 0208 224B     		ldr	r3, .L69+8
+ 1249 020a 1B78     		ldrb	r3, [r3]
+ 1250 020c 002B     		cmp	r3, #0
+ 1251 020e 36D0     		beq	.L67
+ 236:../Sources/TFC/TFC_Terminal.c **** 				TerminalPos--;
+ 1252              		.loc 1 236 0
+ 1253 0210 204B     		ldr	r3, .L69+8
+ 1254 0212 1B78     		ldrb	r3, [r3]
+ 1255 0214 013B     		sub	r3, r3, #1
+ 1256 0216 DAB2     		uxtb	r2, r3
+ 1257 0218 1E4B     		ldr	r3, .L69+8
+ 1258 021a 1A70     		strb	r2, [r3]
+ 237:../Sources/TFC/TFC_Terminal.c **** 				TERMINAL_PUTC(NextCharIn);
+ 1259              		.loc 1 237 0
+ 1260 021c 1C4B     		ldr	r3, .L69+4
+ 1261 021e 1B78     		ldrb	r3, [r3]
+ 1262 0220 1E4A     		ldr	r2, .L69+16
+ 1263 0222 101C     		mov	r0, r2
+ 1264 0224 191C     		mov	r1, r3
+ 1265 0226 FFF7FEFF 		bl	ByteEnqueue
+ 238:../Sources/TFC/TFC_Terminal.c **** 			}
+ 239:../Sources/TFC/TFC_Terminal.c **** 			break;
+ 1266              		.loc 1 239 0
+ 1267 022a 28E0     		b	.L67
+ 1268              	.L64:
+ 240:../Sources/TFC/TFC_Terminal.c **** 
+ 241:../Sources/TFC/TFC_Terminal.c **** 		default:
+ 242:../Sources/TFC/TFC_Terminal.c **** 
+ 243:../Sources/TFC/TFC_Terminal.c **** 			if (TerminalPos == 0 && NextCharIn == 0x020) {
+ 1269              		.loc 1 243 0
+ 1270 022c 194B     		ldr	r3, .L69+8
+ 1271 022e 1B78     		ldrb	r3, [r3]
+ 1272 0230 002B     		cmp	r3, #0
+ 1273 0232 03D1     		bne	.L62
+ 1274              		.loc 1 243 0 is_stmt 0
+ 1275 0234 164B     		ldr	r3, .L69+4
+ 1276 0236 1B78     		ldrb	r3, [r3]
+ 1277 0238 202B     		cmp	r3, #32
+ 1278 023a 1ED0     		beq	.L65
+ 1279              	.L62:
+ 244:../Sources/TFC/TFC_Terminal.c **** 				//Do nothing if space bar is pressed at beginning of line    
+ 245:../Sources/TFC/TFC_Terminal.c **** 			} else if (NextCharIn >= 0x20 && NextCharIn < 0x7F) {
+ 1280              		.loc 1 245 0 is_stmt 1
+ 1281 023c 144B     		ldr	r3, .L69+4
+ 1282 023e 1B78     		ldrb	r3, [r3]
+ 1283 0240 1F2B     		cmp	r3, #31
+ 1284 0242 1ED9     		bls	.L68
+ 1285              		.loc 1 245 0 is_stmt 0
+ 1286 0244 124B     		ldr	r3, .L69+4
+ 1287 0246 1B78     		ldrb	r3, [r3]
+ 1288 0248 7E2B     		cmp	r3, #126
+ 1289 024a 1AD8     		bhi	.L68
+ 246:../Sources/TFC/TFC_Terminal.c **** 
+ 247:../Sources/TFC/TFC_Terminal.c **** 				if (TerminalPos < MAX_TERMINAL_LINE_CHARS - 1) {
+ 1290              		.loc 1 247 0 is_stmt 1
+ 1291 024c 114B     		ldr	r3, .L69+8
+ 1292 024e 1B78     		ldrb	r3, [r3]
+ 1293 0250 3E2B     		cmp	r3, #62
+ 1294 0252 16D8     		bhi	.L68
+ 248:../Sources/TFC/TFC_Terminal.c **** 					TerminalLineBuf[TerminalPos++] = NextCharIn;
+ 1295              		.loc 1 248 0
+ 1296 0254 0F4B     		ldr	r3, .L69+8
+ 1297 0256 1B78     		ldrb	r3, [r3]
+ 1298 0258 1A1C     		mov	r2, r3
+ 1299 025a 0D49     		ldr	r1, .L69+4
+ 1300 025c 0878     		ldrb	r0, [r1]
+ 1301 025e 0E49     		ldr	r1, .L69+12
+ 1302 0260 8854     		strb	r0, [r1, r2]
+ 1303 0262 0133     		add	r3, r3, #1
+ 1304 0264 DAB2     		uxtb	r2, r3
+ 1305 0266 0B4B     		ldr	r3, .L69+8
+ 1306 0268 1A70     		strb	r2, [r3]
+ 249:../Sources/TFC/TFC_Terminal.c **** 					TERMINAL_PUTC(NextCharIn);
+ 1307              		.loc 1 249 0
+ 1308 026a 094B     		ldr	r3, .L69+4
+ 1309 026c 1B78     		ldrb	r3, [r3]
+ 1310 026e 0B4A     		ldr	r2, .L69+16
+ 1311 0270 101C     		mov	r0, r2
+ 1312 0272 191C     		mov	r1, r3
+ 1313 0274 FFF7FEFF 		bl	ByteEnqueue
+ 250:../Sources/TFC/TFC_Terminal.c **** 				}
+ 251:../Sources/TFC/TFC_Terminal.c **** 			}
+ 252:../Sources/TFC/TFC_Terminal.c **** 
+ 253:../Sources/TFC/TFC_Terminal.c **** 			break;
+ 1314              		.loc 1 253 0
+ 1315 0278 03E0     		b	.L68
+ 1316              	.L65:
+ 1317 027a C046     		mov	r8, r8
+ 1318 027c 01E0     		b	.L68
+ 1319              	.L67:
+ 239:../Sources/TFC/TFC_Terminal.c **** 			break;
+ 1320              		.loc 1 239 0
+ 1321 027e C046     		mov	r8, r8
+ 1322 0280 00E0     		b	.L40
+ 1323              	.L68:
+ 1324              		.loc 1 253 0
+ 1325 0282 C046     		mov	r8, r8
+ 1326              	.L40:
+ 254:../Sources/TFC/TFC_Terminal.c **** 
+ 255:../Sources/TFC/TFC_Terminal.c **** 		}
+ 256:../Sources/TFC/TFC_Terminal.c **** 	}
+ 257:../Sources/TFC/TFC_Terminal.c **** 
+ 258:../Sources/TFC/TFC_Terminal.c **** }
+ 1327              		.loc 1 258 0
+ 1328 0284 BD46     		mov	sp, r7
+ 1329 0286 02B0     		add	sp, sp, #8
+ 1330              		@ sp needed for prologue
+ 1331 0288 80BD     		pop	{r7, pc}
+ 1332              	.L70:
+ 1333 028a C046     		.align	2
+ 1334              	.L69:
+ 1335 028c 00000000 		.word	SDA_SERIAL_INCOMING_QUEUE
+ 1336 0290 00000000 		.word	NextCharIn
+ 1337 0294 00000000 		.word	TerminalPos
+ 1338 0298 00000000 		.word	TerminalLineBuf
+ 1339 029c 00000000 		.word	SDA_SERIAL_OUTGOING_QUEUE
+ 1340 02a0 00000000 		.word	TerminalCmdBuf
+ 1341 02a4 00000000 		.word	TerminalArgs
+ 1342 02a8 00000000 		.word	CmdFound
+ 1343 02ac 00000000 		.word	MyTerminalCallbackRecords
+ 1344 02b0 30030000 		.word	.LC76
+ 1345 02b4 34030000 		.word	.LC78
+ 1346 02b8 58030000 		.word	.LC80
+ 1347 02bc 60030000 		.word	.LC82
+ 1348              		.cfi_endproc
+ 1349              	.LFE9:
+ 1351              		.text
+ 1352              	.Letext0:
+ 1353              		.file 2 "C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint"
+ 1354              		.file 3 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/MKL25Z4.h"
+ 1355              		.file 4 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_Queue.h"
+ 1356              		.file 5 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_LineScanC
+ 1357              		.file 6 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_UART.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 TFC_Terminal.c
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:59     .data.MyTerminalCallbackRecords:00000000 MyTerminalCallbackRecords
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:19     .rodata:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:56     .data.MyTerminalCallbackRecords:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:232    .text.TerminalCmd_Help:00000000 TerminalCmd_Help
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:492    .text.TerminalCmd_GetLineScan:00000000 TerminalCmd_GetLineScan
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:679    .text.TerminalCmd_S:00000000 TerminalCmd_S
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:794    .text.TerminalCmd_H:00000000 TerminalCmd_H
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:375    .text.TerminalCmd_E:00000000 TerminalCmd_E
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:426    .text.TerminalCmd_D:00000000 TerminalCmd_D
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:59     .data.MyTerminalCallbackRecords:00000000 MyTerminalCallbackRecords
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:19     .rodata:00000000 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:56     .data.MyTerminalCallbackRecords:00000000 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:232    .text.TerminalCmd_Help:00000000 TerminalCmd_Help
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:492    .text.TerminalCmd_GetLineScan:00000000 TerminalCmd_GetLineScan
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:679    .text.TerminalCmd_S:00000000 TerminalCmd_S
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:794    .text.TerminalCmd_H:00000000 TerminalCmd_H
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:375    .text.TerminalCmd_E:00000000 TerminalCmd_E
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:426    .text.TerminalCmd_D:00000000 TerminalCmd_D
                             *COM*:00000040 TerminalLineBuf
                             *COM*:00000001 TerminalPos
                             *COM*:00000021 TerminalCmdBuf
                             *COM*:00000020 TerminalArgs
                             *COM*:00000001 NextCharIn
                             *COM*:00000001 CmdFound
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:105    .text.TerminalBootMsg:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:110    .text.TerminalBootMsg:00000000 TerminalBootMsg
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:166    .text.TerminalBootMsg:00000050 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:177    .text.TFC_InitTerminal:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:182    .text.TFC_InitTerminal:00000000 TFC_InitTerminal
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:211    .text.TFC_InitTerminal:00000018 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:227    .text.TerminalCmd_Help:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:324    .text.TerminalCmd_Help:0000008c $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:334    .text.TerminalCmd_Reboot:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:339    .text.TerminalCmd_Reboot:00000000 TerminalCmd_Reboot
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:370    .text.TerminalCmd_E:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:410    .text.TerminalCmd_E:00000024 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:421    .text.TerminalCmd_D:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:467    .text.TerminalCmd_D:00000030 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:487    .text.TerminalCmd_GetLineScan:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:648    .text.TerminalCmd_GetLineScan:000000f8 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:674    .text.TerminalCmd_S:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:771    .text.TerminalCmd_S:00000098 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:789    .text.TerminalCmd_H:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:884    .text.TerminalCmd_H:00000094 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:906    .text.TFC_ProcessTerminal:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:911    .text.TFC_ProcessTerminal:00000000 TFC_ProcessTerminal
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccuB8c5c.s:1333   .text.TFC_ProcessTerminal:0000028c $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:105    .text.TerminalBootMsg:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:110    .text.TerminalBootMsg:00000000 TerminalBootMsg
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:166    .text.TerminalBootMsg:00000050 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:177    .text.TFC_InitTerminal:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:182    .text.TFC_InitTerminal:00000000 TFC_InitTerminal
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:211    .text.TFC_InitTerminal:00000018 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:227    .text.TerminalCmd_Help:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:324    .text.TerminalCmd_Help:0000008c $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:334    .text.TerminalCmd_Reboot:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:339    .text.TerminalCmd_Reboot:00000000 TerminalCmd_Reboot
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:370    .text.TerminalCmd_E:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:410    .text.TerminalCmd_E:00000024 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:421    .text.TerminalCmd_D:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:467    .text.TerminalCmd_D:00000030 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:487    .text.TerminalCmd_GetLineScan:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:648    .text.TerminalCmd_GetLineScan:000000f8 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:674    .text.TerminalCmd_S:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:771    .text.TerminalCmd_S:00000098 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:789    .text.TerminalCmd_H:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:886    .text.TerminalCmd_H:00000094 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:908    .text.TFC_ProcessTerminal:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:913    .text.TFC_ProcessTerminal:00000000 TFC_ProcessTerminal
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccRalcwO.s:1335   .text.TFC_ProcessTerminal:0000028c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
