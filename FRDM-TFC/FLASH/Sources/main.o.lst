@@ -63,7 +63,7 @@
   61              	.LCFI2:
   62              		.cfi_def_cfa_register 7
    6:../Sources/main.c **** 
-   7:../Sources/main.c **** 	int spd =18000;
+   7:../Sources/main.c **** 	int spd =20000;
   63              		.loc 1 7 0
   64 0008 D44B     		ldr	r3, .L339+44
   65 000a CF21     		mov	r1, #207
@@ -573,7 +573,7 @@
  507 0350 00000000 		.word	0
  508 0354 00003A40 		.word	1077542912
  509 0358 4CFCFFFF 		.word	-948
- 510 035c 50460000 		.word	18000
+ 510 035c 204E0000 		.word	20000
  511 0360 00F10F40 		.word	1074786560
  512 0364 50FCFFFF 		.word	-944
  513 0368 00000000 		.word	media
@@ -7265,7 +7265,7 @@
  6629 3132 05E0     		b	.L1
  6630              	.L338:
  588:../Sources/main.c **** 		} else {
- 589:../Sources/main.c **** 			TFC_SetMotorPWM(0.4, 0.4);
+ 589:../Sources/main.c **** 			TFC_SetMotorPWM(0.6, 0.6);
  6631              		.loc 1 589 0
  6632 3134 124A     		ldr	r2, .L371+48
  6633 3136 124B     		ldr	r3, .L371+48
@@ -7300,7 +7300,7 @@
  6657 3174 00F10F40 		.word	1074786560
  6658 3178 3333B33E 		.word	1051931443
  6659 317c CDCC4C3E 		.word	1045220557
- 6660 3180 CDCCCC3E 		.word	1053609165
+ 6660 3180 9A99193F 		.word	1058642330
  6661              		.cfi_endproc
  6662              	.LFE0:
  6664 3184 C046C046 		.section	.rodata
@@ -7868,49 +7868,49 @@
  6990              		.file 7 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_UART.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:22     .data.media:00000000 media
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:19     .data.media:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:38     .text.fuzzy:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:43     .text.fuzzy:00000000 fuzzy
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:499    .text.fuzzy:00000330 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:521    .text.fuzzy:00000380 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:951    .text.fuzzy:000006c0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:979    .text.fuzzy:00000728 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:1409   .text.fuzzy:00000a40 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:1424   .text.fuzzy:00000a74 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:1804   .text.fuzzy:00000d38 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:1820   .text.fuzzy:00000d70 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:2202   .text.fuzzy:00001038 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:2218   .text.fuzzy:00001070 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:2601   .text.fuzzy:00001338 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:2615   .text.fuzzy:00001368 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:3057   .text.fuzzy:000016a0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:3073   .text.fuzzy:000016d8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:3455   .text.fuzzy:00001998 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:3469   .text.fuzzy:000019c8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:3851   .text.fuzzy:00001c88 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:3865   .text.fuzzy:00001cb8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:4249   .text.fuzzy:00001f80 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:4263   .text.fuzzy:00001fb0 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:4575   .text.fuzzy:000021f0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:4585   .text.fuzzy:00002210 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:4881   .text.fuzzy:00002430 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:4892   .text.fuzzy:00002454 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:5198   .text.fuzzy:00002688 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:5209   .text.fuzzy:000026ac $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:5589   .text.fuzzy:00002970 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:5605   .text.fuzzy:000029a8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:5908   .text.fuzzy:00002bd0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:5920   .text.fuzzy:00002bf8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6398   .text.fuzzy:00002f68 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6408   .text.fuzzy:00002f88 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6648   .text.fuzzy:00003150 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6665   .rodata:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6681   .text.main:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6686   .text.main:00000000 main
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6969   .text.main:000001bc $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:22     .data.media:00000000 media
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:19     .data.media:00000000 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:38     .text.fuzzy:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:43     .text.fuzzy:00000000 fuzzy
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:499    .text.fuzzy:00000330 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:521    .text.fuzzy:00000380 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:951    .text.fuzzy:000006c0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:979    .text.fuzzy:00000728 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1409   .text.fuzzy:00000a40 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1424   .text.fuzzy:00000a74 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1804   .text.fuzzy:00000d38 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1820   .text.fuzzy:00000d70 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2202   .text.fuzzy:00001038 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2218   .text.fuzzy:00001070 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2601   .text.fuzzy:00001338 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2615   .text.fuzzy:00001368 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3057   .text.fuzzy:000016a0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3073   .text.fuzzy:000016d8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3455   .text.fuzzy:00001998 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3469   .text.fuzzy:000019c8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3851   .text.fuzzy:00001c88 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3865   .text.fuzzy:00001cb8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4249   .text.fuzzy:00001f80 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4263   .text.fuzzy:00001fb0 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4575   .text.fuzzy:000021f0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4585   .text.fuzzy:00002210 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4881   .text.fuzzy:00002430 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4892   .text.fuzzy:00002454 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5198   .text.fuzzy:00002688 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5209   .text.fuzzy:000026ac $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5589   .text.fuzzy:00002970 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5605   .text.fuzzy:000029a8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5908   .text.fuzzy:00002bd0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5920   .text.fuzzy:00002bf8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6398   .text.fuzzy:00002f68 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6408   .text.fuzzy:00002f88 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6648   .text.fuzzy:00003150 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6665   .rodata:00000000 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6681   .text.main:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6686   .text.main:00000000 main
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6969   .text.main:000001bc $d
                      .debug_frame:00000010 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdRoy22.s:6664   .text.fuzzy:00003184 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6664   .text.fuzzy:00003184 $t
 
 UNDEFINED SYMBOLS
 __aeabi_i2d

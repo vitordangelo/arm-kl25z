@@ -4,7 +4,7 @@ int media = 64;
 
 void fuzzy(void) {
 
-	int spd =18000;
+	int spd =20000;
 	int i = 0;
 	double grauvl = 0;
 	volatile float graul = 0;
@@ -586,7 +586,7 @@ void fuzzy(void) {
 		else if (cogfinal < 1475) {
 			TFC_SetMotorPWM(0.2, 0.35);
 		} else {
-			TFC_SetMotorPWM(0.4, 0.4);
+			TFC_SetMotorPWM(0.6, 0.6);
 		}
 	//	TFC_SetMotorPWM(0, 0);
 	}
@@ -612,18 +612,7 @@ int main(void) {
 				}
 			}
 			if ((b - a) <= 60) {
-				a = 10;
-				b = 117;
-				while (LineScanImage0[a] >= limiar || LineScanImage0[b] >= limiar) {
-								if (LineScanImage0[a] >= limiar) {
-									a++;
-								}
-								if (LineScanImage0[b] >= limiar) {
-									b--;
-								}
-							}
-				
-				//media = media;
+				media = media;
 			} else {
 				media = (int) (a + b) / 2;
 			}
