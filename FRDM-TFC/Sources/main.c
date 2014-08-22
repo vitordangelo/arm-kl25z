@@ -578,15 +578,15 @@ void fuzzy(void) {
 		//if(cogfinal>1500)
 		TFC_SetServo(0, cogfinal * 1.0 / 500.0 - 3.0);
 
-		if (cogfinal > 1525) {
+		if (cogfinal > 1530) {
 
-			TFC_SetMotorPWM(0.35, 0.2);
+			TFC_SetMotorPWM(0.45, 0);
 		}
 
-		else if (cogfinal < 1475) {
-			TFC_SetMotorPWM(0.2, 0.35);
+		else if (cogfinal < 1470) {
+			TFC_SetMotorPWM(0, 0.45);
 		} else {
-			TFC_SetMotorPWM(0.6, 0.6);
+			TFC_SetMotorPWM(0.7, 0.7);
 		}
 	//	TFC_SetMotorPWM(0, 0);
 	}

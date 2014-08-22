@@ -7215,7 +7215,7 @@
  6587 30e2 191C     		add	r1, r3, #0
  6588 30e4 FFF7FEFF 		bl	TFC_SetServo
  580:../Sources/main.c **** 
- 581:../Sources/main.c **** 		if (cogfinal > 1525) {
+ 581:../Sources/main.c **** 		if (cogfinal > 1530) {
  6589              		.loc 1 581 0
  6590 30e8 CC23     		mov	r3, #204
  6591 30ea 9B00     		lsl	r3, r3, #2
@@ -7230,10 +7230,10 @@
  6600 30fe 06D0     		beq	.L337
  6601              	.L320:
  582:../Sources/main.c **** 
- 583:../Sources/main.c **** 			TFC_SetMotorPWM(0.35, 0.2);
+ 583:../Sources/main.c **** 			TFC_SetMotorPWM(0.45, 0);
  6602              		.loc 1 583 0
  6603 3100 1D4A     		ldr	r2, .L371+40
- 6604 3102 1E4B     		ldr	r3, .L371+44
+ 6604 3102 0023     		mov	r3, #0
  6605 3104 101C     		add	r0, r2, #0
  6606 3106 191C     		add	r1, r3, #0
  6607 3108 FFF7FEFF 		bl	TFC_SetMotorPWM
@@ -7241,7 +7241,7 @@
  6609              	.L337:
  584:../Sources/main.c **** 		}
  585:../Sources/main.c **** 
- 586:../Sources/main.c **** 		else if (cogfinal < 1475) {
+ 586:../Sources/main.c **** 		else if (cogfinal < 1470) {
  6610              		.loc 1 586 0
  6611 310e CC24     		mov	r4, #204
  6612 3110 A400     		lsl	r4, r4, #2
@@ -7255,9 +7255,9 @@
  6620 3122 002B     		cmp	r3, #0
  6621 3124 06D0     		beq	.L338
  6622              	.L321:
- 587:../Sources/main.c **** 			TFC_SetMotorPWM(0.2, 0.35);
+ 587:../Sources/main.c **** 			TFC_SetMotorPWM(0, 0.45);
  6623              		.loc 1 587 0
- 6624 3126 154A     		ldr	r2, .L371+44
+ 6624 3126 0022     		mov	r2, #0
  6625 3128 134B     		ldr	r3, .L371+40
  6626 312a 101C     		add	r0, r2, #0
  6627 312c 191C     		add	r1, r3, #0
@@ -7265,10 +7265,10 @@
  6629 3132 05E0     		b	.L1
  6630              	.L338:
  588:../Sources/main.c **** 		} else {
- 589:../Sources/main.c **** 			TFC_SetMotorPWM(0.6, 0.6);
+ 589:../Sources/main.c **** 			TFC_SetMotorPWM(0.7, 0.7);
  6631              		.loc 1 589 0
- 6632 3134 124A     		ldr	r2, .L371+48
- 6633 3136 124B     		ldr	r3, .L371+48
+ 6632 3134 114A     		ldr	r2, .L371+44
+ 6633 3136 114B     		ldr	r3, .L371+44
  6634 3138 101C     		add	r0, r2, #0
  6635 313a 191C     		add	r1, r3, #0
  6636 313c FFF7FEFF 		bl	TFC_SetMotorPWM
@@ -7293,193 +7293,192 @@
  6650 3158 00000000 		.word	0
  6651 315c 00000840 		.word	1074266112
  6652 3160 00000000 		.word	0
- 6653 3164 00D49740 		.word	1083692032
+ 6653 3164 00E89740 		.word	1083697152
  6654 3168 00000000 		.word	0
- 6655 316c 000C9740 		.word	1083640832
+ 6655 316c 00F89640 		.word	1083635712
  6656 3170 50FCFFFF 		.word	-944
  6657 3174 00F10F40 		.word	1074786560
- 6658 3178 3333B33E 		.word	1051931443
- 6659 317c CDCC4C3E 		.word	1045220557
- 6660 3180 9A99193F 		.word	1058642330
- 6661              		.cfi_endproc
- 6662              	.LFE0:
- 6664 3184 C046C046 		.section	.rodata
- 6665              		.align	2
- 6666              	.LC6:
- 6667 0000 0D0A00   		.ascii	"\015\012\000"
- 6668 0003 00       		.align	2
- 6669              	.LC8:
- 6670 0004 4C3A00   		.ascii	"L:\000"
- 6671 0007 00       		.align	2
- 6672              	.LC10:
- 6673 0008 25582C00 		.ascii	"%X,\000"
- 6674              		.align	2
- 6675              	.LC13:
- 6676 000c 255800   		.ascii	"%X\000"
- 6677 000f 00       		.align	2
- 6678              	.LC15:
- 6679 0010 2C00     		.ascii	",\000"
- 6680 0012 0000     		.section	.text.main,"ax",%progbits
- 6681              		.align	2
- 6682              		.global	main
- 6683              		.code	16
- 6684              		.thumb_func
- 6686              	main:
- 6687              	.LFB1:
+ 6658 3178 6666E63E 		.word	1055286886
+ 6659 317c 3333333F 		.word	1060320051
+ 6660              		.cfi_endproc
+ 6661              	.LFE0:
+ 6663              		.section	.rodata
+ 6664              		.align	2
+ 6665              	.LC6:
+ 6666 0000 0D0A00   		.ascii	"\015\012\000"
+ 6667 0003 00       		.align	2
+ 6668              	.LC8:
+ 6669 0004 4C3A00   		.ascii	"L:\000"
+ 6670 0007 00       		.align	2
+ 6671              	.LC10:
+ 6672 0008 25582C00 		.ascii	"%X,\000"
+ 6673              		.align	2
+ 6674              	.LC13:
+ 6675 000c 255800   		.ascii	"%X\000"
+ 6676 000f 00       		.align	2
+ 6677              	.LC15:
+ 6678 0010 2C00     		.ascii	",\000"
+ 6679 0012 0000     		.section	.text.main,"ax",%progbits
+ 6680              		.align	2
+ 6681              		.global	main
+ 6682              		.code	16
+ 6683              		.thumb_func
+ 6685              	main:
+ 6686              	.LFB1:
  594:../Sources/main.c **** 
  595:../Sources/main.c **** int main(void) {
- 6688              		.loc 1 595 0
- 6689              		.cfi_startproc
- 6690 0000 80B5     		push	{r7, lr}
- 6691              	.LCFI3:
- 6692              		.cfi_def_cfa_offset 8
- 6693              		.cfi_offset 7, -8
- 6694              		.cfi_offset 14, -4
- 6695 0002 86B0     		sub	sp, sp, #24
- 6696              	.LCFI4:
- 6697              		.cfi_def_cfa_offset 32
- 6698 0004 00AF     		add	r7, sp, #0
- 6699              	.LCFI5:
- 6700              		.cfi_def_cfa_register 7
+ 6687              		.loc 1 595 0
+ 6688              		.cfi_startproc
+ 6689 0000 80B5     		push	{r7, lr}
+ 6690              	.LCFI3:
+ 6691              		.cfi_def_cfa_offset 8
+ 6692              		.cfi_offset 7, -8
+ 6693              		.cfi_offset 14, -4
+ 6694 0002 86B0     		sub	sp, sp, #24
+ 6695              	.LCFI4:
+ 6696              		.cfi_def_cfa_offset 32
+ 6697 0004 00AF     		add	r7, sp, #0
+ 6698              	.LCFI5:
+ 6699              		.cfi_def_cfa_register 7
  596:../Sources/main.c **** 	uint32_t t, i = 0, a = 0, b = 0, limiar = 0xFE0;
- 6701              		.loc 1 596 0
- 6702 0006 0023     		mov	r3, #0
- 6703 0008 3B61     		str	r3, [r7, #16]
- 6704 000a 0023     		mov	r3, #0
- 6705 000c FB60     		str	r3, [r7, #12]
- 6706 000e 0023     		mov	r3, #0
- 6707 0010 BB60     		str	r3, [r7, #8]
- 6708 0012 FE23     		mov	r3, #254
- 6709 0014 1B01     		lsl	r3, r3, #4
- 6710 0016 7B60     		str	r3, [r7, #4]
+ 6700              		.loc 1 596 0
+ 6701 0006 0023     		mov	r3, #0
+ 6702 0008 3B61     		str	r3, [r7, #16]
+ 6703 000a 0023     		mov	r3, #0
+ 6704 000c FB60     		str	r3, [r7, #12]
+ 6705 000e 0023     		mov	r3, #0
+ 6706 0010 BB60     		str	r3, [r7, #8]
+ 6707 0012 FE23     		mov	r3, #254
+ 6708 0014 1B01     		lsl	r3, r3, #4
+ 6709 0016 7B60     		str	r3, [r7, #4]
  597:../Sources/main.c **** 	//TFC_SetServo(0,0);
  598:../Sources/main.c **** 	float teste = 0;
- 6711              		.loc 1 598 0
- 6712 0018 0023     		mov	r3, #0
- 6713 001a 3B60     		str	r3, [r7]
+ 6710              		.loc 1 598 0
+ 6711 0018 0023     		mov	r3, #0
+ 6712 001a 3B60     		str	r3, [r7]
  599:../Sources/main.c **** 	TFC_Init();
- 6714              		.loc 1 599 0
- 6715 001c FFF7FEFF 		bl	TFC_Init
- 6716              	.L389:
+ 6713              		.loc 1 599 0
+ 6714 001c FFF7FEFF 		bl	TFC_Init
+ 6715              	.L389:
  600:../Sources/main.c **** 
  601:../Sources/main.c **** 	for (;;) {
  602:../Sources/main.c **** 		if (LineScanImageReady == 1) {
- 6717              		.loc 1 602 0
- 6718 0020 664B     		ldr	r3, .L390
- 6719 0022 1B78     		ldrb	r3, [r3]
- 6720 0024 DBB2     		uxtb	r3, r3
- 6721 0026 012B     		cmp	r3, #1
- 6722 0028 4AD1     		bne	.L374
+ 6716              		.loc 1 602 0
+ 6717 0020 664B     		ldr	r3, .L390
+ 6718 0022 1B78     		ldrb	r3, [r3]
+ 6719 0024 DBB2     		uxtb	r3, r3
+ 6720 0026 012B     		cmp	r3, #1
+ 6721 0028 4AD1     		bne	.L374
  603:../Sources/main.c **** 		//	TFC_SetServo(0,0);
  604:../Sources/main.c **** 			a = 63;
- 6723              		.loc 1 604 0
- 6724 002a 3F23     		mov	r3, #63
- 6725 002c FB60     		str	r3, [r7, #12]
+ 6722              		.loc 1 604 0
+ 6723 002a 3F23     		mov	r3, #63
+ 6724 002c FB60     		str	r3, [r7, #12]
  605:../Sources/main.c **** 			b = 64;
- 6726              		.loc 1 605 0
- 6727 002e 4023     		mov	r3, #64
- 6728 0030 BB60     		str	r3, [r7, #8]
+ 6725              		.loc 1 605 0
+ 6726 002e 4023     		mov	r3, #64
+ 6727 0030 BB60     		str	r3, [r7, #8]
  606:../Sources/main.c **** 			while (LineScanImage0[a] >= limiar || LineScanImage0[b] >= limiar) {
- 6729              		.loc 1 606 0
- 6730 0032 1BE0     		b	.L375
- 6731              	.L377:
+ 6728              		.loc 1 606 0
+ 6729 0032 1BE0     		b	.L375
+ 6730              	.L377:
  607:../Sources/main.c **** 				if (LineScanImage0[a] >= limiar) {
- 6732              		.loc 1 607 0
- 6733 0034 624B     		ldr	r3, .L390+4
- 6734 0036 1A68     		ldr	r2, [r3]
- 6735 0038 FB68     		ldr	r3, [r7, #12]
- 6736 003a 5B00     		lsl	r3, r3, #1
- 6737 003c D318     		add	r3, r2, r3
- 6738 003e 1B88     		ldrh	r3, [r3]
- 6739 0040 9BB2     		uxth	r3, r3
- 6740 0042 1A1C     		mov	r2, r3
- 6741 0044 7B68     		ldr	r3, [r7, #4]
- 6742 0046 9A42     		cmp	r2, r3
- 6743 0048 02D3     		bcc	.L376
+ 6731              		.loc 1 607 0
+ 6732 0034 624B     		ldr	r3, .L390+4
+ 6733 0036 1A68     		ldr	r2, [r3]
+ 6734 0038 FB68     		ldr	r3, [r7, #12]
+ 6735 003a 5B00     		lsl	r3, r3, #1
+ 6736 003c D318     		add	r3, r2, r3
+ 6737 003e 1B88     		ldrh	r3, [r3]
+ 6738 0040 9BB2     		uxth	r3, r3
+ 6739 0042 1A1C     		mov	r2, r3
+ 6740 0044 7B68     		ldr	r3, [r7, #4]
+ 6741 0046 9A42     		cmp	r2, r3
+ 6742 0048 02D3     		bcc	.L376
  608:../Sources/main.c **** 					a--;
- 6744              		.loc 1 608 0
- 6745 004a FB68     		ldr	r3, [r7, #12]
- 6746 004c 013B     		sub	r3, r3, #1
- 6747 004e FB60     		str	r3, [r7, #12]
- 6748              	.L376:
+ 6743              		.loc 1 608 0
+ 6744 004a FB68     		ldr	r3, [r7, #12]
+ 6745 004c 013B     		sub	r3, r3, #1
+ 6746 004e FB60     		str	r3, [r7, #12]
+ 6747              	.L376:
  609:../Sources/main.c **** 				}
  610:../Sources/main.c **** 				if (LineScanImage0[b] >= limiar) {
- 6749              		.loc 1 610 0
- 6750 0050 5B4B     		ldr	r3, .L390+4
- 6751 0052 1A68     		ldr	r2, [r3]
- 6752 0054 BB68     		ldr	r3, [r7, #8]
- 6753 0056 5B00     		lsl	r3, r3, #1
- 6754 0058 D318     		add	r3, r2, r3
- 6755 005a 1B88     		ldrh	r3, [r3]
- 6756 005c 9BB2     		uxth	r3, r3
- 6757 005e 1A1C     		mov	r2, r3
- 6758 0060 7B68     		ldr	r3, [r7, #4]
- 6759 0062 9A42     		cmp	r2, r3
- 6760 0064 02D3     		bcc	.L375
+ 6748              		.loc 1 610 0
+ 6749 0050 5B4B     		ldr	r3, .L390+4
+ 6750 0052 1A68     		ldr	r2, [r3]
+ 6751 0054 BB68     		ldr	r3, [r7, #8]
+ 6752 0056 5B00     		lsl	r3, r3, #1
+ 6753 0058 D318     		add	r3, r2, r3
+ 6754 005a 1B88     		ldrh	r3, [r3]
+ 6755 005c 9BB2     		uxth	r3, r3
+ 6756 005e 1A1C     		mov	r2, r3
+ 6757 0060 7B68     		ldr	r3, [r7, #4]
+ 6758 0062 9A42     		cmp	r2, r3
+ 6759 0064 02D3     		bcc	.L375
  611:../Sources/main.c **** 					b++;
- 6761              		.loc 1 611 0
- 6762 0066 BB68     		ldr	r3, [r7, #8]
- 6763 0068 0133     		add	r3, r3, #1
- 6764 006a BB60     		str	r3, [r7, #8]
- 6765              	.L375:
+ 6760              		.loc 1 611 0
+ 6761 0066 BB68     		ldr	r3, [r7, #8]
+ 6762 0068 0133     		add	r3, r3, #1
+ 6763 006a BB60     		str	r3, [r7, #8]
+ 6764              	.L375:
  606:../Sources/main.c **** 			while (LineScanImage0[a] >= limiar || LineScanImage0[b] >= limiar) {
- 6766              		.loc 1 606 0
- 6767 006c 544B     		ldr	r3, .L390+4
- 6768 006e 1A68     		ldr	r2, [r3]
- 6769 0070 FB68     		ldr	r3, [r7, #12]
- 6770 0072 5B00     		lsl	r3, r3, #1
- 6771 0074 D318     		add	r3, r2, r3
- 6772 0076 1B88     		ldrh	r3, [r3]
- 6773 0078 9BB2     		uxth	r3, r3
- 6774 007a 1A1C     		mov	r2, r3
- 6775 007c 7B68     		ldr	r3, [r7, #4]
- 6776 007e 9A42     		cmp	r2, r3
- 6777 0080 D8D2     		bcs	.L377
+ 6765              		.loc 1 606 0
+ 6766 006c 544B     		ldr	r3, .L390+4
+ 6767 006e 1A68     		ldr	r2, [r3]
+ 6768 0070 FB68     		ldr	r3, [r7, #12]
+ 6769 0072 5B00     		lsl	r3, r3, #1
+ 6770 0074 D318     		add	r3, r2, r3
+ 6771 0076 1B88     		ldrh	r3, [r3]
+ 6772 0078 9BB2     		uxth	r3, r3
+ 6773 007a 1A1C     		mov	r2, r3
+ 6774 007c 7B68     		ldr	r3, [r7, #4]
+ 6775 007e 9A42     		cmp	r2, r3
+ 6776 0080 D8D2     		bcs	.L377
  606:../Sources/main.c **** 			while (LineScanImage0[a] >= limiar || LineScanImage0[b] >= limiar) {
- 6778              		.loc 1 606 0 is_stmt 0
- 6779 0082 4F4B     		ldr	r3, .L390+4
- 6780 0084 1A68     		ldr	r2, [r3]
- 6781 0086 BB68     		ldr	r3, [r7, #8]
- 6782 0088 5B00     		lsl	r3, r3, #1
- 6783 008a D318     		add	r3, r2, r3
- 6784 008c 1B88     		ldrh	r3, [r3]
- 6785 008e 9BB2     		uxth	r3, r3
- 6786 0090 1A1C     		mov	r2, r3
- 6787 0092 7B68     		ldr	r3, [r7, #4]
- 6788 0094 9A42     		cmp	r2, r3
- 6789 0096 CDD2     		bcs	.L377
+ 6777              		.loc 1 606 0 is_stmt 0
+ 6778 0082 4F4B     		ldr	r3, .L390+4
+ 6779 0084 1A68     		ldr	r2, [r3]
+ 6780 0086 BB68     		ldr	r3, [r7, #8]
+ 6781 0088 5B00     		lsl	r3, r3, #1
+ 6782 008a D318     		add	r3, r2, r3
+ 6783 008c 1B88     		ldrh	r3, [r3]
+ 6784 008e 9BB2     		uxth	r3, r3
+ 6785 0090 1A1C     		mov	r2, r3
+ 6786 0092 7B68     		ldr	r3, [r7, #4]
+ 6787 0094 9A42     		cmp	r2, r3
+ 6788 0096 CDD2     		bcs	.L377
  612:../Sources/main.c **** 				}
  613:../Sources/main.c **** 			}
  614:../Sources/main.c **** 			if ((b - a) <= 60) {
- 6790              		.loc 1 614 0 is_stmt 1
- 6791 0098 BA68     		ldr	r2, [r7, #8]
- 6792 009a FB68     		ldr	r3, [r7, #12]
- 6793 009c D31A     		sub	r3, r2, r3
- 6794 009e 3C2B     		cmp	r3, #60
- 6795 00a0 04D8     		bhi	.L378
+ 6789              		.loc 1 614 0 is_stmt 1
+ 6790 0098 BA68     		ldr	r2, [r7, #8]
+ 6791 009a FB68     		ldr	r3, [r7, #12]
+ 6792 009c D31A     		sub	r3, r2, r3
+ 6793 009e 3C2B     		cmp	r3, #60
+ 6794 00a0 04D8     		bhi	.L378
  615:../Sources/main.c **** 				media = media;
- 6796              		.loc 1 615 0
- 6797 00a2 484B     		ldr	r3, .L390+8
- 6798 00a4 1A68     		ldr	r2, [r3]
- 6799 00a6 474B     		ldr	r3, .L390+8
- 6800 00a8 1A60     		str	r2, [r3]
- 6801 00aa 09E0     		b	.L374
- 6802              	.L378:
+ 6795              		.loc 1 615 0
+ 6796 00a2 484B     		ldr	r3, .L390+8
+ 6797 00a4 1A68     		ldr	r2, [r3]
+ 6798 00a6 474B     		ldr	r3, .L390+8
+ 6799 00a8 1A60     		str	r2, [r3]
+ 6800 00aa 09E0     		b	.L374
+ 6801              	.L378:
  616:../Sources/main.c **** 			} else {
  617:../Sources/main.c **** 				media = (int) (a + b) / 2;
- 6803              		.loc 1 617 0
- 6804 00ac FA68     		ldr	r2, [r7, #12]
- 6805 00ae BB68     		ldr	r3, [r7, #8]
- 6806 00b0 D318     		add	r3, r2, r3
- 6807 00b2 002B     		cmp	r3, #0
- 6808 00b4 00DA     		bge	.L379
- 6809 00b6 0133     		add	r3, r3, #1
- 6810              	.L379:
- 6811 00b8 5B10     		asr	r3, r3, #1
- 6812 00ba 1A1C     		mov	r2, r3
- 6813 00bc 414B     		ldr	r3, .L390+8
- 6814 00be 1A60     		str	r2, [r3]
- 6815              	.L374:
+ 6802              		.loc 1 617 0
+ 6803 00ac FA68     		ldr	r2, [r7, #12]
+ 6804 00ae BB68     		ldr	r3, [r7, #8]
+ 6805 00b0 D318     		add	r3, r2, r3
+ 6806 00b2 002B     		cmp	r3, #0
+ 6807 00b4 00DA     		bge	.L379
+ 6808 00b6 0133     		add	r3, r3, #1
+ 6809              	.L379:
+ 6810 00b8 5B10     		asr	r3, r3, #1
+ 6811 00ba 1A1C     		mov	r2, r3
+ 6812 00bc 414B     		ldr	r3, .L390+8
+ 6813 00be 1A60     		str	r2, [r3]
+ 6814              	.L374:
  618:../Sources/main.c **** 			}
  619:../Sources/main.c **** 			/*if(media<60)TFC_SetServo(0,-0.5);
  620:../Sources/main.c **** 			 else if (media>70)
@@ -7510,187 +7509,187 @@
  645:../Sources/main.c **** 		//Labview Application
  646:../Sources/main.c **** 
  647:../Sources/main.c **** 		if (TFC_Ticker[0] > 100 && LineScanImageReady == 1) {
- 6816              		.loc 1 647 0
- 6817 00c0 414B     		ldr	r3, .L390+12
- 6818 00c2 1B68     		ldr	r3, [r3]
- 6819 00c4 642B     		cmp	r3, #100
- 6820 00c6 00D8     		bhi	.LCB5937
- 6821 00c8 72E0     		b	.L380	@long jump
- 6822              	.LCB5937:
- 6823              		.loc 1 647 0 is_stmt 0
- 6824 00ca 3C4B     		ldr	r3, .L390
- 6825 00cc 1B78     		ldrb	r3, [r3]
- 6826 00ce DBB2     		uxtb	r3, r3
- 6827 00d0 012B     		cmp	r3, #1
- 6828 00d2 6DD1     		bne	.L380
+ 6815              		.loc 1 647 0
+ 6816 00c0 414B     		ldr	r3, .L390+12
+ 6817 00c2 1B68     		ldr	r3, [r3]
+ 6818 00c4 642B     		cmp	r3, #100
+ 6819 00c6 00D8     		bhi	.LCB5936
+ 6820 00c8 72E0     		b	.L380	@long jump
+ 6821              	.LCB5936:
+ 6822              		.loc 1 647 0 is_stmt 0
+ 6823 00ca 3C4B     		ldr	r3, .L390
+ 6824 00cc 1B78     		ldrb	r3, [r3]
+ 6825 00ce DBB2     		uxtb	r3, r3
+ 6826 00d0 012B     		cmp	r3, #1
+ 6827 00d2 6DD1     		bne	.L380
  648:../Sources/main.c **** 			TFC_Ticker[0] = 0;
- 6829              		.loc 1 648 0 is_stmt 1
- 6830 00d4 3C4B     		ldr	r3, .L390+12
- 6831 00d6 0022     		mov	r2, #0
- 6832 00d8 1A60     		str	r2, [r3]
+ 6828              		.loc 1 648 0 is_stmt 1
+ 6829 00d4 3C4B     		ldr	r3, .L390+12
+ 6830 00d6 0022     		mov	r2, #0
+ 6831 00d8 1A60     		str	r2, [r3]
  649:../Sources/main.c **** 			LineScanImageReady = 0;
- 6833              		.loc 1 649 0
- 6834 00da 384B     		ldr	r3, .L390
- 6835 00dc 0022     		mov	r2, #0
- 6836 00de 1A70     		strb	r2, [r3]
+ 6832              		.loc 1 649 0
+ 6833 00da 384B     		ldr	r3, .L390
+ 6834 00dc 0022     		mov	r2, #0
+ 6835 00de 1A70     		strb	r2, [r3]
  650:../Sources/main.c **** 			TERMINAL_PRINTF("\r\n");
- 6837              		.loc 1 650 0
- 6838 00e0 3A4A     		ldr	r2, .L390+16
- 6839 00e2 3B4B     		ldr	r3, .L390+20
- 6840 00e4 101C     		mov	r0, r2
- 6841 00e6 191C     		mov	r1, r3
- 6842 00e8 FFF7FEFF 		bl	Qprintf
+ 6836              		.loc 1 650 0
+ 6837 00e0 3A4A     		ldr	r2, .L390+16
+ 6838 00e2 3B4B     		ldr	r3, .L390+20
+ 6839 00e4 101C     		mov	r0, r2
+ 6840 00e6 191C     		mov	r1, r3
+ 6841 00e8 FFF7FEFF 		bl	Qprintf
  651:../Sources/main.c **** 			TERMINAL_PRINTF("L:");
- 6843              		.loc 1 651 0
- 6844 00ec 374A     		ldr	r2, .L390+16
- 6845 00ee 394B     		ldr	r3, .L390+24
- 6846 00f0 101C     		mov	r0, r2
- 6847 00f2 191C     		mov	r1, r3
- 6848 00f4 FFF7FEFF 		bl	Qprintf
+ 6842              		.loc 1 651 0
+ 6843 00ec 374A     		ldr	r2, .L390+16
+ 6844 00ee 394B     		ldr	r3, .L390+24
+ 6845 00f0 101C     		mov	r0, r2
+ 6846 00f2 191C     		mov	r1, r3
+ 6847 00f4 FFF7FEFF 		bl	Qprintf
  652:../Sources/main.c **** 
  653:../Sources/main.c **** 			if (t == 0)
- 6849              		.loc 1 653 0
- 6850 00f8 7B69     		ldr	r3, [r7, #20]
- 6851 00fa 002B     		cmp	r3, #0
- 6852 00fc 02D1     		bne	.L381
+ 6848              		.loc 1 653 0
+ 6849 00f8 7B69     		ldr	r3, [r7, #20]
+ 6850 00fa 002B     		cmp	r3, #0
+ 6851 00fc 02D1     		bne	.L381
  654:../Sources/main.c **** 				t = 3;
- 6853              		.loc 1 654 0
- 6854 00fe 0323     		mov	r3, #3
- 6855 0100 7B61     		str	r3, [r7, #20]
- 6856 0102 02E0     		b	.L382
- 6857              	.L381:
+ 6852              		.loc 1 654 0
+ 6853 00fe 0323     		mov	r3, #3
+ 6854 0100 7B61     		str	r3, [r7, #20]
+ 6855 0102 02E0     		b	.L382
+ 6856              	.L381:
  655:../Sources/main.c **** 			else
  656:../Sources/main.c **** 				t--;
- 6858              		.loc 1 656 0
- 6859 0104 7B69     		ldr	r3, [r7, #20]
- 6860 0106 013B     		sub	r3, r3, #1
- 6861 0108 7B61     		str	r3, [r7, #20]
- 6862              	.L382:
+ 6857              		.loc 1 656 0
+ 6858 0104 7B69     		ldr	r3, [r7, #20]
+ 6859 0106 013B     		sub	r3, r3, #1
+ 6860 0108 7B61     		str	r3, [r7, #20]
+ 6861              	.L382:
  657:../Sources/main.c **** 
  658:../Sources/main.c **** 			TFC_SetBatteryLED_Level(t);
- 6863              		.loc 1 658 0
- 6864 010a 7B69     		ldr	r3, [r7, #20]
- 6865 010c DBB2     		uxtb	r3, r3
- 6866 010e 181C     		mov	r0, r3
- 6867 0110 FFF7FEFF 		bl	TFC_SetBatteryLED_Level
+ 6862              		.loc 1 658 0
+ 6863 010a 7B69     		ldr	r3, [r7, #20]
+ 6864 010c DBB2     		uxtb	r3, r3
+ 6865 010e 181C     		mov	r0, r3
+ 6866 0110 FFF7FEFF 		bl	TFC_SetBatteryLED_Level
  659:../Sources/main.c **** 
  660:../Sources/main.c **** 			for (i = 0; i < 128; i++) {
- 6868              		.loc 1 660 0
- 6869 0114 0023     		mov	r3, #0
- 6870 0116 3B61     		str	r3, [r7, #16]
- 6871 0118 10E0     		b	.L383
- 6872              	.L384:
+ 6867              		.loc 1 660 0
+ 6868 0114 0023     		mov	r3, #0
+ 6869 0116 3B61     		str	r3, [r7, #16]
+ 6870 0118 10E0     		b	.L383
+ 6871              	.L384:
  661:../Sources/main.c **** 				TERMINAL_PRINTF("%X,", LineScanImage0[i]);
- 6873              		.loc 1 661 0
- 6874 011a 294B     		ldr	r3, .L390+4
- 6875 011c 1A68     		ldr	r2, [r3]
- 6876 011e 3B69     		ldr	r3, [r7, #16]
- 6877 0120 5B00     		lsl	r3, r3, #1
- 6878 0122 D318     		add	r3, r2, r3
- 6879 0124 1B88     		ldrh	r3, [r3]
- 6880 0126 9BB2     		uxth	r3, r3
- 6881 0128 2849     		ldr	r1, .L390+16
- 6882 012a 2B4A     		ldr	r2, .L390+28
- 6883 012c 081C     		mov	r0, r1
- 6884 012e 111C     		mov	r1, r2
- 6885 0130 1A1C     		mov	r2, r3
- 6886 0132 FFF7FEFF 		bl	Qprintf
+ 6872              		.loc 1 661 0
+ 6873 011a 294B     		ldr	r3, .L390+4
+ 6874 011c 1A68     		ldr	r2, [r3]
+ 6875 011e 3B69     		ldr	r3, [r7, #16]
+ 6876 0120 5B00     		lsl	r3, r3, #1
+ 6877 0122 D318     		add	r3, r2, r3
+ 6878 0124 1B88     		ldrh	r3, [r3]
+ 6879 0126 9BB2     		uxth	r3, r3
+ 6880 0128 2849     		ldr	r1, .L390+16
+ 6881 012a 2B4A     		ldr	r2, .L390+28
+ 6882 012c 081C     		mov	r0, r1
+ 6883 012e 111C     		mov	r1, r2
+ 6884 0130 1A1C     		mov	r2, r3
+ 6885 0132 FFF7FEFF 		bl	Qprintf
  660:../Sources/main.c **** 			for (i = 0; i < 128; i++) {
- 6887              		.loc 1 660 0
- 6888 0136 3B69     		ldr	r3, [r7, #16]
- 6889 0138 0133     		add	r3, r3, #1
- 6890 013a 3B61     		str	r3, [r7, #16]
- 6891              	.L383:
+ 6886              		.loc 1 660 0
+ 6887 0136 3B69     		ldr	r3, [r7, #16]
+ 6888 0138 0133     		add	r3, r3, #1
+ 6889 013a 3B61     		str	r3, [r7, #16]
+ 6890              	.L383:
  660:../Sources/main.c **** 			for (i = 0; i < 128; i++) {
- 6892              		.loc 1 660 0 is_stmt 0
- 6893 013c 3B69     		ldr	r3, [r7, #16]
- 6894 013e 7F2B     		cmp	r3, #127
- 6895 0140 EBD9     		bls	.L384
+ 6891              		.loc 1 660 0 is_stmt 0
+ 6892 013c 3B69     		ldr	r3, [r7, #16]
+ 6893 013e 7F2B     		cmp	r3, #127
+ 6894 0140 EBD9     		bls	.L384
  662:../Sources/main.c **** 			}
  663:../Sources/main.c **** 
  664:../Sources/main.c **** 			for (i = 0; i < 128; i++) {
- 6896              		.loc 1 664 0 is_stmt 1
- 6897 0142 0023     		mov	r3, #0
- 6898 0144 3B61     		str	r3, [r7, #16]
- 6899 0146 30E0     		b	.L385
- 6900              	.L388:
+ 6895              		.loc 1 664 0 is_stmt 1
+ 6896 0142 0023     		mov	r3, #0
+ 6897 0144 3B61     		str	r3, [r7, #16]
+ 6898 0146 30E0     		b	.L385
+ 6899              	.L388:
  665:../Sources/main.c **** 				TERMINAL_PRINTF("%X", LineScanImage1[i]);
- 6901              		.loc 1 665 0
- 6902 0148 244B     		ldr	r3, .L390+32
- 6903 014a 1A68     		ldr	r2, [r3]
- 6904 014c 3B69     		ldr	r3, [r7, #16]
- 6905 014e 5B00     		lsl	r3, r3, #1
- 6906 0150 D318     		add	r3, r2, r3
- 6907 0152 1B88     		ldrh	r3, [r3]
- 6908 0154 9BB2     		uxth	r3, r3
- 6909 0156 1D49     		ldr	r1, .L390+16
- 6910 0158 214A     		ldr	r2, .L390+36
- 6911 015a 081C     		mov	r0, r1
- 6912 015c 111C     		mov	r1, r2
- 6913 015e 1A1C     		mov	r2, r3
- 6914 0160 FFF7FEFF 		bl	Qprintf
+ 6900              		.loc 1 665 0
+ 6901 0148 244B     		ldr	r3, .L390+32
+ 6902 014a 1A68     		ldr	r2, [r3]
+ 6903 014c 3B69     		ldr	r3, [r7, #16]
+ 6904 014e 5B00     		lsl	r3, r3, #1
+ 6905 0150 D318     		add	r3, r2, r3
+ 6906 0152 1B88     		ldrh	r3, [r3]
+ 6907 0154 9BB2     		uxth	r3, r3
+ 6908 0156 1D49     		ldr	r1, .L390+16
+ 6909 0158 214A     		ldr	r2, .L390+36
+ 6910 015a 081C     		mov	r0, r1
+ 6911 015c 111C     		mov	r1, r2
+ 6912 015e 1A1C     		mov	r2, r3
+ 6913 0160 FFF7FEFF 		bl	Qprintf
  666:../Sources/main.c **** 				if (i == 127)
- 6915              		.loc 1 666 0
- 6916 0164 3B69     		ldr	r3, [r7, #16]
- 6917 0166 7F2B     		cmp	r3, #127
- 6918 0168 0ED1     		bne	.L386
+ 6914              		.loc 1 666 0
+ 6915 0164 3B69     		ldr	r3, [r7, #16]
+ 6916 0166 7F2B     		cmp	r3, #127
+ 6917 0168 0ED1     		bne	.L386
  667:../Sources/main.c **** 					TERMINAL_PRINTF("\r\n", LineScanImage1[i]);
- 6919              		.loc 1 667 0
- 6920 016a 1C4B     		ldr	r3, .L390+32
- 6921 016c 1A68     		ldr	r2, [r3]
- 6922 016e 3B69     		ldr	r3, [r7, #16]
- 6923 0170 5B00     		lsl	r3, r3, #1
- 6924 0172 D318     		add	r3, r2, r3
- 6925 0174 1B88     		ldrh	r3, [r3]
- 6926 0176 9BB2     		uxth	r3, r3
- 6927 0178 1449     		ldr	r1, .L390+16
- 6928 017a 154A     		ldr	r2, .L390+20
- 6929 017c 081C     		mov	r0, r1
- 6930 017e 111C     		mov	r1, r2
- 6931 0180 1A1C     		mov	r2, r3
- 6932 0182 FFF7FEFF 		bl	Qprintf
- 6933 0186 0DE0     		b	.L387
- 6934              	.L386:
+ 6918              		.loc 1 667 0
+ 6919 016a 1C4B     		ldr	r3, .L390+32
+ 6920 016c 1A68     		ldr	r2, [r3]
+ 6921 016e 3B69     		ldr	r3, [r7, #16]
+ 6922 0170 5B00     		lsl	r3, r3, #1
+ 6923 0172 D318     		add	r3, r2, r3
+ 6924 0174 1B88     		ldrh	r3, [r3]
+ 6925 0176 9BB2     		uxth	r3, r3
+ 6926 0178 1449     		ldr	r1, .L390+16
+ 6927 017a 154A     		ldr	r2, .L390+20
+ 6928 017c 081C     		mov	r0, r1
+ 6929 017e 111C     		mov	r1, r2
+ 6930 0180 1A1C     		mov	r2, r3
+ 6931 0182 FFF7FEFF 		bl	Qprintf
+ 6932 0186 0DE0     		b	.L387
+ 6933              	.L386:
  668:../Sources/main.c **** 				else
  669:../Sources/main.c **** 					TERMINAL_PRINTF(",", LineScanImage1[i]);
- 6935              		.loc 1 669 0
- 6936 0188 144B     		ldr	r3, .L390+32
- 6937 018a 1A68     		ldr	r2, [r3]
- 6938 018c 3B69     		ldr	r3, [r7, #16]
- 6939 018e 5B00     		lsl	r3, r3, #1
- 6940 0190 D318     		add	r3, r2, r3
- 6941 0192 1B88     		ldrh	r3, [r3]
- 6942 0194 9BB2     		uxth	r3, r3
- 6943 0196 0D49     		ldr	r1, .L390+16
- 6944 0198 124A     		ldr	r2, .L390+40
- 6945 019a 081C     		mov	r0, r1
- 6946 019c 111C     		mov	r1, r2
- 6947 019e 1A1C     		mov	r2, r3
- 6948 01a0 FFF7FEFF 		bl	Qprintf
- 6949              	.L387:
+ 6934              		.loc 1 669 0
+ 6935 0188 144B     		ldr	r3, .L390+32
+ 6936 018a 1A68     		ldr	r2, [r3]
+ 6937 018c 3B69     		ldr	r3, [r7, #16]
+ 6938 018e 5B00     		lsl	r3, r3, #1
+ 6939 0190 D318     		add	r3, r2, r3
+ 6940 0192 1B88     		ldrh	r3, [r3]
+ 6941 0194 9BB2     		uxth	r3, r3
+ 6942 0196 0D49     		ldr	r1, .L390+16
+ 6943 0198 124A     		ldr	r2, .L390+40
+ 6944 019a 081C     		mov	r0, r1
+ 6945 019c 111C     		mov	r1, r2
+ 6946 019e 1A1C     		mov	r2, r3
+ 6947 01a0 FFF7FEFF 		bl	Qprintf
+ 6948              	.L387:
  664:../Sources/main.c **** 			for (i = 0; i < 128; i++) {
- 6950              		.loc 1 664 0
- 6951 01a4 3B69     		ldr	r3, [r7, #16]
- 6952 01a6 0133     		add	r3, r3, #1
- 6953 01a8 3B61     		str	r3, [r7, #16]
- 6954              	.L385:
+ 6949              		.loc 1 664 0
+ 6950 01a4 3B69     		ldr	r3, [r7, #16]
+ 6951 01a6 0133     		add	r3, r3, #1
+ 6952 01a8 3B61     		str	r3, [r7, #16]
+ 6953              	.L385:
  664:../Sources/main.c **** 			for (i = 0; i < 128; i++) {
- 6955              		.loc 1 664 0 is_stmt 0
- 6956 01aa 3B69     		ldr	r3, [r7, #16]
- 6957 01ac 7F2B     		cmp	r3, #127
- 6958 01ae CBD9     		bls	.L388
- 6959              	.L380:
+ 6954              		.loc 1 664 0 is_stmt 0
+ 6955 01aa 3B69     		ldr	r3, [r7, #16]
+ 6956 01ac 7F2B     		cmp	r3, #127
+ 6957 01ae CBD9     		bls	.L388
+ 6958              	.L380:
  670:../Sources/main.c **** 			}
  671:../Sources/main.c **** 
  672:../Sources/main.c **** 		}
  673:../Sources/main.c **** 
  674:../Sources/main.c **** 		//TFC_Task must be called in your main loop.  This keeps certain processing happy (I.E. Serial po
  675:../Sources/main.c **** 		TFC_Task();
- 6960              		.loc 1 675 0 is_stmt 1
- 6961 01b0 FFF7FEFF 		bl	TFC_Task
+ 6959              		.loc 1 675 0 is_stmt 1
+ 6960 01b0 FFF7FEFF 		bl	TFC_Task
  676:../Sources/main.c **** 		fuzzy();
- 6962              		.loc 1 676 0
- 6963 01b4 FFF7FEFF 		bl	fuzzy
+ 6961              		.loc 1 676 0
+ 6962 01b4 FFF7FEFF 		bl	fuzzy
  677:../Sources/main.c **** 		//This Demo program will look at the middle 2 switch to select one of 4 demo modes.
  678:../Sources/main.c **** 		//Let's look at the middle 2 switches
  679:../Sources/main.c **** 		/*switch ((TFC_GetDIP_Switch() >> 1) & 0x03) {
@@ -7840,77 +7839,76 @@
  823:../Sources/main.c **** 		 break;
  824:../Sources/main.c **** 		 }*/
  825:../Sources/main.c **** 	}
- 6964              		.loc 1 825 0
- 6965 01b8 32E7     		b	.L389
- 6966              	.L391:
- 6967 01ba C046     		.align	2
- 6968              	.L390:
- 6969 01bc 00000000 		.word	LineScanImageReady
- 6970 01c0 00000000 		.word	LineScanImage0
- 6971 01c4 00000000 		.word	media
- 6972 01c8 00000000 		.word	TFC_Ticker
- 6973 01cc 00000000 		.word	SDA_SERIAL_OUTGOING_QUEUE
- 6974 01d0 00000000 		.word	.LC6
- 6975 01d4 04000000 		.word	.LC8
- 6976 01d8 08000000 		.word	.LC10
- 6977 01dc 00000000 		.word	LineScanImage1
- 6978 01e0 0C000000 		.word	.LC13
- 6979 01e4 10000000 		.word	.LC15
- 6980              		.cfi_endproc
- 6981              	.LFE1:
- 6983              		.text
- 6984              	.Letext0:
- 6985              		.file 2 "C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint"
- 6986              		.file 3 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/MKL25Z4.h"
- 6987              		.file 4 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_Queue.h"
- 6988              		.file 5 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_ARM_SysTi
- 6989              		.file 6 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_LineScanC
- 6990              		.file 7 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_UART.h"
+ 6963              		.loc 1 825 0
+ 6964 01b8 32E7     		b	.L389
+ 6965              	.L391:
+ 6966 01ba C046     		.align	2
+ 6967              	.L390:
+ 6968 01bc 00000000 		.word	LineScanImageReady
+ 6969 01c0 00000000 		.word	LineScanImage0
+ 6970 01c4 00000000 		.word	media
+ 6971 01c8 00000000 		.word	TFC_Ticker
+ 6972 01cc 00000000 		.word	SDA_SERIAL_OUTGOING_QUEUE
+ 6973 01d0 00000000 		.word	.LC6
+ 6974 01d4 04000000 		.word	.LC8
+ 6975 01d8 08000000 		.word	.LC10
+ 6976 01dc 00000000 		.word	LineScanImage1
+ 6977 01e0 0C000000 		.word	.LC13
+ 6978 01e4 10000000 		.word	.LC15
+ 6979              		.cfi_endproc
+ 6980              	.LFE1:
+ 6982              		.text
+ 6983              	.Letext0:
+ 6984              		.file 2 "C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint"
+ 6985              		.file 3 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/MKL25Z4.h"
+ 6986              		.file 4 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_Queue.h"
+ 6987              		.file 5 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_ARM_SysTi
+ 6988              		.file 6 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_LineScanC
+ 6989              		.file 7 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_UART.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:22     .data.media:00000000 media
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:19     .data.media:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:38     .text.fuzzy:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:43     .text.fuzzy:00000000 fuzzy
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:499    .text.fuzzy:00000330 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:521    .text.fuzzy:00000380 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:951    .text.fuzzy:000006c0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:979    .text.fuzzy:00000728 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1409   .text.fuzzy:00000a40 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1424   .text.fuzzy:00000a74 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1804   .text.fuzzy:00000d38 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:1820   .text.fuzzy:00000d70 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2202   .text.fuzzy:00001038 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2218   .text.fuzzy:00001070 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2601   .text.fuzzy:00001338 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:2615   .text.fuzzy:00001368 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3057   .text.fuzzy:000016a0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3073   .text.fuzzy:000016d8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3455   .text.fuzzy:00001998 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3469   .text.fuzzy:000019c8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3851   .text.fuzzy:00001c88 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:3865   .text.fuzzy:00001cb8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4249   .text.fuzzy:00001f80 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4263   .text.fuzzy:00001fb0 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4575   .text.fuzzy:000021f0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4585   .text.fuzzy:00002210 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4881   .text.fuzzy:00002430 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:4892   .text.fuzzy:00002454 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5198   .text.fuzzy:00002688 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5209   .text.fuzzy:000026ac $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5589   .text.fuzzy:00002970 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5605   .text.fuzzy:000029a8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5908   .text.fuzzy:00002bd0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:5920   .text.fuzzy:00002bf8 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6398   .text.fuzzy:00002f68 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6408   .text.fuzzy:00002f88 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6648   .text.fuzzy:00003150 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6665   .rodata:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6681   .text.main:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6686   .text.main:00000000 main
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6969   .text.main:000001bc $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:22     .data.media:00000000 media
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:19     .data.media:00000000 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:38     .text.fuzzy:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:43     .text.fuzzy:00000000 fuzzy
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:499    .text.fuzzy:00000330 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:521    .text.fuzzy:00000380 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:951    .text.fuzzy:000006c0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:979    .text.fuzzy:00000728 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:1409   .text.fuzzy:00000a40 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:1424   .text.fuzzy:00000a74 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:1804   .text.fuzzy:00000d38 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:1820   .text.fuzzy:00000d70 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:2202   .text.fuzzy:00001038 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:2218   .text.fuzzy:00001070 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:2601   .text.fuzzy:00001338 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:2615   .text.fuzzy:00001368 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:3057   .text.fuzzy:000016a0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:3073   .text.fuzzy:000016d8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:3455   .text.fuzzy:00001998 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:3469   .text.fuzzy:000019c8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:3851   .text.fuzzy:00001c88 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:3865   .text.fuzzy:00001cb8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:4249   .text.fuzzy:00001f80 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:4263   .text.fuzzy:00001fb0 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:4575   .text.fuzzy:000021f0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:4585   .text.fuzzy:00002210 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:4881   .text.fuzzy:00002430 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:4892   .text.fuzzy:00002454 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:5198   .text.fuzzy:00002688 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:5209   .text.fuzzy:000026ac $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:5589   .text.fuzzy:00002970 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:5605   .text.fuzzy:000029a8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:5908   .text.fuzzy:00002bd0 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:5920   .text.fuzzy:00002bf8 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6398   .text.fuzzy:00002f68 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6408   .text.fuzzy:00002f88 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6648   .text.fuzzy:00003150 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6664   .rodata:00000000 $d
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6680   .text.main:00000000 $t
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6685   .text.main:00000000 main
+C:\DOCUME~1\aluno\CONFIG~1\Temp\ccdcArqh.s:6968   .text.main:000001bc $d
                      .debug_frame:00000010 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\cc42WsNZ.s:6664   .text.fuzzy:00003184 $t
 
 UNDEFINED SYMBOLS
 __aeabi_i2d
