@@ -598,6 +598,7 @@ void fuzzy(void) {
 			
 		
 		//	TFC_SetMotorPWM(0, 0);
+		
 	}
 }
 
