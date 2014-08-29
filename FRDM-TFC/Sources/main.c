@@ -2,9 +2,11 @@
 #include "TFC\TFC.h"
 int media = 64;
 
-void fuzzy(void) {
 
-	int spd =20000;
+void fuzzy(void) {
+	int a;
+	float w;
+	int spd = 20000;
 	int i = 0;
 	double grauvl = 0;
 	volatile float graul = 0;
@@ -29,60 +31,64 @@ void fuzzy(void) {
 //	float teste=(float)(media/22.0);
 
 //---------------------OBTENÇÃO DE GRAU DAS FAIXA---------------------	
-	if (((TFC_GetDIP_Switch() >> 1) & 0x03)==0) 
+	if (((TFC_GetDIP_Switch() >> 1) & 0x03) == 0)
 		TFC_HBRIDGE_DISABLE;
-	else{
+	else {
 
 		for (i = 0; i < 100; i++) // zerar o vetor da área
-				{
+		{
 			area[i] = 0;
 		}
 
 //--------------Very left inicio------------------
 
-		if (media < 21) {
+		if (media <= 20) {
 			grauvl = 1; // puxadinho da esquerda
-		} else if (media >= 21 && media < 40) {
-			grauvl = ((float) (-media / 19.0)) + ((float) (40.0 / 19)); // reta s da folha
+		} else if (media >= 20 && media <= 40) {
+			grauvl = ((float) (-media / 20)) + ((float) (2.0)); // reta s da folha
 		} else
 			grauvl = 0;
 //----------very left final-------------
 
 //-------------- left inicio------------------
 
-		if (media >= 21 && media < 40) {
-			graul = ((float) (media / 19.0)) - ((float) (21.0 / 19)); // reta r da folha
-		} else if (media >= 40 && media < 59) {
-			graul = ((float) (-media / 19.0)) + ((float) (59.0 / 19)); // reta u da folha
+		if (media >= 20 && media <= 40) {
+			graul = ((float) (media / 20.0)) - ((float) (1.0)); // reta r da folha
+		} else if (media >= 40 && media < 50) {
+			graul = ((float) (-media / 10.0)) + ((float) (5.0)); // reta u da folha
 		} else
 			graul = 0;
 //---------- left final-------------	
 
 //-------------- medium inicio------------------
 
-		if (media >= 40 && media < 64) {
-			graum = ((float) (media / 24.0)) - ((float) (5.0 / 3)); // reta t da folha
-		} else if (media >= 64 && media < 90) {
-			graum = ((float) (-media / 26.0)) + ((float) (43.0 / 13)); // reta w da folha
-		} else
+		if (media >= 40 && media <= 50) {
+			graum = ((float) (media / 10.0)) - ((float) (4.0)); // reta t da folha
+		} else if (media >= 80 && media <= 90) {
+			graum = ((float) (-media / 10.0)) + ((float) (9.0)); // reta w da folha
+		} 
+		else if(media>=50 && media<=80){
+			graum=1;
+		}
+				else
 			graum = 0;
 //---------- medium final-------------	
 
 //-------------- right inicio------------------
 
-		if (media >= 64 && media < 90) {
-			graur = ((float) (media / 21.0)) - (23.0 / 7); // reta v da folha
-		} else if (media >= 90 && media < 109) {
-			graur = ((float) (-media / 19.0)) + ((float) (109.0 / 19)); // reta y da folha
+		if (media >= 80 && media <= 90) {
+			graur = ((float) (media / 10.0)) - (7); // reta v da folha
+		} else if (media >= 90 && media < 110) {
+			graur = ((float) (-media /20.0)) + ((float) (5.0)); // reta y da folha
 		} else
 			graur = 0;
 //-------------- right final-------------			
 
 //-------------- very right inicio------------------
 
-		if (media >= 90 && media < 109) {
-			grauvr = ((float) (media / 19.0)) - ((float) (90.0 / 19)); // reta x da folha
-		} else if (media >= 109) {
+		if (media >= 90 && media < 110) {
+			grauvr = ((float) (media / 20.0)) - ((float) (4.5)); // reta x da folha
+		} else if (media >= 110) {
 			grauvr = 1; // reta y da folha
 		} else
 			grauvr = 0;
@@ -580,15 +586,18 @@ void fuzzy(void) {
 
 		if (cogfinal > 1530) {
 
-			TFC_SetMotorPWM(0.45, 0);
+			TFC_SetMotorPWM(0.5, 0.1);
+		
+			
 		}
 
 		else if (cogfinal < 1470) {
-			TFC_SetMotorPWM(0, 0.45);
-		} else {
-			TFC_SetMotorPWM(0.7, 0.7);
-		}
-	//	TFC_SetMotorPWM(0, 0);
+			TFC_SetMotorPWM(0.1, 0.5);
+			
+		} else TFC_SetMotorPWM(0.8,0.8);
+			
+		
+		//	TFC_SetMotorPWM(0, 0);
 	}
 }
 
@@ -600,7 +609,7 @@ int main(void) {
 
 	for (;;) {
 		if (LineScanImageReady == 1) {
-		//	TFC_SetServo(0,0);
+			//	TFC_SetServo(0,0);
 			a = 63;
 			b = 64;
 			while (LineScanImage0[a] >= limiar || LineScanImage0[b] >= limiar) {
