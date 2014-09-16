@@ -1,12 +1,13 @@
 #include "derivative.h" /* include peripheral declarations */
 #include "TFC\TFC.h"
 int media = 64;
+uint32_t a,b,med;
 
-
+int spd = 10000;
 void fuzzy(void) {
 	int a;
 	float w;
-	int spd = 20000;
+	
 	int i = 0;
 	double grauvl = 0;
 	volatile float graul = 0;
@@ -30,12 +31,12 @@ void fuzzy(void) {
 
 //	float teste=(float)(media/22.0);
 
-//---------------------OBTENÇÃO DE GRAU DAS FAIXA---------------------	
+//---------------------OBTENà¸§à¸£O DE GRAU DAS FAIXA---------------------	
 	if (((TFC_GetDIP_Switch() >> 1) & 0x03) == 0)
 		TFC_HBRIDGE_DISABLE;
 	else {
 
-		for (i = 0; i < 100; i++) // zerar o vetor da área
+		for (i = 0; i < 100; i++) // zerar o vetor da à¹rea
 		{
 			area[i] = 0;
 		}
@@ -94,7 +95,7 @@ void fuzzy(void) {
 			grauvr = 0;
 //-------------- very right final-------------			
 
-//----------- FIM DA OBTENÇÃO DOS GRAUS DA FAIXA-------------
+//----------- FIM DA OBTENà¸§à¸£O DOS GRAUS DA FAIXA-------------
 
 //----------- GRAU VELOCIDADE ----------------
 
@@ -126,7 +127,7 @@ void fuzzy(void) {
 
 //------------- FIM DOS GRAUS ---------------	
 
-//---------- COMPARAÇÃO DOS GRAUS -------------
+//---------- COMPARAà¸§à¸£O DOS GRAUS -------------
 
 // --------------- SL e VL --------------
 
@@ -567,7 +568,7 @@ void fuzzy(void) {
 		}
 		servang = 1000;
 
-//--------------Fim comparação de graus------------------	
+//--------------Fim comparaà¹‡à¹ƒo de graus------------------	
 		servang = 1000;
 		for (i = 0; i < 100; i++) {
 			cognumerador = cognumerador + (area[i] * servang * 1.0);
@@ -583,18 +584,26 @@ void fuzzy(void) {
 		TFC_HBRIDGE_ENABLE;
 		//if(cogfinal>1500)
 		TFC_SetServo(0, cogfinal * 1.0 / 500.0 - 3.0);
+		
 
 		if (cogfinal > 1530) {
 
-			TFC_SetMotorPWM(0.5, 0.1);
+		//	TFC_SetMotorPWM(0.7,(-1/20.0)*media + 5.0);
+			TFC_SetMotorPWM(0.45,0.2);
+			spd = 10000;
 		
 			
 		}
 
 		else if (cogfinal < 1470) {
-			TFC_SetMotorPWM(0.1, 0.5);
-			
-		} else TFC_SetMotorPWM(0.8,0.8);
+		//	TFC_SetMotorPWM((1/20.0)*media - 1.5,0.7) ;
+			TFC_SetMotorPWM(0.2,0.45);
+			spd = 10000;
+		} else {
+			TFC_SetMotorPWM(1,1);
+			//if(media >= a && media <= b )TFC_SetServo(0,0);
+			spd = 10000;
+		}
 			
 		
 		//	TFC_SetMotorPWM(0, 0);
@@ -602,30 +611,46 @@ void fuzzy(void) {
 	}
 }
 
-int main(void) {
+ int main(void) {
+	int y,x=0;
 	uint32_t t, i = 0, a = 0, b = 0, limiar = 0xFE0;
 	//TFC_SetServo(0,0);
 	float teste = 0;
 	TFC_Init();
 
+		/*		a = 0;
+				b = 127;
+				while (LineScanImage0[a] <= limiar || LineScanImage0[b] <= limiar) {
+					if (LineScanImage0[a] <= limiar) {
+						a++;
+					}
+					if (LineScanImage0[b] <= limiar) {
+						b--;
+					}
+				}
+				med = (int)((a+b)/2);	*/
 	for (;;) {
 		if (LineScanImageReady == 1) {
 			//	TFC_SetServo(0,0);
-			a = 63;
-			b = 64;
-			while (LineScanImage0[a] >= limiar || LineScanImage0[b] >= limiar) {
-				if (LineScanImage0[a] >= limiar) {
-					a--;
+			a = 0;
+			b = 127;
+			while (LineScanImage0[a] <= limiar || LineScanImage0[b] <= limiar) {
+				if (LineScanImage0[a] <= limiar) {
+					a++;
 				}
-				if (LineScanImage0[b] >= limiar) {
-					b++;
+				if (LineScanImage0[b] <= limiar) {
+					b--;
 				}
 			}
-			if ((b - a) <= 60) {
+			if ((b - a) <=0) {
 				media = media;
-			} else {
+				//a=0;
+				//b=127;
+			}
+			else {
 				media = (int) (a + b) / 2;
 			}
+			//for( y=0;y<200000;y++)  x=x;
 			/*if(media<60)TFC_SetServo(0,-0.5);
 			 else if (media>70)
 			 TFC_SetServo(0,0.5);
@@ -836,3 +861,4 @@ int main(void) {
 
 	return 0;
 }
+	
