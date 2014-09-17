@@ -43,53 +43,53 @@ void fuzzy(void) {
 
 //--------------Very left inicio------------------
 
-		if (media <= 20) {
+		if (media <= 21) {
 			grauvl = 1; // puxadinho da esquerda
-		} else if (media >= 20 && media <= 40) {
-			grauvl = ((float) (-media / 20)) + ((float) (2.0)); // reta s da folha
+		} else if (media >= 21 && media <= 43) {
+			grauvl = ((float) (-media / 22.0)) + ((float) (43.0/22.0)); // reta s da folha
 		} else
 			grauvl = 0;
 //----------very left final-------------
 
 //-------------- left inicio------------------
 
-		if (media >= 20 && media <= 40) {
-			graul = ((float) (media / 20.0)) - ((float) (1.0)); // reta r da folha
-		} else if (media >= 40 && media < 50) {
-			graul = ((float) (-media / 10.0)) + ((float) (5.0)); // reta u da folha
+		if (media >= 21 && media <= 43) {
+			graul = ((float) (media / 22.0)) - ((float) (21.0/22.0)); // reta r da folha
+		} else if (media >= 43 && media < 64) {
+			graul = ((float) (-media / 21.0)) + ((float) (64.0/21.0)); // reta u da folha
 		} else
 			graul = 0;
 //---------- left final-------------	
 
 //-------------- medium inicio------------------
 
-		if (media >= 40 && media <= 50) {
-			graum = ((float) (media / 10.0)) - ((float) (4.0)); // reta t da folha
-		} else if (media >= 80 && media <= 90) {
-			graum = ((float) (-media / 10.0)) + ((float) (9.0)); // reta w da folha
+		if (media >= 43 && media <= 64) {
+			graum = ((float) (media / 21.0)) - ((float) (43.0/21.0)); // reta t da folha
+		} else if (media >= 64 && media <= 86) {
+			graum = ((float) (-media /22.0)) + ((float) (86.0/22.0)); // reta w da folha
 		} 
-		else if(media>=50 && media<=80){
+	/*	else if(media>=50 && media<=80){
 			graum=1;
-		}
+		}*/
 				else
 			graum = 0;
 //---------- medium final-------------	
 
 //-------------- right inicio------------------
 
-		if (media >= 80 && media <= 90) {
-			graur = ((float) (media / 10.0)) - (7); // reta v da folha
-		} else if (media >= 90 && media < 110) {
-			graur = ((float) (-media /20.0)) + ((float) (5.0)); // reta y da folha
+		if (media >= 64 && media <= 86) {
+			graur = ((float) (media / 22.0)) -(float) (64.0/22.0); // reta v da folha
+		} else if (media >= 86 && media < 107) {
+			graur = ((float) (-media /21.0)) + ((float) (107.0/21.0)); // reta y da folha
 		} else
 			graur = 0;
 //-------------- right final-------------			
 
 //-------------- very right inicio------------------
 
-		if (media >= 90 && media < 110) {
-			grauvr = ((float) (media / 20.0)) - ((float) (4.5)); // reta x da folha
-		} else if (media >= 110) {
+		if (media >= 86 && media < 107) {
+			grauvr = ((float) (media / 21.0)) - ((float) (86.0/21.0)); // reta x da folha
+		} else if (media >= 107) {
 			grauvr = 1; // reta y da folha
 		} else
 			grauvr = 0;
