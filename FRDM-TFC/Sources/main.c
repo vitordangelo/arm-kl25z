@@ -4,6 +4,7 @@ int media = 64;
 uint32_t a,b,med;
 
 int spd = 10000;
+double cogfinal = 0;
 void fuzzy(void) {
 	int a;
 	float w;
@@ -27,7 +28,7 @@ void fuzzy(void) {
 	double grausaida = 0;
 	double cognumerador = 0;
 	double cogdenominador = 0;
-	double cogfinal = 0;
+	
 
 //	float teste=(float)(media/22.0);
 
@@ -581,39 +582,41 @@ void fuzzy(void) {
 		}
 
 		cogfinal = cognumerador / cogdenominador;
-		TFC_HBRIDGE_ENABLE;
+		
 		//if(cogfinal>1500)
 		TFC_SetServo(0, cogfinal * 1.0 / 500.0 - 3.0);
 		
 
-		if (cogfinal > 1530) {
-
+		if (cogfinal > 1550) {
+			TFC_HBRIDGE_ENABLE;
 		//	TFC_SetMotorPWM(0.7,(-1/20.0)*media + 5.0);
-			TFC_SetMotorPWM(0.45,0.2);
+			TFC_SetMotorPWM(0.6,0.3);
 			spd = 10000;
 		
 			
 		}
 
-		else if (cogfinal < 1470) {
+		else if (cogfinal < 1450) {
 		//	TFC_SetMotorPWM((1/20.0)*media - 1.5,0.7) ;
-			TFC_SetMotorPWM(0.2,0.45);
+			TFC_SetMotorPWM(0.3,0.6);
 			spd = 10000;
 		} else {
-			TFC_SetMotorPWM(1,1);
+			TFC_SetMotorPWM(0.9,0.9);			
 			//if(media >= a && media <= b )TFC_SetServo(0,0);
 			spd = 10000;
+			
 		}
 			
 		
 		//	TFC_SetMotorPWM(0, 0);
 		
 	}
-}
+}		
 
- int main(void) {
+  int main(void) {
 	int y,x=0;
-	uint32_t t, i = 0, a = 0, b = 0, limiar = 0xFE0;
+	uint32_t t, i = 0, a = 0, b = 0,limiar = 0xFE0;
+	int somatorioA=0, somatorioB=0,r;
 	//TFC_SetServo(0,0);
 	float teste = 0;
 	TFC_Init();
@@ -629,6 +632,13 @@ void fuzzy(void) {
 					}
 				}
 				med = (int)((a+b)/2);	*/
+	if(x==0){
+		for( r=0;r<20000000;r++) x=x;
+		TFC_HBRIDGE_ENABLE;		
+		TFC_SetMotorPWM(0.9,0.9);
+		
+	}
+	
 	for (;;) {
 		if (LineScanImageReady == 1) {
 			//	TFC_SetServo(0,0);
@@ -650,6 +660,20 @@ void fuzzy(void) {
 			else {
 				media = (int) (a + b) / 2;
 			}
+	/*	for(;a<media;a++){
+			
+			somatorioA=LineScanImage0[a]/100+somatorioA;
+		}
+			
+		for(;b>media;b--){
+			
+			somatorioB=LineScanImage0[b]/100+somatorioB;
+		}
+		
+		if((somatorioB-somatorioA)>1300 || (somatorioB-somatorioA)<(-1300)){
+		//	TFC_HBRIDGE_DISABLE;
+			//while(1);
+		}*/
 			//for( y=0;y<200000;y++)  x=x;
 			/*if(media<60)TFC_SetServo(0,-0.5);
 			 else if (media>70)
@@ -861,4 +885,3 @@ void fuzzy(void) {
 
 	return 0;
 }
-	
