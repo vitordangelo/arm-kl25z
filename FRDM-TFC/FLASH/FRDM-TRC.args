@@ -15,13 +15,14 @@
 "./Sources/TFC/TFC.o"
 "./Sources/sa_mtb.o"
 "./Sources/main.o"
+"./Sources/ServoCtrl.o"
 -mcpu=cortex-m0
 -mthumb
 -mfloat-abi=soft
 -g3
 -gdwarf-2
 -gstrict-dwarf
--T"C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Settings/Linker_Files/MKL25Z128_flash.ld"
+-T"C:/Users/aluno/git/arm-kl25z/FRDM-TFC/Project_Settings/Linker_Files/MKL25Z128_flash.ld"
 -Xlinker
 --gc-sections
 -L"C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m"

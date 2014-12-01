@@ -64,7 +64,7 @@ float x=0.0,y=0.0;
 
 			for (i = 0; i < 128; i++) 
 			{	
-				TERMINAL_PRINTF("%d,", LineScanImage0[i]/16);
+				TERMINAL_PRINTF("%X", LineScanImage0[i]/16);
 			}
 
 /*			for (i = 0; i < 128; i++) 

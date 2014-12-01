@@ -1916,45 +1916,45 @@
  1288              		.text
  1289              	.Letext0:
  1290              		.file 2 "C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint"
- 1291              		.file 3 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/MKL25Z4.h"
- 1292              		.file 4 "C:/Documents and Settings/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_LineScanC
+ 1291              		.file 3 "C:/Users/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/MKL25Z4.h"
+ 1292              		.file 4 "C:/Users/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_LineScanCamera.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 TFC_ADC.c
                             *COM*:00000004 PotADC_Value
                             *COM*:00000002 BatSenseADC_Value
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:22     .bss.CurrentADC_State:00000000 CurrentADC_State
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:23     .bss.CurrentADC_State:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:28     .bss.CurrentLineScanPixel:00000000 CurrentLineScanPixel
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:29     .bss.CurrentLineScanPixel:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:34     .bss.CurrentLineScanChannel:00000000 CurrentLineScanChannel
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:35     .bss.CurrentLineScanChannel:00000000 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:37     .text.ADC_Cal:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:42     .text.ADC_Cal:00000000 ADC_Cal
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:309    .text.ADC_Cal:000001b0 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:314    .text.ADC_Config_Alt:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:319    .text.ADC_Config_Alt:00000000 ADC_Config_Alt
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:393    .text.ADC_Read_Cal:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:398    .text.ADC_Read_Cal:00000000 ADC_Read_Cal
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:526    .text.InitADC0:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:531    .text.InitADC0:00000000 InitADC0
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:624    .text.InitADC0:00000084 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:631    .text.TFC_InitADCs:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:636    .text.TFC_InitADCs:00000000 TFC_InitADCs
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:701    .text.TFC_InitADCs:0000005c $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:710    .text.PIT_IRQHandler:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:715    .text.PIT_IRQHandler:00000000 PIT_IRQHandler
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:759    .text.PIT_IRQHandler:00000030 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:767    .text.ADC0_IRQHandler:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:772    .text.ADC0_IRQHandler:00000000 ADC0_IRQHandler
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1105   .text.ADC0_IRQHandler:000001dc $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1132   .text.TFC_ReadPot:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1137   .text.TFC_ReadPot:00000000 TFC_ReadPot
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1231   .text.TFC_ReadPot:000000a8 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1242   .text.TFC_ReadBatteryVoltage:00000000 $t
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1247   .text.TFC_ReadBatteryVoltage:00000000 TFC_ReadBatteryVoltage
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1282   .text.TFC_ReadBatteryVoltage:0000002c $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:22     .bss.CurrentADC_State:00000000 CurrentADC_State
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:23     .bss.CurrentADC_State:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:28     .bss.CurrentLineScanPixel:00000000 CurrentLineScanPixel
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:29     .bss.CurrentLineScanPixel:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:34     .bss.CurrentLineScanChannel:00000000 CurrentLineScanChannel
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:35     .bss.CurrentLineScanChannel:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:37     .text.ADC_Cal:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:42     .text.ADC_Cal:00000000 ADC_Cal
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:309    .text.ADC_Cal:000001b0 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:314    .text.ADC_Config_Alt:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:319    .text.ADC_Config_Alt:00000000 ADC_Config_Alt
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:393    .text.ADC_Read_Cal:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:398    .text.ADC_Read_Cal:00000000 ADC_Read_Cal
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:526    .text.InitADC0:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:531    .text.InitADC0:00000000 InitADC0
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:624    .text.InitADC0:00000084 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:631    .text.TFC_InitADCs:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:636    .text.TFC_InitADCs:00000000 TFC_InitADCs
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:701    .text.TFC_InitADCs:0000005c $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:710    .text.PIT_IRQHandler:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:715    .text.PIT_IRQHandler:00000000 PIT_IRQHandler
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:759    .text.PIT_IRQHandler:00000030 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:767    .text.ADC0_IRQHandler:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:772    .text.ADC0_IRQHandler:00000000 ADC0_IRQHandler
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1105   .text.ADC0_IRQHandler:000001dc $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1132   .text.TFC_ReadPot:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1137   .text.TFC_ReadPot:00000000 TFC_ReadPot
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1231   .text.TFC_ReadPot:000000a8 $d
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1242   .text.TFC_ReadBatteryVoltage:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1247   .text.TFC_ReadBatteryVoltage:00000000 TFC_ReadBatteryVoltage
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1282   .text.TFC_ReadBatteryVoltage:0000002c $d
                      .debug_frame:00000010 $d
-C:\DOCUME~1\aluno\CONFIG~1\Temp\ccAeXBmv.s:1241   .text.TFC_ReadPot:000000bc $t
+C:\Users\aluno\AppData\Local\Temp\cc9Jfxzc.s:1241   .text.TFC_ReadPot:000000bc $t
 
 UNDEFINED SYMBOLS
 disable_irq
