@@ -53,14 +53,14 @@
   63 0004 4C3A00   		.ascii	"L:\000"
   64 0007 00       		.align	2
   65              	.LC9:
-  66 0008 255800   		.ascii	"%X\000"
+  66 0008 25583A00 		.ascii	"%X:\000"
   67              		.global	__aeabi_f2d
   68              		.global	__aeabi_ddiv
   69              		.global	__aeabi_dsub
   70              		.global	__aeabi_d2f
   71              		.global	__aeabi_fcmpgt
   72              		.global	__aeabi_fcmplt
-  73 000b 00       		.section	.text.main,"ax",%progbits
+  73              		.section	.text.main,"ax",%progbits
   74              		.align	2
   75              		.global	main
   76              		.code	16
@@ -332,7 +332,7 @@
  276 0130 12E0     		b	.L10
  277              	.L11:
   66:../Sources/main.c **** 			{	
-  67:../Sources/main.c **** 				TERMINAL_PRINTF("%X", LineScanImage0[i]/16);
+  67:../Sources/main.c **** 				TERMINAL_PRINTF("%X:", LineScanImage0[i]/16);
  278              		.loc 1 67 0
  279 0132 3F4B     		ldr	r3, .L22+24
  280 0134 1A68     		ldr	r2, [r3]
@@ -540,23 +540,23 @@
  436              		.file 7 "C:/Users/aluno/git/arm-kl25z/FRDM-TFC/Project_Headers/TFC\\TFC_UART.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:22     .data.media:00000000 media
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:19     .data.media:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:22     .data.media:00000000 media
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:19     .data.media:00000000 $d
                             *COM*:00000004 a
                             *COM*:00000004 b
                             *COM*:00000004 med
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:32     .data.spd:00000000 spd
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:29     .data.spd:00000000 $d
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:39     .bss.cogfinal:00000000 cogfinal
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:36     .bss.cogfinal:00000000 $d
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:46     .bss.x:00000000 x
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:43     .bss.x:00000000 $d
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:53     .bss.y:00000000 y
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:50     .bss.y:00000000 $d
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:58     .rodata:00000000 $d
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:74     .text.main:00000000 $t
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:79     .text.main:00000000 main
-C:\Users\aluno\AppData\Local\Temp\ccj3gxzc.s:406    .text.main:00000218 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:32     .data.spd:00000000 spd
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:29     .data.spd:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:39     .bss.cogfinal:00000000 cogfinal
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:36     .bss.cogfinal:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:46     .bss.x:00000000 x
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:43     .bss.x:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:53     .bss.y:00000000 y
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:50     .bss.y:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:58     .rodata:00000000 $d
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:74     .text.main:00000000 $t
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:79     .text.main:00000000 main
+C:\Users\aluno\AppData\Local\Temp\cc9E9oFD.s:406    .text.main:00000218 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
